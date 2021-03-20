@@ -36,7 +36,9 @@ const SearchFood = () => {
     inputCarb,
     columns,
     setColumns,
-    foodDatabase,showSnack, setShowSnack
+    foodDatabase,
+    showSnack,
+    setShowSnack,
   } = useContext(UserContext);
 
   const [foodNew, setFoodNew] = useState("");
@@ -394,8 +396,6 @@ console.log("itemAdd", itemAdd) */
   );
   doc.output("dataurlnewwindow"); */
 
-  
-
   const getArrBreakfast = () => {
     const requestColumnId = Object.entries(columns).find(
       (i) => i[1].name === "Breakfast"
@@ -437,40 +437,34 @@ console.log("itemAdd", itemAdd) */
     return column.items;
   };
 
-  
   const getArrSnack = () => {
     if (showSnack) {
-    const requestColumnId = Object.entries(columns).find(
-      (i) => i[1].name === "Snack"
-    )[0];
+      const requestColumnId = Object.entries(columns).find(
+        (i) => i[1].name === "Snack"
+      )[0];
 
-    if (requestColumnId !== undefined) {
-      const column = columns[requestColumnId];
+      if (requestColumnId !== undefined) {
+        const column = columns[requestColumnId];
 
-      console.log("requestColumnId", requestColumnId);
+        console.log("requestColumnId", requestColumnId);
 
-      console.log("column", column.items);
+        console.log("column", column.items);
 
-      return column.items;
+        return column.items;
+      }
     }
-  }
-
   };
-
-
-
 
   const doc = new jsPDF();
 
   function exportPDF() {
-    console.log("showSnack", showSnack)
-    
+    console.log("showSnack", showSnack);
+
     const arrBreakfast = getArrBreakfast();
     const arrLunch = getArrLunch();
     const arrDinner = getArrDinner();
     const arrSnack = getArrSnack();
-    
-    
+
     /* arrBreakfast */
     /* const requestColumnId = Object.entries(columns).find(
       (i) => i[1].name === "Breakfast"
@@ -489,26 +483,22 @@ console.log("itemAdd", itemAdd) */
     var columnsBreakfast = [
       { title: "BREAKFAST" },
       { title: "Foods", dataKey: "name" },
-
-      { title: "Weight Net (grams)", dataKey: "foodWeight" },
+      { title: "Grams", dataKey: "foodWeight" }
     ];
     var columnsLunch = [
       { title: "LUNCH         " },
       { title: "Foods", dataKey: "name" },
-
-      { title: "Weight Net (grams)", dataKey: "foodWeight" },
+      { title: "Grams", dataKey: "foodWeight" }
     ];
     var columnsDinner = [
-      { title: "DINNER        " },
+      { title: "DINNER       " },
       { title: "Foods", dataKey: "name" },
-
-      { title: "Weight Net (grams)", dataKey: "foodWeight" },
+      { title: "Grams", dataKey: "foodWeight" }
     ];
     var columnsSnack = [
       { title: "SNACK         " },
-      { title: "Foods", dataKey: "name" },
-
-      { title: "Weight Net (grams)", dataKey: "foodWeight" },
+      { title: "Foods  ", dataKey: "name" },
+      { title: "Grams", dataKey: "foodWeight" }
     ];
 
     var doc = new jsPDF("p", "pt");
@@ -539,7 +529,6 @@ console.log("itemAdd", itemAdd) */
       }
     );
 
-
     if (showSnack) {
       doc.autoTable(
         columnsSnack,
@@ -550,7 +539,6 @@ console.log("itemAdd", itemAdd) */
         }
       );
     }
-
 
     doc.output("dataurlnewwindow");
 
