@@ -58,7 +58,7 @@ const InputMacros = () => {
             className="form-control w-75"
             placeholder="Protein in g"
             value={inputProt}
-            /* onChange={addFoodWeight} */
+            
           ></input>
         </div>
         <div className="col-md-4 mb-3">

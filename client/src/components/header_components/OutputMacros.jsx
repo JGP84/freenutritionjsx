@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../UserContext.js";
-import { PieChart } from "react-minimal-pie-chart";
+
+import { Doughnut } from "react-chartjs-2";
 
 /* import {
   addFoodWeight,
@@ -13,22 +14,32 @@ import { PieChart } from "react-minimal-pie-chart";
 const OutputMacros = () => {
   const { arrFoods, inputProt, inputLip, inputCarb } = useContext(UserContext);
 
-  /* functions pie chart */
 
-  /* const ouputProt = ()=>{
-  addProteins()
-  addFoodWeight()
-}
-const ouputLip = ()=>{
-  addLipids()
-  addFoodWeight()
-}
-const ouputCarb = ()=>{
-  addHc()
-  addFoodWeight()
-} */
 
-  /* end functions pie chart */
+  /* DoughnutChart */
+  const data = {
+    labels: ["Proteins", "Lipids", "Carbohydrates"],
+    datasets: [
+      {
+        label: "Macronutrients",
+        data: [addProteins(),addLipids(), addHc()],
+        backgroundColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(255, 205, 86, 1)",
+
+          "rgba(255, 159, 64, 1)",
+        ],
+      },
+    ],
+  };
+
+  const options = {
+    title: {
+      display: true,
+      text: "Macronutrients",
+    },
+  };
+  /* End DoughnutChart  */
 
   function addFoodWeight() {
     //cambia el valor de la propiedad foodWeight
@@ -400,14 +411,17 @@ const ouputCarb = ()=>{
             ></input>
           </div>
           <div className="container mt-3 ">
-            <PieChart
+            {/* <PieChart
               className="pieChart"
               data={[
                 { title: "Prot.", value: addProteins(), color: "#C13C37" },
                 { title: "Lip.", value: addLipids(), color: "#E3CD27" },
                 { title: "Carb.", value: addHc(), color: "#6A2135" },
               ]}
-            />
+            /> */}
+            
+            <Doughnut data={data} options={options} />
+
           </div>
         </div>
       </div>

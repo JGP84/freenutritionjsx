@@ -24,6 +24,7 @@ body {
 
 
     background-size: cover;
+    
 
     overflow-y: auto !important;
   min-height: 100vh;
@@ -32,10 +33,19 @@ body {
   font-family: 'Fira Sans', sans-serif;
 }
 
+
+
+background-image {
+  filter: blur(6px);
+}
+
 h1,h2,h3,h4,h5,h6,label,span {
   font-weight: 500;
   font-family: 'Fira Sans', sans-serif;
+  color: #FFFDDD;
 }
+
+
 
 body, html, .App, #root, .auth-wrapper {
   width: 100%;

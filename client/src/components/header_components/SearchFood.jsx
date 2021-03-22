@@ -7,6 +7,8 @@ import "jspdf-autotable";
 
 /* import { addFoodWeight } from "/Users/jose/Desktop/freenutritionjsx/client/src/functions.js" */
 
+
+
 const SearchFood = () => {
   /* my server food */
   /* const [foodDatabase, setFoodDatabase] = useState([]);
@@ -48,7 +50,7 @@ const SearchFood = () => {
     setFoodNew(foodsNew);
   }
 
-  function addFood() {
+ function addFood() {
     let index = foodDatabase.findIndex((item) => item.name === foodNew);
 
     arrFoods.unshift({
@@ -80,11 +82,11 @@ const SearchFood = () => {
 
     const column = columns[requestColumnId];
 
-    console.log("requestColumnId", requestColumnId);
+    /* console.log("requestColumnId", requestColumnId);
 
-    console.log("column", column.items);
+    console.log("column", column.items); */
 
-    const arrBreakfast = column.items;
+    
 
     setColumns({
       ...columns,
@@ -102,7 +104,10 @@ console.log("itemAdd", itemAdd) */
   }
 
   function allDelete() {
-    setArrFoods([]);
+
+    window.location.replace('');
+
+    /* setArrFoods([]);
 
     setColumns({
       [uuid()]: {
@@ -118,7 +123,7 @@ console.log("itemAdd", itemAdd) */
         name: "dinner",
         items: [],
       },
-    });
+    }); */
   }
 
   function addFoodWeight() {
@@ -491,13 +496,13 @@ console.log("itemAdd", itemAdd) */
       { title: "Grams", dataKey: "foodWeight" }
     ];
     var columnsDinner = [
-      { title: "DINNER       " },
+      { title: "DINNER        " },
       { title: "Foods", dataKey: "name" },
       { title: "Grams", dataKey: "foodWeight" }
     ];
     var columnsSnack = [
       { title: "SNACK         " },
-      { title: "Foods  ", dataKey: "name" },
+      { title: "Foods", dataKey: "name" },
       { title: "Grams", dataKey: "foodWeight" }
     ];
 
@@ -603,6 +608,11 @@ console.log("itemAdd", itemAdd) */
       </div>
     </>
   );
+
+  
+
 };
 
-export default SearchFood;
+export default SearchFood
+
+

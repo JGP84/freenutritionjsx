@@ -38,6 +38,8 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 } from "../functions"; */
 
 import { addFoodWeight } from "../functions";
+/* import { addFoodWeight } from "./header_components/SearchFood"; */
+
 
 //componente a exportar (Body):
 
@@ -49,10 +51,10 @@ function Body() {
     setColumns,
     inputProt,
     inputLip,
-    inputCarb,showSnack,setShowSnack
+    inputCarb,setShowSnack
   } = useContext(UserContext);
 
-  /*  function addFoodWeight() {
+/*    function addFoodWeight() {
     //cambia el valor de la propiedad foodWeight
 
     for (let i = 0; i < nintCards().length; i++) {
@@ -103,9 +105,11 @@ function Body() {
         ],
       },
     });
+
+   
   };
 
-  function duplicateItem(itemName, columnName) {
+  function duplicateItem(itemName, columnName, arrFoods) {
     const indexArrFoods = arrFoods.findIndex(
       (element) => element.name === itemName
     );
@@ -124,7 +128,7 @@ function Body() {
       idUnique: uuid(),
     });
 
-    addFoodWeight();
+    addFoodWeight(arrFoods);
 
     /////
     const itemAdd = {
