@@ -23,9 +23,9 @@ const Menu = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-md navbar-dark bg-dark p-3">
-      <h1>F r e e  N u t r i t i o n  P l a n n e r  .  O R G</h1>
-        <ul className="navbar-nav mr-auto m-3">
+      <nav className="navbar navbar-expand-md navbar-dark bg-dark d-flex justify-content-around p-3">
+      <h1>F r e e   N u t r i t i o n  P l a n n e r  .  O R G</h1>
+        <ul className="navbar-nav mr-auto ">
           
           <li className="nav-item">
             <Link className="nav-link" to="/">
@@ -59,6 +59,10 @@ const Menu = () => {
         ) : (
           <span></span>
         )}
+
+
+
+
       </nav>
     </>
   );

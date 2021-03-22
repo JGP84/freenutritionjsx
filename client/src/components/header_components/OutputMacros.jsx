@@ -14,15 +14,13 @@ import { Doughnut } from "react-chartjs-2";
 const OutputMacros = () => {
   const { arrFoods, inputProt, inputLip, inputCarb } = useContext(UserContext);
 
-
-
   /* DoughnutChart */
   const data = {
     labels: ["Proteins", "Lipids", "Carbohydrates"],
     datasets: [
       {
         label: "Macronutrients",
-        data: [addProteins(),addLipids(), addHc()],
+        data: [addProteins(), addLipids(), addHc()],
         backgroundColor: [
           "rgba(255, 99, 132, 1)",
           "rgba(255, 205, 86, 1)",
@@ -106,7 +104,7 @@ const OutputMacros = () => {
   }
 
   function n_int_starchyFoods() {
-    return (inputCarb - totalHc()) / 15.2;
+    return (inputCarb - totalHc()) / 14;
   }
 
   function totalHc() {
@@ -243,7 +241,7 @@ const OutputMacros = () => {
   }
 
   function nintProtein() {
-    return (inputProt - totalProtein()) / 7.2;
+    return (inputProt - totalProtein()) / 7;
   }
 
   function nintLipids() {
@@ -352,18 +350,22 @@ const OutputMacros = () => {
 
   return (
     <>
-      <div className="row p-3 ">
-        <div className="col">
+      
+        <div className="form-row d-flex p-3">
+
+
+          
           <form>
             <label>
-              {" "}
+              
               <h2>Results</h2>
             </label>
+
             <hr />
             <div className="form-row d-flex flex-row">
               <div className="col-md-4 mb-4">
                 <label>
-                  {" "}
+                  
                   <h4>Prot.</h4>
                 </label>
                 <input
@@ -396,9 +398,10 @@ const OutputMacros = () => {
                 ></input>
               </div>
             </div>
+
           </form>
-        </div>
-        <div className="col">
+            {/*  */}
+            <div className="form-row d-flex">
           <div>
             <label>
               <h4>KCAL.</h4>
@@ -411,20 +414,25 @@ const OutputMacros = () => {
             ></input>
           </div>
           <div className="container mt-3 ">
-            {/* <PieChart
-              className="pieChart"
-              data={[
-                { title: "Prot.", value: addProteins(), color: "#C13C37" },
-                { title: "Lip.", value: addLipids(), color: "#E3CD27" },
-                { title: "Carb.", value: addHc(), color: "#6A2135" },
-              ]}
-            /> */}
-            
             <Doughnut data={data} options={options} />
-
           </div>
         </div>
-      </div>
+            {/*  */}
+
+
+        </div>
+
+
+
+
+      
+
+
+
+
+
+
+      
     </>
   );
 };

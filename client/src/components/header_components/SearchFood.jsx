@@ -40,7 +40,7 @@ const SearchFood = () => {
     setColumns,
     foodDatabase,
     showSnack,
-    setShowSnack,
+    
   } = useContext(UserContext);
 
   const [foodNew, setFoodNew] = useState("");
@@ -191,7 +191,7 @@ console.log("itemAdd", itemAdd) */
   }
 
   function n_int_starchyFoods() {
-    return (inputCarb - totalHc()) / 15.2;
+    return (inputCarb - totalHc()) / 14;
   }
 
   function totalHc() {
@@ -328,7 +328,7 @@ console.log("itemAdd", itemAdd) */
   }
 
   function nintProtein() {
-    return (inputProt - totalProtein()) / 7.2;
+    return (inputProt - totalProtein()) / 7;
   }
 
   function nintLipids() {
@@ -408,9 +408,7 @@ console.log("itemAdd", itemAdd) */
 
     const column = columns[requestColumnId];
 
-    console.log("requestColumnId", requestColumnId);
-
-    console.log("column", column.items);
+   
 
     return column.items;
   };
@@ -422,10 +420,7 @@ console.log("itemAdd", itemAdd) */
 
     const column = columns[requestColumnId];
 
-    console.log("requestColumnId", requestColumnId);
-
-    console.log("column", column.items);
-
+    
     return column.items;
   };
   const getArrDinner = () => {
@@ -435,9 +430,7 @@ console.log("itemAdd", itemAdd) */
 
     const column = columns[requestColumnId];
 
-    console.log("requestColumnId", requestColumnId);
-
-    console.log("column", column.items);
+   
 
     return column.items;
   };
@@ -451,9 +444,7 @@ console.log("itemAdd", itemAdd) */
       if (requestColumnId !== undefined) {
         const column = columns[requestColumnId];
 
-        console.log("requestColumnId", requestColumnId);
-
-        console.log("column", column.items);
+       
 
         return column.items;
       }
@@ -466,23 +457,12 @@ console.log("itemAdd", itemAdd) */
     console.log("showSnack", showSnack);
 
     const arrBreakfast = getArrBreakfast();
+    console.log("arrBreakfast", arrBreakfast)
     const arrLunch = getArrLunch();
     const arrDinner = getArrDinner();
     const arrSnack = getArrSnack();
 
-    /* arrBreakfast */
-    /* const requestColumnId = Object.entries(columns).find(
-      (i) => i[1].name === "Breakfast"
-    )[0];
-
-    const column = columns[requestColumnId];
-
-    console.log("requestColumnId", requestColumnId)
-
-    console.log("column", column.items)
-
-      const arrBreakfast = column.items */
-    /* end arrBreakfast */
+   
 
     var vm = this;
     var columnsBreakfast = [
@@ -547,7 +527,7 @@ console.log("itemAdd", itemAdd) */
 
     doc.output("dataurlnewwindow");
 
-    //añadir imagen en base64 https://parall.ax/products/jspdf
+    //add image in base64 https://parall.ax/products/jspdf
     /* var imgData = 
 
       doc.addImage(imgData, 'JPEG', 15, 40, 180, 160)
