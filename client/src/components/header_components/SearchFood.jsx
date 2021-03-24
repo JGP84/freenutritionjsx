@@ -7,8 +7,6 @@ import "jspdf-autotable";
 
 /* import { addFoodWeight } from "/Users/jose/Desktop/freenutritionjsx/client/src/functions.js" */
 
-
-
 const SearchFood = () => {
   /* my server food */
   /* const [foodDatabase, setFoodDatabase] = useState([]);
@@ -30,6 +28,10 @@ const SearchFood = () => {
 
   /*  */
 
+  /* useEffect(() => {
+    addFoodWeight();
+  }, []); */
+
   const {
     arrFoods,
     setArrFoods,
@@ -40,7 +42,6 @@ const SearchFood = () => {
     setColumns,
     foodDatabase,
     showSnack,
-    
   } = useContext(UserContext);
 
   const [foodNew, setFoodNew] = useState("");
@@ -50,7 +51,7 @@ const SearchFood = () => {
     setFoodNew(foodsNew);
   }
 
- function addFood() {
+  function addFood() {
     let index = foodDatabase.findIndex((item) => item.name === foodNew);
 
     arrFoods.unshift({
@@ -86,8 +87,6 @@ const SearchFood = () => {
 
     console.log("column", column.items); */
 
-    
-
     setColumns({
       ...columns,
       [requestColumnId]: {
@@ -104,8 +103,7 @@ console.log("itemAdd", itemAdd) */
   }
 
   function allDelete() {
-
-    window.location.replace('');
+    window.location.replace("");
 
     /* setArrFoods([]);
 
@@ -402,40 +400,104 @@ console.log("itemAdd", itemAdd) */
   doc.output("dataurlnewwindow"); */
 
   const getArrBreakfast = () => {
+    let arrBreakfast = [];
+
     const requestColumnId = Object.entries(columns).find(
       (i) => i[1].name === "Breakfast"
     )[0];
 
     const column = columns[requestColumnId];
 
-   
+   arrBreakfast = [...column.items];
 
-    return column.items;
+    /* return column.items; */
+
+    /* const updateFoodweight = (element) => {
+
+      const index = arrFoods.findIndex(
+        (ingredient) => ingredient.idUnique === element.idUnique
+      );
+
+      return element.foodWeight = arrFoods[index].foodWeight;
+    };
+
+    arrBreakfast.map(updateFoodweight()); */
+
+     arrBreakfast.map(function updateFoodweight(element){
+      const index = arrFoods.findIndex(
+        (ingredient) => ingredient.idUnique === element.idUnique
+      );
+
+      element.foodWeight = arrFoods[index].foodWeight;
+
+    });
+
+    console.log("arrBreakfast NOW", arrBreakfast)
+
+    return arrBreakfast
+
+   
   };
 
   const getArrLunch = () => {
+
+    let arrLunch = [];
+
     const requestColumnId = Object.entries(columns).find(
       (i) => i[1].name === "Lunch"
     )[0];
 
     const column = columns[requestColumnId];
+    arrLunch = [...column.items];
 
-    
-    return column.items;
+    /* return column.items; */
+    arrLunch.map(function updateFoodweight(element){
+      const index = arrFoods.findIndex(
+        (ingredient) => ingredient.idUnique === element.idUnique
+      );
+
+      element.foodWeight = arrFoods[index].foodWeight;
+
+    });
+
+    console.log("arrLunch NOW", arrLunch)
+
+    return arrLunch
   };
+
+
+
+
   const getArrDinner = () => {
+    let arrDinner = [];
+
     const requestColumnId = Object.entries(columns).find(
       (i) => i[1].name === "Dinner"
     )[0];
 
     const column = columns[requestColumnId];
+    arrDinner = [...column.items];
 
-   
+    /* return column.items; */
+    arrDinner.map(function updateFoodweight(element){
+      const index = arrFoods.findIndex(
+        (ingredient) => ingredient.idUnique === element.idUnique
+      );
 
-    return column.items;
+      element.foodWeight = arrFoods[index].foodWeight;
+
+    });
+
+    console.log("arrDinner NOW", arrDinner)
+
+    return arrDinner
+
+
   };
 
   const getArrSnack = () => {
+    let arrSnack = [];
+
     if (showSnack) {
       const requestColumnId = Object.entries(columns).find(
         (i) => i[1].name === "Snack"
@@ -444,9 +506,21 @@ console.log("itemAdd", itemAdd) */
       if (requestColumnId !== undefined) {
         const column = columns[requestColumnId];
 
-       
-
-        return column.items;
+        /* return column.items; */
+        arrSnack = [...column.items];
+        arrSnack.map(function updateFoodweight(element){
+          const index = arrFoods.findIndex(
+            (ingredient) => ingredient.idUnique === element.idUnique
+          );
+    
+          element.foodWeight = arrFoods[index].foodWeight;
+    
+        });
+    
+        console.log("arrSnack NOW", arrSnack)
+    
+        return arrSnack
+    
       }
     }
   };
@@ -457,33 +531,31 @@ console.log("itemAdd", itemAdd) */
     console.log("showSnack", showSnack);
 
     const arrBreakfast = getArrBreakfast();
-    console.log("arrBreakfast", arrBreakfast)
+    console.log("arrBreakfast", arrBreakfast);
     const arrLunch = getArrLunch();
     const arrDinner = getArrDinner();
     const arrSnack = getArrSnack();
-
-   
 
     var vm = this;
     var columnsBreakfast = [
       { title: "BREAKFAST" },
       { title: "Foods", dataKey: "name" },
-      { title: "Grams", dataKey: "foodWeight" }
+      { title: "Grams", dataKey: "foodWeight" },
     ];
     var columnsLunch = [
       { title: "LUNCH         " },
       { title: "Foods", dataKey: "name" },
-      { title: "Grams", dataKey: "foodWeight" }
+      { title: "Grams", dataKey: "foodWeight" },
     ];
     var columnsDinner = [
       { title: "DINNER        " },
       { title: "Foods", dataKey: "name" },
-      { title: "Grams", dataKey: "foodWeight" }
+      { title: "Grams", dataKey: "foodWeight" },
     ];
     var columnsSnack = [
       { title: "SNACK         " },
       { title: "Foods", dataKey: "name" },
-      { title: "Grams", dataKey: "foodWeight" }
+      { title: "Grams", dataKey: "foodWeight" },
     ];
 
     var doc = new jsPDF("p", "pt");
@@ -544,6 +616,7 @@ console.log("itemAdd", itemAdd) */
           </label>
           <div className="input-group mt-2">
             <input
+              id="inputSearchFood"
               type="text"
               value={foodNew}
               list="texto_uno"
@@ -559,7 +632,7 @@ console.log("itemAdd", itemAdd) */
 
             <div className="input-group-append">
               <button
-                className="btn btn-primary"
+                className="btn btn-primary btn-lg"
                 type="button"
                 onClick={addFood}
               >
@@ -588,11 +661,6 @@ console.log("itemAdd", itemAdd) */
       </div>
     </>
   );
-
-  
-
 };
 
-export default SearchFood
-
-
+export default SearchFood;

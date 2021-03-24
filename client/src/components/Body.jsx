@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../UserContext";
 import uuid from "react-uuid";
 import { BsTrash, BsFiles } from "react-icons/bs";
@@ -41,7 +41,14 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 //componente a exportar (Body):
 
+
+
 function Body() {
+
+/*   useEffect(() => {
+    addFoodWeight();
+  }, []); */
+
   const {
     arrFoods,
     setArrFoods,
@@ -352,7 +359,7 @@ function Body() {
     });
   };
 
-  function duplicateItem(itemName, columnName, arrFoods) {
+  function duplicateItem(itemName, columnName) {
     const indexArrFoods = arrFoods.findIndex(
       (element) => element.name === itemName
     );
@@ -371,7 +378,7 @@ function Body() {
       idUnique: uuid(),
     });
 
-    addFoodWeight(arrFoods);
+    addFoodWeight();
 
     /////
     const itemAdd = {
@@ -394,6 +401,9 @@ function Body() {
       },
     });
     ///
+
+    console.log("arrFoods duplicate",arrFoods)
+    
   }
 
   const onDragEnd = (result, columns, setColumns) => {
@@ -544,8 +554,8 @@ function Body() {
                                             onClick={() =>
                                               duplicateItem(
                                                 item.name,
-                                                column.name,
-                                                arrFoods
+                                                column.name
+                                                
                                               )
                                             }
                                           />

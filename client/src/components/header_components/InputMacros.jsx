@@ -305,10 +305,11 @@ const InputMacros = () => {
         <div className="col-md-4 mb-3">
           <label>
             {" "}
-            <h4>Prot.</h4>
+            <h4>Proteins</h4>
           </label>
           <input
             name="inputProt"
+            id="inputMacros"
             onChange= {updateInputProt}
             type="number"
             className="form-control w-75"
@@ -320,10 +321,11 @@ const InputMacros = () => {
         <div className="col-md-4 mb-3">
           <label>
             {" "}
-            <h4>Lip.</h4>
+            <h4>Fats</h4>
           </label>
           <input
             name="inputLip"
+            id="inputMacros"
             onChange={updateInputLip}
             type="number"
             className="form-control w-75"
@@ -335,10 +337,11 @@ const InputMacros = () => {
         <div className="col-md-4 mb-3">
           <label>
             {" "}
-            <h4>Carb.</h4>
+            <h4>Carbohydrates</h4>
           </label>
           <input
             name="inputCarb"
+            id="inputMacros"
             onChange={updateInputCarb}
             type="number"
             className="form-control w-75"

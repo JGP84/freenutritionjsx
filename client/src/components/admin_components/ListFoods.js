@@ -38,7 +38,9 @@ const ListFoods = () => {
 
   return (
     <>
-      <table className="table mt-5 text-center">
+      <table
+      style={{ backgroundColor:  "white" }}
+      className="table mt-5 text-center">
         <thead>
           <tr>
             <th scope="col">Name</th>

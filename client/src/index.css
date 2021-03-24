@@ -102,3 +102,17 @@ body, html, .App, #root, .auth-wrapper {
 .forgot-password a {
   color: #167bff;
 }
+
+#inputMacros{
+  font-weight: bold;
+  font-size: 18px ;
+}
+#inputSearchFood{
+  font-weight: bold;
+  font-size: 22px ;
+}
+
+#ouputMacros{
+  font-weight: bold;
+  font-size: larger;
+}

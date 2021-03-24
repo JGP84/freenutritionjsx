@@ -15,12 +15,24 @@ const OutputMacros = () => {
   const { arrFoods, inputProt, inputLip, inputCarb } = useContext(UserContext);
 
   /* DoughnutChart */
+
+  const percenProt = () => {
+    return (100 * addProteins() * 4) / addKcal();
+  };
+
+  const percenLip = () => {
+    return (100 * addLipids() * 9) / addKcal();
+  };
+  const percenCarb = () => {
+    return (100 * addHc() * 4) / addKcal();
+  };
+
   const data = {
-    labels: ["Proteins", "Lipids", "Carbohydrates"],
+    /* labels: ["% Proteins", "% Lipids", "% Carbohydrates"] , */
     datasets: [
       {
         label: "Macronutrients",
-        data: [addProteins(), addLipids(), addHc()],
+        data: [percenProt(), percenLip(), percenCarb()],
         backgroundColor: [
           "rgba(255, 99, 132, 1)",
           "rgba(255, 205, 86, 1)",
@@ -33,7 +45,7 @@ const OutputMacros = () => {
 
   const options = {
     title: {
-      display: true,
+      display: false,
       text: "Macronutrients",
     },
   };
@@ -350,89 +362,80 @@ const OutputMacros = () => {
 
   return (
     <>
-      
-        <div className="form-row d-flex p-3">
+      <div className="form-row d-flex p-3">
+        <form>
+          <label>
+            <h2>Results</h2>
+          </label>
 
-
-          
-          <form>
-            <label>
-              
-              <h2>Results</h2>
-            </label>
-
-            <hr />
-            <div className="form-row d-flex flex-row">
-              <div className="col-md-4 mb-4">
-                <label>
-                  
-                  <h4>Prot.</h4>
-                </label>
-                <input
-                  className="form-control w-75"
-                  placeholder="Protein in g"
-                  value={addProteins()}
-                  onChange={addFoodWeight}
-                ></input>
-              </div>
-              <div className="col-md-4 mb-4">
-                <label>
-                  <h4>Lip.</h4>
-                </label>
-                <input
-                  className="form-control w-75"
-                  placeholder="Lipids in g"
-                  value={addLipids()}
-                  onChange={addFoodWeight}
-                ></input>
-              </div>
-              <div className="col-md-4 mb-4">
-                <label>
-                  <h4>Carb.</h4>
-                </label>
-                <input
-                  className="form-control w-75"
-                  placeholder="Carbohydrates in g"
-                  value={addHc()}
-                  onChange={addFoodWeight}
-                ></input>
-              </div>
+          <hr />
+          <div className="form-row d-flex flex-row">
+            <div className="col-md-4 mb-4">
+              <label>
+                <h4>Proteins</h4>
+              </label>
+              <input
+                id="ouputMacros"
+                className="form-control w-75"
+                placeholder="Protein in g"
+                value={addProteins()}
+                onChange={addFoodWeight}
+                style={{ backgroundColor: "rgba(255, 99, 132, 1)" }}
+              ></input>
             </div>
+            <div className="col-md-4 mb-4">
+              <label>
+                <h4>Fats</h4>
+              </label>
+              <input
+                id="ouputMacros"
+                className="form-control w-75"
+                placeholder="Lipids in g"
+                value={addLipids()}
+                onChange={addFoodWeight}
+                style={{ backgroundColor: "rgba(255, 205, 86, 1)" }}
+              ></input>
+            </div>
+            <div className="col-md-4 mb-4">
+              <label>
+                <h4>Carbohydrates</h4>
+              </label>
+              <input
+                id="ouputMacros"
+                className="form-control w-75"
+                placeholder="Carbohydrates in g"
+                value={addHc()}
+                onChange={addFoodWeight}
+                style={{ backgroundColor: "rgba(255, 159, 64, 1)" }}
+              ></input>
+            </div>
+          </div>
+        </form>
+        {/*  */}
+        <div className="form-row d-flex">
 
-          </form>
-            {/*  */}
-            <div className="form-row d-flex">
+          <div className="container mt-3 ">
+            <Doughnut data={data} options={options} />
+          </div>
+
           <div>
             <label>
               <h4>KCAL.</h4>
             </label>
             <input
+              
               className="form-control w-75 col-auto kcal"
               placeholder="Carbohydrates in g"
               value={addKcal()}
               onChange={addFoodWeight}
             ></input>
           </div>
-          <div className="container mt-3 ">
-            <Doughnut data={data} options={options} />
-          </div>
-        </div>
-            {/*  */}
 
+          
 
         </div>
-
-
-
-
-      
-
-
-
-
-
-
-      
+        {/*  */}
+      </div>
     </>
   );
 };

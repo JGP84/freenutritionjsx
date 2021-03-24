@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { auth } from "../authentication-firebase/firebaseconfig";
 import { useHistory } from "react-router-dom";
+import Menu from "../authentication-firebase/Menu";
 
 const Login = () => {
   const history = useHistory();
@@ -40,6 +41,7 @@ const Login = () => {
 
   return (
     <>
+    <Menu />
     {/* Test new login */}
     <form>
                 <h3>Sign Up</h3>
