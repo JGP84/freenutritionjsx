@@ -17,14 +17,26 @@ const OutputMacros = () => {
   /* DoughnutChart */
 
   const percenProt = () => {
-    return (100 * addProteins() * 4) / addKcal();
+    if (addProteins() == 0) {
+      return 0;
+    } else {
+      return Math.round((100 * addProteins() * 4) / addKcal());
+    }
   };
 
   const percenLip = () => {
-    return (100 * addLipids() * 9) / addKcal();
+    if (addLipids() == 0) {
+      return 0;
+    } else {
+      return Math.round((100 * addLipids() * 9) / addKcal());
+    }
   };
   const percenCarb = () => {
-    return (100 * addHc() * 4) / addKcal();
+    if (addHc() == 0) {
+      return 0;
+    } else {
+      return Math.round((100 * addHc() * 4) / addKcal());
+    }
   };
 
   const data = {
@@ -376,9 +388,9 @@ const OutputMacros = () => {
               </label>
               <input
                 id="ouputMacros"
-                className="form-control w-75"
+                className="form-control w-75 text-center"
                 placeholder="Protein in g"
-                value={addProteins()}
+                value={addProteins() + "g" + " / " + percenProt() + "%"}
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "rgba(255, 99, 132, 1)" }}
               ></input>
@@ -389,9 +401,9 @@ const OutputMacros = () => {
               </label>
               <input
                 id="ouputMacros"
-                className="form-control w-75"
+                className="form-control w-75 text-center"
                 placeholder="Lipids in g"
-                value={addLipids()}
+                value={addLipids() + "g" + " / " + percenLip() + "%"}
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "rgba(255, 205, 86, 1)" }}
               ></input>
@@ -402,9 +414,9 @@ const OutputMacros = () => {
               </label>
               <input
                 id="ouputMacros"
-                className="form-control w-75"
+                className="form-control w-75 text-center"
                 placeholder="Carbohydrates in g"
-                value={addHc()}
+                value={addHc() + "g" + " / " + percenCarb() + "%"}
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "rgba(255, 159, 64, 1)" }}
               ></input>
@@ -413,26 +425,21 @@ const OutputMacros = () => {
         </form>
         {/*  */}
         <div className="form-row d-flex">
-
           <div className="container mt-3 ">
             <Doughnut data={data} options={options} />
           </div>
 
           <div>
             <label>
-              <h4>KCAL.</h4>
+              <h4>CALORIES</h4>
             </label>
             <input
-              
               className="form-control w-75 col-auto kcal"
               placeholder="Carbohydrates in g"
-              value={addKcal()}
+              value={addKcal() + "Kcal"}
               onChange={addFoodWeight}
             ></input>
           </div>
-
-          
-
         </div>
         {/*  */}
       </div>

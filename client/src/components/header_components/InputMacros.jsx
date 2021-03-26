@@ -288,6 +288,10 @@ const InputMacros = () => {
       return gHcIntCards;
     }
   }
+
+  const gramsFormat = (number)=>{
+    return number + "g"
+  }
  
 
   
@@ -314,7 +318,7 @@ const InputMacros = () => {
             type="number"
             className="form-control w-75"
             placeholder="Protein in g"
-            value={inputProt}
+            value={inputProt} 
             
           ></input>
         </div>
