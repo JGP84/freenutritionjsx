@@ -11,10 +11,19 @@ import { UserContext } from "./UserContext";
 function App() {
   
   const [showSnack, setShowSnack] = useState(false);
+  const [isReqGrams, setIsReqGrams] =  useState(true)
+
   const [arrFoods, setArrFoods] = useState([]);
-  const [inputProt, setInputProt] = useState("15");
-  const [inputLip, setInputLip] = useState("30");
-  const [inputCarb, setInputCarb] = useState("75");
+  
+  const [inputProt, setInputProt] = useState(50);
+  const [inputLip, setInputLip] = useState(78);
+  const [inputCarb, setInputCarb] = useState(275);
+
+  const [inputProtPerc, setInputProtPerc] = useState(10);
+  const [inputLipPerc, setInputLipPerc] = useState(35);
+  const [inputCarbPerc, setInputCarbPerc] = useState(55);
+
+
   const [columns, setColumns] = useState({
     
     [uuid()]: {
@@ -64,9 +73,15 @@ function App() {
         setInputLip,
         inputCarb,
         setInputCarb,
+        inputProtPerc,
+        setInputProtPerc,
+        inputLipPerc,
+        setInputLipPerc,
+        inputCarbPerc,
+        setInputCarbPerc,
         columns,
         setColumns,
-        foodDatabase,setFoodDatabase,showSnack, setShowSnack
+        foodDatabase,setFoodDatabase,showSnack, setShowSnack,isReqGrams, setIsReqGrams
       }}
     >
       <div className="container">

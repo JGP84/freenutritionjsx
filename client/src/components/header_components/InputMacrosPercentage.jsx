@@ -1,39 +1,94 @@
-
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../../UserContext.js";
 
 /* import { addFoodWeight } from "/Users/jose/Desktop/freenutritionjsx/client/src/functions.js" */
 
-const InputMacros = () => {
+const InputMacrosPercentage = () => {
+  const [inputKcal, setInputKcal] = useState(2000);
+  /* const [inputProtPerc, setInputProtPerc] = useState(0); */
+
   const {
     inputProt,
     setInputProt,
     inputLip,
     setInputLip,
     inputCarb,
-    setInputCarb, arrFoods
-    
+    setInputCarb,
+    inputProtPerc,
+    setInputProtPerc,
+    inputLipPerc,
+    setInputLipPerc,
+    inputCarbPerc,
+    setInputCarbPerc,
+    arrFoods,
   } = useContext(UserContext);
 
+  function updateInputProtPerc(event) {
+
+    const inputProtein = event.target.value ;
+    setInputProtPerc(inputProtein);
+    const percentageToGrams = inputProtein / 100 * inputKcal / 4
+    setInputProt(percentageToGrams);
+    addFoodWeight();
+
   
-  function updateInputProt(event) {
-    const inputProtein = event.target.value;
-    setInputProt(inputProtein);
-    addFoodWeight()
   }
-  function updateInputLip(event) {
+
+  function updateInputLipPerc(event) {
     const inputLipids = event.target.value;
-    setInputLip(inputLipids);
-    addFoodWeight()
+    setInputLipPerc(inputLipids)
+    const percentageToGrams = inputLipids / 100 * inputKcal / 9;
+    setInputLip(percentageToGrams);
+    addFoodWeight();
+    
   }
-  function updateInputCarb(event) {
+
+  function updateInputCarbPerc(event) {
     const inputCarbohidrats = event.target.value;
-    setInputCarb(inputCarbohidrats);
-    addFoodWeight()
+    setInputCarbPerc(inputCarbohidrats)
+    const percentageToGrams = inputCarbohidrats / 100 * inputKcal / 4;
+    setInputCarb(percentageToGrams);
+    addFoodWeight();
+    
+  }
+
+  function updateInputKcalPerc(event) {
+    const inputKcal = event.target.value;
+    setInputKcal(inputKcal);
+    
+    /* Prot */
+    const inputProtein = 10 ;
+    setInputProtPerc(inputProtein);
+    const percentageToGramsProt = inputProtein / 100 * inputKcal / 4
+    setInputProt(percentageToGramsProt);
+    addFoodWeight();
+    /*  */
+
+    /* Lip */
+    const inputLipids = 35;
+    setInputLipPerc(inputLipids)
+    const percentageToGramsLip = inputLipids / 100 * inputKcal / 9;
+    setInputLip(percentageToGramsLip);
+    addFoodWeight();
+    /*  */
+
+    /*Carb  */
+    const inputCarbohidrats = 55;
+    setInputCarbPerc(inputCarbohidrats)
+    const percentageToGramsCarb = inputCarbohidrats / 100 * inputKcal / 4;
+    setInputCarb(percentageToGramsCarb);
+    addFoodWeight();
+    /*  */
+
+    
+    /* updateInputProtPerc(event)
+    updateInputLipPerc(event)
+    updateInputCarbPerc(event) */
+    
   }
 
   function addFoodWeight() {
-    //cambia el valor de la propiedad foodWeight
+    
 
     for (let i = 0; i < nintCards().length; i++) {
       arrFoods[i].foodWeight =
@@ -289,76 +344,107 @@ const InputMacros = () => {
     }
   }
 
-  const formatProt = ()=>{
-    return Math.round(inputProt) 
-  }
- 
-  const formatLip = ()=>{
-    return Math.round(inputLip)
-  }
 
-  const formatCarb = ()=>{
-    return Math.round(inputCarb)
-  }
-
-  
-  
-  
 
   return (
     <form className="col p-3">
-      {/* <label>
+     {/* <div className ="d-flex  align-items-center">
+     <label>
         {" "}
         <h2>Requirements</h2>
-      </label> */}
+      </label>
+
+
+     
+      <div className ="ms-5">
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="flexRadioDefault"
+          id="flexRadioDefault1"
+        />
+        <label class="form-check-label" for="flexRadioDefault1">
+          Grams (g)
+        </label>
+      </div>
+
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          name="flexRadioDefault"
+          id="flexRadioDefault2"
+          checked
+        />
+        <label class="form-check-label" for="flexRadioDefault2">
+          Percentage (%)
+        </label>
+      </div>
+     </div>
+      </div> */}
+
+    
+      <div>
+        <label>
+          <h4>CALORIES</h4>
+        </label>
+        <input
+          name="inputKcal"
+          className="form-control w-75 col-auto kcal"
+          placeholder="Enter your Kcal"
+          onChange={updateInputKcalPerc}
+          type="number"
+          value={inputKcal}
+        ></input>
+      </div>
+
+      {/*  */}
       <hr />
       <div className="form-row d-flex flex-row ">
         <div className="col-md-4 mb-3">
           <label>
             {" "}
-            <h4>Proteins (g)</h4>
+            <h4>Proteins (%)</h4>
           </label>
           <input
             name="inputProt"
             id="inputMacros"
-            onChange= {updateInputProt}
+            onChange={updateInputProtPerc}
             type="number"
             className="form-control w-75"
-            placeholder="Protein in g"
-            /* value={formatProt()}  */
-            
+            placeholder="Protein in %"
+            value={inputProtPerc}
           ></input>
         </div>
         <div className="col-md-4 mb-3">
           <label>
             {" "}
-            <h4>Fats (g)</h4>
+            <h4>Fats (%)</h4>
           </label>
           <input
             name="inputLip"
             id="inputMacros"
-            onChange={updateInputLip}
+            onChange={updateInputLipPerc}
             type="number"
             className="form-control w-75"
-            placeholder="Lipids in g"
-            /* value={formatLip()} */
-            
+            placeholder="Lipids in %"
+            value={inputLipPerc}
           ></input>
         </div>
         <div className="col-md-4 mb-3">
           <label>
             {" "}
-            <h4>Carbohydrates (g)</h4>
+            <h4>Carbohydrates (%)</h4>
           </label>
           <input
             name="inputCarb"
             id="inputMacros"
-            onChange={updateInputCarb}
+            onChange={updateInputCarbPerc}
             type="number"
             className="form-control w-75"
-            placeholder="Carbohydrates in g"
-            /* value={formatCarb()} */
-            
+            placeholder="Carbo. in %"
+            value={inputCarbPerc}
           ></input>
         </div>
       </div>
@@ -366,4 +452,4 @@ const InputMacros = () => {
   );
 };
 
-export default InputMacros;
+export default InputMacrosPercentage;
