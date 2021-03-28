@@ -417,7 +417,8 @@ console.log("itemAdd", itemAdd) */
         (ingredient) => ingredient.idUnique === element.idUnique
       );
 
-      element.foodWeight = arrFoods[index].foodWeight;
+      element.foodWeight = arrFoods[index].foodWeight + "g";
+
     });
 
     console.log("arrBreakfast NOW", arrBreakfast);
@@ -441,7 +442,7 @@ console.log("itemAdd", itemAdd) */
         (ingredient) => ingredient.idUnique === element.idUnique
       );
 
-      element.foodWeight = arrFoods[index].foodWeight;
+      element.foodWeight = arrFoods[index].foodWeight + "g";
     });
 
     console.log("arrLunch NOW", arrLunch);
@@ -465,7 +466,7 @@ console.log("itemAdd", itemAdd) */
         (ingredient) => ingredient.idUnique === element.idUnique
       );
 
-      element.foodWeight = arrFoods[index].foodWeight;
+      element.foodWeight = arrFoods[index].foodWeight + "g";
     });
 
     console.log("arrDinner NOW", arrDinner);
@@ -491,7 +492,7 @@ console.log("itemAdd", itemAdd) */
             (ingredient) => ingredient.idUnique === element.idUnique
           );
 
-          element.foodWeight = arrFoods[index].foodWeight;
+          element.foodWeight = arrFoods[index].foodWeight + "g";
         });
 
         console.log("arrSnack NOW", arrSnack);
