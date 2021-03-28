@@ -382,6 +382,80 @@ console.log("itemAdd", itemAdd) */
       return gHcIntCards;
     }
   }
+
+  function addProteins() {
+    if (nintCards().length < 1) {
+      return 0;
+    } else {
+      const arrAdd = [];
+
+      for (let i = 0; i < nintCards().length; i++) {
+        const add = arrFoods[i].prot * addOuputsFoods()[i];
+
+        arrAdd.push(add);
+      }
+
+      return Math.round(arrAdd.reduce((a, b) => a + b));
+    }
+  }
+
+  function addLipids() {
+    if (nintCards().length < 1) {
+      return 0;
+    } else {
+      const arrAdd = [];
+
+      for (let i = 0; i < nintCards().length; i++) {
+        const add = arrFoods[i].lip * addOuputsFoods()[i];
+
+        arrAdd.push(add);
+      }
+
+      return Math.round(arrAdd.reduce((a, b) => a + b));
+    }
+  }
+
+  function addHc() {
+    if (nintCards().length < 1) {
+      return 0;
+    } else {
+      const arrAdd = [];
+
+      for (let i = 0; i < nintCards().length; i++) {
+        const add = arrFoods[i].hc * addOuputsFoods()[i];
+
+        arrAdd.push(add);
+      }
+
+      return Math.round(arrAdd.reduce((a, b) => a + b));
+    }
+  }
+
+  function addKcal() {
+    return addProteins() * 4 + addLipids() * 9 + addHc() * 4;
+  }
+  const percenProt = () => {
+    if (addProteins() == 0) {
+      return 0;
+    } else {
+      return Math.round((100 * addProteins() * 4) / addKcal());
+    }
+  };
+
+  const percenLip = () => {
+    if (addLipids() == 0) {
+      return 0;
+    } else {
+      return Math.round((100 * addLipids() * 9) / addKcal());
+    }
+  };
+  const percenCarb = () => {
+    if (addHc() == 0) {
+      return 0;
+    } else {
+      return Math.round((100 * addHc() * 4) / addKcal());
+    }
+  };
   //JSPDF
   /*   var vm = this;
   var columns = [
@@ -418,7 +492,6 @@ console.log("itemAdd", itemAdd) */
       );
 
       element.foodWeight = arrFoods[index].foodWeight + "g";
-
     });
 
     console.log("arrBreakfast NOW", arrBreakfast);
@@ -502,40 +575,66 @@ console.log("itemAdd", itemAdd) */
     }
   };
 
+  let today = new Date();
+
+  /* let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate(); */
+  let date = today.getDate()+ ' / '+(today.getMonth()+1)+' / '+today.getFullYear();
+
+
+  const getArrInformation = () => {
+    let arrInformation = [
+      {
+        proteins: addProteins() + "g" + " / " + percenProt() + "%",
+        fats: addLipids() + "g" + " / " + percenLip() + "%",
+        carbohydrates: addHc() + "g" + " / " + percenCarb() + "%",
+        calories: addKcal() + " kcal" ,
+        date: date,
+      },
+    ];
+
+    return arrInformation;
+  };
+
   const doc = new jsPDF();
 
   function exportPDF() {
-    console.log("showSnack", showSnack);
-
     const arrBreakfast = getArrBreakfast();
-    console.log("arrBreakfast", arrBreakfast);
     const arrLunch = getArrLunch();
     const arrDinner = getArrDinner();
     const arrSnack = getArrSnack();
+    const arrInformation = getArrInformation();
 
-    var vm = this;
-    var columnsBreakfast = [
+    let vm = this;
+    let columnsBreakfast = [
       { title: "BREAKFAST" },
       { title: "Foods", dataKey: "name" },
       { title: "Grams", dataKey: "foodWeight" },
     ];
-    var columnsLunch = [
+    let columnsLunch = [
       { title: "LUNCH         " },
       { title: "Foods", dataKey: "name" },
       { title: "Grams", dataKey: "foodWeight" },
     ];
-    var columnsDinner = [
+    let columnsDinner = [
       { title: "DINNER        " },
       { title: "Foods", dataKey: "name" },
       { title: "Grams", dataKey: "foodWeight" },
     ];
-    var columnsSnack = [
+    let columnsSnack = [
       { title: "SNACK         " },
       { title: "Foods", dataKey: "name" },
       { title: "Grams", dataKey: "foodWeight" },
     ];
+    let columnsInformation = [
+      { title: "RESULTS        " },
+      { title: "Proteins", dataKey: "proteins" },
+      { title: "Fats", dataKey: "fats" },
+      { title: "Carbohydrates", dataKey: "carbohydrates" },
+      { title: "Calories", dataKey: "calories" },
+      { title: "Date", dataKey: "date" },
+    ];
 
-    var doc = new jsPDF("p", "pt");
+    let doc = new jsPDF("p", "pt");
 
     doc.text("F r e e   N u t r i t i o n   P l a n n e r  .  O R G", 40, 40);
     doc.autoTable(
@@ -574,10 +673,19 @@ console.log("itemAdd", itemAdd) */
       );
     }
 
+    doc.autoTable(
+      columnsInformation,
+      arrInformation,
+
+      {
+        margin: { top: 120 },
+      }
+    );
+
     doc.output("dataurlnewwindow");
 
     //add image in base64 https://parall.ax/products/jspdf
-    /* var imgData = 
+    /* let imgData = 
 
       doc.addImage(imgData, 'JPEG', 15, 40, 180, 160)
 
