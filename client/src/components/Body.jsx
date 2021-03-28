@@ -41,11 +41,8 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 //componente a exportar (Body):
 
-
-
 function Body() {
-
-/*   useEffect(() => {
+  /*   useEffect(() => {
     addFoodWeight();
   }, []); */
 
@@ -58,6 +55,9 @@ function Body() {
     inputLip,
     inputCarb,
     setShowSnack,
+    showSnack,
+    /* itemEdit,
+    setItemEdit, */
   } = useContext(UserContext);
 
   function addFoodWeight() {
@@ -402,8 +402,7 @@ function Body() {
     });
     ///
 
-    console.log("arrFoods duplicate",arrFoods)
-    
+    /* console.log("arrFoods duplicate", arrFoods); */
   }
 
   const onDragEnd = (result, columns, setColumns) => {
@@ -442,6 +441,105 @@ function Body() {
       });
     }
   };
+
+  const launchModal = (itemIdUnique, columnName) => {
+    setItemIdUnique(itemIdUnique);
+    setColumnName(columnName);
+  };
+
+  /* functions et variables modal */
+
+  const [itemIdUnique, setItemIdUnique] = useState("initialState");
+  const [columnName, setColumnName] = useState("initialState");
+  const [name, setName] = useState("");
+
+  /* const [n_int_card, setN_int_card] = useState(""); */
+  const [gramsInt_card, setGramsInt_card] = useState("");
+
+  const updateFood = (e) => {
+    e.preventDefault();
+
+    changeName();
+    changeN_int_card();
+  };
+
+  const changeName = () => {
+    const indexItem = arrFoods.findIndex(
+      (element) => element.idUnique === itemIdUnique
+    );
+
+    arrFoods[indexItem].name = name;
+    console.log("arrFoods despues", arrFoods);
+
+    let arrEdited = [];
+
+    const requestColumnId = Object.entries(columns).find(
+      (i) => i[1].name === columnName
+    )[0];
+
+    const column = columns[requestColumnId];
+
+    arrEdited = [...column.items];
+
+    /* search index item edited */
+    const indexItemArrEdited = arrEdited.findIndex(
+      (element) => element.idUnique === itemIdUnique
+    );
+
+    arrEdited[indexItemArrEdited].name = name;
+
+    console.log("arrEdited", arrEdited);
+
+    setColumns({
+      ...columns,
+      [requestColumnId]: {
+        ...column,
+        items: [...arrEdited],
+      },
+    });
+  };
+
+  const changeN_int_card = () => {
+    const indexItem = arrFoods.findIndex(
+      (element) => element.idUnique === itemIdUnique
+    );
+
+    /* conversion grams to n_int_card */
+    const n_int_card = gramsInt_card / arrFoods[indexItem].weight_int;
+
+    arrFoods[indexItem].n_int_card = n_int_card;
+    console.log("arrFoods despues", arrFoods);
+
+    addFoodWeight();
+
+    let arrEdited = [];
+
+    const requestColumnId = Object.entries(columns).find(
+      (i) => i[1].name === columnName
+    )[0];
+
+    const column = columns[requestColumnId];
+
+    arrEdited = [...column.items];
+
+    /* search index item edited */
+    const indexItemArrEdited = arrEdited.findIndex(
+      (element) => element.idUnique === itemIdUnique
+    );
+
+    arrEdited[indexItemArrEdited].n_int_card = n_int_card;
+
+    console.log("arrEdited", arrEdited);
+
+    setColumns({
+      ...columns,
+      [requestColumnId]: {
+        ...column,
+        items: [...arrEdited],
+      },
+    });
+  };
+  /* end functions modal */
 
   return (
     <div>
@@ -555,11 +653,123 @@ function Body() {
                                               duplicateItem(
                                                 item.name,
                                                 column.name
-                                                
                                               )
                                             }
                                           />
-                                          {/* <EditItem /> */}
+                                          {/* <button
+                                          onClick={()=>launchModal(item.idUnique)}
+                                          >edit</button> */}
+                                          {item.type === "starchyFoods" ? (
+                                            ""
+                                          ) : item.type === "fats" ? (
+                                            ""
+                                          ) : item.type === "proteinFoods" ? (
+                                            ""
+                                          ) : (
+                                            <FiEdit
+                                              size="28px"
+                                              data-bs-toggle="modal"
+                                              data-bs-target="#exampleModal"
+                                              onClick={() =>
+                                                launchModal(
+                                                  item.idUnique,
+                                                  column.name
+                                                )
+                                              }
+                                            >
+                                              edit
+                                            </FiEdit>
+                                          )}
+                                          {/* MODAL */}
+                                          {/*  <button
+                                            onClick={() =>
+                                              launchModal(item.name)
+                                            }
+                                            type="button"
+                                            class="btn btn-primary"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal"
+                                          >
+                                            modal
+                                          </button> */}
+                                          <div
+                                            className="modal fade"
+                                            id="exampleModal"
+                                            tabIndex="-1"
+                                            aria-labelledby="exampleModalLabel"
+                                            aria-hidden="true"
+                                          >
+                                            <div className="modal-dialog">
+                                              <div className="modal-content">
+                                                <div className="modal-header">
+                                                  <h4
+                                                    className="modal-title text-dark "
+                                                    id="exampleModal"
+                                                  >
+                                                    Edit food
+                                                  </h4>
+                                                  <button
+                                                    type="button"
+                                                    className="btn-close"
+                                                    data-bs-dismiss="modal"
+                                                    aria-label="Close"
+                                                    onClick={(e) =>
+                                                      updateFood(e)
+                                                    }
+                                                  ></button>
+                                                </div>
+                                                <div className="modal-body">
+                                                  <h5 className="d-flex justify-content-start text-dark">
+                                                    Name
+                                                  </h5>
+                                                  <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    value={name}
+                                                    onChange={(e) =>
+                                                      setName(e.target.value)
+                                                    }
+                                                  ></input>
+
+                                                  <h5 className="d-flex justify-content-start mt-3 text-dark">
+                                                    Weight (g)
+                                                  </h5>
+                                                  <input
+                                                    type="number"
+                                                    className="form-control"
+                                                    value={gramsInt_card}
+                                                    onChange={(e) =>
+                                                      setGramsInt_card(
+                                                        e.target.value
+                                                      )
+                                                    }
+                                                  ></input>
+                                                </div>
+                                                <div className="modal-footer">
+                                                  <button
+                                                    type="button"
+                                                    className="btn btn-warning"
+                                                    data-bs-dismiss="modal"
+                                                    onClick={(e) =>
+                                                      updateFood(e)
+                                                    }
+                                                  >
+                                                    Edit
+                                                  </button>
+                                                  <button
+                                                    type="button"
+                                                    className="btn btn-danger"
+                                                    onClick={(e) =>
+                                                      updateFood(e)
+                                                    }
+                                                  >
+                                                    Close
+                                                  </button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          {/* END modal */}
                                         </div>
                                       );
                                     }}

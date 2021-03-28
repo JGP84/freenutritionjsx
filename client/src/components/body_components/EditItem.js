@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from "/Users/jose/Desktop/freenutritionjsx/client/src/UserContext.js";
 
-const EditItem = ( props) => {
+const EditItem = ( ) => {
   const {
     arrFoods,
     setArrFoods,
@@ -10,7 +10,7 @@ const EditItem = ( props) => {
     foodDatabase,
     inputProt,
     inputLip,
-    inputCarb,
+    inputCarb, itemEdit
   } = useContext(UserContext);
 
   const [name, setName] = useState("");
@@ -26,7 +26,7 @@ const EditItem = ( props) => {
   };
 
   const changeName = () => {
-    console.log("itemIdUnique prop", props.itemIdUnique);
+    console.log("itemEdit: ", itemEdit);
     console.log("arrFoods edit", arrFoods);
     /* const column = columns[columnId]; */
 
@@ -310,14 +310,14 @@ const EditItem = ( props) => {
         type="button"
         className="btn btn-warning"
         data-bs-toggle="modal"
-        data-bs-target={`#id${props.item.food_id}`}
+        data-bs-target="#exampleModal"
       >
         Edit
       </button>
 
       <div
         className="modal fade colorModal"
-        id={`id${props.item.food_id}`}
+        id="exampleModal"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -325,7 +325,7 @@ const EditItem = ( props) => {
         <div className="modal-dialog">
           <div className="modal-content ">
             <div className="modal-header ">
-              <h4 className="modal-title " id={`id${props.item.food_id}`}>
+              <h4 className="modal-title text-dark " id="exampleModal">
                 Edit food
               </h4>
               <button
@@ -337,7 +337,7 @@ const EditItem = ( props) => {
               ></button>
             </div>
             <div className="modal-body">
-              <h5 className="d-flex justify-content-start ">Name</h5>
+              <h5 className="d-flex justify-content-start text-dark">Name</h5>
               <input
                 type="text"
                 className="form-control"
@@ -345,15 +345,9 @@ const EditItem = ( props) => {
                 onChange={(e) => setName(e.target.value)}
               ></input>
 
-              {/* <h5 className="d-flex justify-content-start mt-3">weight_int</h5>
-              <input
-                type="number"
-                className="form-control"
-                value={weight_int}
-                onChange={(e) => setweight_int(e.target.value)}
-              ></input> */}
+            
 
-              <h5 className="d-flex justify-content-start mt-3">N_int_card</h5>
+              <h5 className="d-flex justify-content-start mt-3 text-dark" >N_int_card</h5>
               <input
                 type="number"
                 className="form-control"

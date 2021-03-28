@@ -75,6 +75,7 @@ const SearchFood = () => {
       idUnique: arrFoods[0].idUnique,
       name: arrFoods[0].name,
       foodWeight: arrFoods[0].foodWeight,
+      type: arrFoods[0].type,
     };
 
     const requestColumnId = Object.entries(columns).find(
@@ -95,6 +96,7 @@ const SearchFood = () => {
       },
     });
     ///
+    console.log("arrFoods add", arrFoods);
     /* console.log("arrFoods", arrFoods)
 console.log("itemAdd", itemAdd) */
     console.log("columns", columns);
@@ -408,39 +410,22 @@ console.log("itemAdd", itemAdd) */
 
     const column = columns[requestColumnId];
 
-   arrBreakfast = [...column.items];
+    arrBreakfast = [...column.items];
 
-    /* return column.items; */
-
-    /* const updateFoodweight = (element) => {
-
-      const index = arrFoods.findIndex(
-        (ingredient) => ingredient.idUnique === element.idUnique
-      );
-
-      return element.foodWeight = arrFoods[index].foodWeight;
-    };
-
-    arrBreakfast.map(updateFoodweight()); */
-
-     arrBreakfast.map(function updateFoodweight(element){
+    arrBreakfast.map(function updateFoodweight(element) {
       const index = arrFoods.findIndex(
         (ingredient) => ingredient.idUnique === element.idUnique
       );
 
       element.foodWeight = arrFoods[index].foodWeight;
-
     });
 
-    console.log("arrBreakfast NOW", arrBreakfast)
+    console.log("arrBreakfast NOW", arrBreakfast);
 
-    return arrBreakfast
-
-   
+    return arrBreakfast;
   };
 
   const getArrLunch = () => {
-
     let arrLunch = [];
 
     const requestColumnId = Object.entries(columns).find(
@@ -451,22 +436,18 @@ console.log("itemAdd", itemAdd) */
     arrLunch = [...column.items];
 
     /* return column.items; */
-    arrLunch.map(function updateFoodweight(element){
+    arrLunch.map(function updateFoodweight(element) {
       const index = arrFoods.findIndex(
         (ingredient) => ingredient.idUnique === element.idUnique
       );
 
       element.foodWeight = arrFoods[index].foodWeight;
-
     });
 
-    console.log("arrLunch NOW", arrLunch)
+    console.log("arrLunch NOW", arrLunch);
 
-    return arrLunch
+    return arrLunch;
   };
-
-
-
 
   const getArrDinner = () => {
     let arrDinner = [];
@@ -479,20 +460,17 @@ console.log("itemAdd", itemAdd) */
     arrDinner = [...column.items];
 
     /* return column.items; */
-    arrDinner.map(function updateFoodweight(element){
+    arrDinner.map(function updateFoodweight(element) {
       const index = arrFoods.findIndex(
         (ingredient) => ingredient.idUnique === element.idUnique
       );
 
       element.foodWeight = arrFoods[index].foodWeight;
-
     });
 
-    console.log("arrDinner NOW", arrDinner)
+    console.log("arrDinner NOW", arrDinner);
 
-    return arrDinner
-
-
+    return arrDinner;
   };
 
   const getArrSnack = () => {
@@ -508,19 +486,17 @@ console.log("itemAdd", itemAdd) */
 
         /* return column.items; */
         arrSnack = [...column.items];
-        arrSnack.map(function updateFoodweight(element){
+        arrSnack.map(function updateFoodweight(element) {
           const index = arrFoods.findIndex(
             (ingredient) => ingredient.idUnique === element.idUnique
           );
-    
+
           element.foodWeight = arrFoods[index].foodWeight;
-    
         });
-    
-        console.log("arrSnack NOW", arrSnack)
-    
-        return arrSnack
-    
+
+        console.log("arrSnack NOW", arrSnack);
+
+        return arrSnack;
       }
     }
   };
@@ -607,6 +583,12 @@ console.log("itemAdd", itemAdd) */
     doc.save("arrAlimentos.pdf"); */
   }
 
+  const handler = (event) => {
+    if (event.key === "Enter") {
+      addFood();
+    }
+  };
+
   return (
     <>
       <div className="col p-3">
@@ -623,6 +605,7 @@ console.log("itemAdd", itemAdd) */
               className="form-control w-75"
               placeholder="Search your food"
               onChange={updateFoodNew}
+              onKeyPress={(e) => handler(e)}
             />
             <datalist id="texto_uno">
               {foodDatabase.map((item) => (

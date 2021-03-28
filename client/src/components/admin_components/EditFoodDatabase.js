@@ -59,7 +59,7 @@ const EditFoodDatabase = ({ food }) => {
         <div className="modal-dialog">
           <div className="modal-content ">
             <div className="modal-header ">
-              <h4 className="modal-title " id={`id${food.food_id}`}>
+              <h4 className="modal-title text-dark" id={`id${food.food_id}`}>
                 Edit food
               </h4>
               <button
@@ -71,56 +71,56 @@ const EditFoodDatabase = ({ food }) => {
               ></button>
             </div>
             <div className="modal-body">
-              <h5 className="d-flex justify-content-start ">Name</h5>
+              <h5 className="d-flex justify-content-start text-dark">Name</h5>
               <input
                 type="text"
                 className="form-control"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               ></input>
-              <h5 className="d-flex justify-content-start mt-3">Type</h5>
+              <h5 className="d-flex justify-content-start mt-3 text-dark">Type</h5>
               <input
                 type="text"
                 className="form-control"
                 value={type}
                 onChange={(e) => setType(e.target.value)}
               ></input>
-              <h5 className="d-flex justify-content-start mt-3">weight_int</h5>
+              <h5 className="d-flex justify-content-start mt-3 text-dark">weight_int</h5>
               <input
                 type="number"
                 className="form-control"
                 value={weight_int}
                 onChange={(e) => setweight_int(e.target.value)}
               ></input>
-              <h5 className="d-flex justify-content-start mt-3">Prot</h5>
+              <h5 className="d-flex justify-content-start mt-3 text-dark">Prot</h5>
               <input
                 type="number"
                 className="form-control"
                 value={prot}
                 onChange={(e) => setProt(e.target.value)}
               ></input>
-              <h5 className="d-flex justify-content-start mt-3">Lip</h5>
+              <h5 className="d-flex justify-content-start mt-3 text-dark">Lip</h5>
               <input
                 type="number"
                 className="form-control"
                 value={lip}
                 onChange={(e) => setLip(e.target.value)}
               ></input>
-              <h5 className="d-flex justify-content-start mt-3">Hc</h5>
+              <h5 className="d-flex justify-content-start mt-3 text-dark">Hc</h5>
               <input
                 type="number"
                 className="form-control"
                 value={hc}
                 onChange={(e) => setHc(e.target.value)}
               ></input>
-              <h5 className="d-flex justify-content-start mt-3">N_int_card</h5>
+              <h5 className="d-flex justify-content-start mt-3 text-dark">N_int_card</h5>
               <input
                 type="number"
                 className="form-control"
                 value={n_int_card}
                 onChange={(e) => setN_int_card(e.target.value)}
               ></input>
-              <h5 className="d-flex justify-content-start mt-3">Img_link</h5>
+              <h5 className="d-flex justify-content-start mt-3 text-dark">Img_link</h5>
               <input
                 type="text"
                 className="form-control"

@@ -11,7 +11,8 @@ import { UserContext } from "./UserContext";
 function App() {
   
   const [showSnack, setShowSnack] = useState(false);
-  const [isReqGrams, setIsReqGrams] =  useState(true)
+  const [isReqGrams, setIsReqGrams] =  useState(true);
+  const [itemEdit, setItemEdit] = useState("stateItemEdit")
 
   const [arrFoods, setArrFoods] = useState([]);
   
@@ -81,7 +82,7 @@ function App() {
         setInputCarbPerc,
         columns,
         setColumns,
-        foodDatabase,setFoodDatabase,showSnack, setShowSnack,isReqGrams, setIsReqGrams
+        foodDatabase,setFoodDatabase,showSnack, setShowSnack,isReqGrams, setIsReqGrams, itemEdit, setItemEdit
       }}
     >
       <div className="container">

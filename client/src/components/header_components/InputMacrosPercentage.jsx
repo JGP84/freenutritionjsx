@@ -24,72 +24,64 @@ const InputMacrosPercentage = () => {
   } = useContext(UserContext);
 
   function updateInputProtPerc(event) {
-
-    const inputProtein = event.target.value ;
+    const inputProtein = event.target.value;
     setInputProtPerc(inputProtein);
-    const percentageToGrams = inputProtein / 100 * inputKcal / 4
+    const percentageToGrams = ((inputProtein / 100) * inputKcal) / 4;
     setInputProt(percentageToGrams);
     addFoodWeight();
-
-  
   }
 
   function updateInputLipPerc(event) {
     const inputLipids = event.target.value;
-    setInputLipPerc(inputLipids)
-    const percentageToGrams = inputLipids / 100 * inputKcal / 9;
+    setInputLipPerc(inputLipids);
+    const percentageToGrams = ((inputLipids / 100) * inputKcal) / 9;
     setInputLip(percentageToGrams);
     addFoodWeight();
-    
   }
 
   function updateInputCarbPerc(event) {
     const inputCarbohidrats = event.target.value;
-    setInputCarbPerc(inputCarbohidrats)
-    const percentageToGrams = inputCarbohidrats / 100 * inputKcal / 4;
+    setInputCarbPerc(inputCarbohidrats);
+    const percentageToGrams = ((inputCarbohidrats / 100) * inputKcal) / 4;
     setInputCarb(percentageToGrams);
     addFoodWeight();
-    
   }
 
   function updateInputKcalPerc(event) {
     const inputKcal = event.target.value;
     setInputKcal(inputKcal);
-    
+    addFoodWeight();
+
     /* Prot */
-    const inputProtein = 10 ;
+    const inputProtein = 10;
     setInputProtPerc(inputProtein);
-    const percentageToGramsProt = inputProtein / 100 * inputKcal / 4
+    const percentageToGramsProt = ((inputProtein / 100) * inputKcal) / 4;
     setInputProt(percentageToGramsProt);
     addFoodWeight();
     /*  */
 
     /* Lip */
     const inputLipids = 35;
-    setInputLipPerc(inputLipids)
-    const percentageToGramsLip = inputLipids / 100 * inputKcal / 9;
+    setInputLipPerc(inputLipids);
+    const percentageToGramsLip = ((inputLipids / 100) * inputKcal) / 9;
     setInputLip(percentageToGramsLip);
     addFoodWeight();
     /*  */
 
     /*Carb  */
     const inputCarbohidrats = 55;
-    setInputCarbPerc(inputCarbohidrats)
-    const percentageToGramsCarb = inputCarbohidrats / 100 * inputKcal / 4;
+    setInputCarbPerc(inputCarbohidrats);
+    const percentageToGramsCarb = ((inputCarbohidrats / 100) * inputKcal) / 4;
     setInputCarb(percentageToGramsCarb);
     addFoodWeight();
     /*  */
 
-    
     /* updateInputProtPerc(event)
     updateInputLipPerc(event)
     updateInputCarbPerc(event) */
-    
   }
 
   function addFoodWeight() {
-    
-
     for (let i = 0; i < nintCards().length; i++) {
       arrFoods[i].foodWeight =
         Math.round((arrFoods[i].weight_int * addOuputsFoods()[i]) / 5) * 5;
@@ -344,11 +336,15 @@ const InputMacrosPercentage = () => {
     }
   }
 
-
+  const handler = (event) => {
+    if (event.key === "Enter") {
+      updateInputKcalPerc();
+    }
+  };
 
   return (
     <form className="col p-3">
-     {/* <div className ="d-flex  align-items-center">
+      {/* <div className ="d-flex  align-items-center">
      <label>
         {" "}
         <h2>Requirements</h2>
@@ -384,7 +380,6 @@ const InputMacrosPercentage = () => {
      </div>
       </div> */}
 
-    
       <div>
         <label>
           <h4>CALORIES</h4>
@@ -395,7 +390,9 @@ const InputMacrosPercentage = () => {
           placeholder="Enter your Kcal"
           onChange={updateInputKcalPerc}
           type="number"
+          step="100"
           value={inputKcal}
+          onKeyPress={(e) => handler(e)}
         ></input>
       </div>
 

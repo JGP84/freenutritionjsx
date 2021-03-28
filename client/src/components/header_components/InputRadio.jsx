@@ -22,29 +22,29 @@ const InputRadio = () => {
         </label>
 
         <div className="ms-5">
-          <div class="form-check">
+          <div className="form-check">
             <input
-              class="form-check-input"
+              className="form-check-input"
               type="radio"
               name="flexRadioDefault"
               id="flexRadioDefault1"
               onChange ={()=>setIsReqGrams(true)}
             />
-            <label class="form-check-label" for="flexRadioDefault1">
+            <label className="form-check-label"         htmlFor="flexRadioDefault1">
               Percentage (%)
             </label>
           </div>
 
-          <div class="form-check">
+          <div className="form-check">
             <input
-              class="form-check-input"
+              className="form-check-input"
               type="radio"
               name="flexRadioDefault"
               id="flexRadioDefault2"
               onChange ={()=>setIsReqGrams(false)}
               /* checked */
             />
-            <label class="form-check-label" for="flexRadioDefault2">
+            <label className="form-check-label" htmlFor="flexRadioDefault2">
               Grams (g)
             </label>
           </div>
