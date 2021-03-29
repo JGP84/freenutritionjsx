@@ -76,7 +76,7 @@ const Login = () => {
 
       <div className="container text-center mt-5">
         <h1>Welcome to Free Nutrition Planner . O R G</h1>
-        <h2>Please register or log in to access the application </h2>
+        <h2>Please create an account or login to access the application </h2>
       </div>
 
       <div className="row mt-5">
@@ -103,7 +103,7 @@ const Login = () => {
             />
             <input
               className="btn btn-dark btn-block mt-4"
-              value="Register User"
+              value="Create Account"
               type="submit"
             />
           </form>
@@ -118,7 +118,7 @@ const Login = () => {
             onClick={loginUser}
             className="btn btn-success btn-block mt-4"
           >
-            Sign In
+            Login
           </button>
         </div>
         <div className="col"></div>
