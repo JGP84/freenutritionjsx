@@ -43,7 +43,7 @@ const Login = () => {
     <>
     <Menu />
     {/* Test new login */}
-    <form>
+    {/* <form>
                 <h3>Sign Up</h3>
 
                 <div className="form-group">
@@ -70,11 +70,11 @@ const Login = () => {
                 <p className="forgot-password text-right">
                     Already registered <a href="#">sign in?</a>
                 </p>
-            </form>
+            </form> */}
     {/* end new login */}
 
 
-     {/*  <div className="container text-center mt-5">
+      <div className="container text-center mt-5">
         <h1>Welcome to Free Nutrition Planner . O R G</h1>
         <h2>Please register or log in to access the application </h2>
       </div>
@@ -83,25 +83,27 @@ const Login = () => {
         <div className="col"> </div>
         <div className="col">
           <form onSubmit={registerUser} className="form-group">
+          <label>Email address</label>
             <input
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
               className="form-control"
-              placeholder="Enter the mail"
+              placeholder="Enter email"
               type="text"
             />
+            <label>Password</label>
             <input
               onChange={(e) => {
                 setPass(e.target.value);
               }}
-              className="form-control mt-4"
-              placeholder="Enter the password"
+              className="form-control"
+              placeholder="Enter password"
               type="password"
             />
             <input
               className="btn btn-dark btn-block mt-4"
-              value="Register user"
+              value="Register User"
               type="submit"
             />
           </form>
@@ -116,13 +118,72 @@ const Login = () => {
             onClick={loginUser}
             className="btn btn-success btn-block mt-4"
           >
-            Sign in
+            Sign In
           </button>
         </div>
         <div className="col"></div>
-      </div> */}
+      </div>
     </>
   );
 };
 
 export default Login;
+
+/*  <div className="container text-center mt-5">
+        <h1>Welcome to Free Nutrition Planner . O R G</h1>
+        <h2>Please register or log in to access the application </h2>
+      </div>
+
+      <div className="row mt-5">
+        <div className="col"> </div>
+        <div className="col">
+          <form  className="form-group">
+            <label>Email address</label>
+            <input
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+              className="form-control"
+              placeholder="Enter email"
+              type="text"
+            />
+
+            <label>Password</label>
+            <input
+              onChange={(e) => {
+                setPass(e.target.value);
+              }}
+              className="form-control "
+              placeholder="Enter password"
+              type="password"
+            />
+
+            <div className ="form-row d-flex flex-row justify-content-center">
+
+            <input
+              className="btn btn-primary btn-block mt-4 "
+              value="Sign Up"
+              onClick={registerUser}
+            />
+         
+
+          {msgerror != null ? (
+            <div className="alert alert-danger">{msgerror}</div>
+          ) : (
+            <span></span>
+          )}
+
+          <button
+            value="Sign In"
+            onClick={loginUser}
+            className="btn btn-success btn-block mt-4 ms-4"
+          >
+            Sign In
+          </button>
+          </div>
+          </form>
+
+
+        </div>
+        <div className="col"></div>
+      </div> */
