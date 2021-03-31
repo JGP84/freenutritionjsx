@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { UserContext } from "/Users/jose/Desktop/freenutritionjsx/src/UserContext.js";
+import { UserContext } from "../../UserContext.js"
 
 const EditItem = () => {
   const {
