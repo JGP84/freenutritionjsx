@@ -133,7 +133,7 @@ const foodDatabase = [
     lip: 0.06,
     hc: 0.32,
     n_int_card: 0,
-    img_link: "./assets/imagesFoodDatabase/proteinFoods/tofu.png",
+    img_link: "./assets/imagesFoodDatabase/proteinFoods/eggWhite.png",
   },
   {
     food_id: 12,
@@ -155,7 +155,7 @@ const foodDatabase = [
     lip: 0.47,
     hc: 0.19,
     n_int_card: 0,
-    img_link: "./assets/imagesFoodDatabase/proteinFoods/tofu.png",
+    img_link: "./assets/imagesFoodDatabase/proteinFoods/hake.png",
   },
   {
     food_id: 14,
@@ -166,7 +166,7 @@ const foodDatabase = [
     lip: 0.79,
     hc: 0,
     n_int_card: 0,
-    img_link: "./assets/imagesFoodDatabase/proteinFoods/tofu.png",
+    img_link: "./assets/imagesFoodDatabase/proteinFoods/chickenBreast.png",
   },
   //nuts
   {
@@ -248,6 +248,17 @@ const foodDatabase = [
     hc: 1.5,
     n_int_card: 1,
     img_link: "./assets/imagesFoodDatabase/dairyProducts/soy_milk.png",
+  },
+  {
+    food_id: 22,
+    name: "textured soya",
+    type: "proteinFoods",
+    weight_int: 14,
+    prot: 7,
+    lip: 0.18,
+    hc: 2.75,
+    n_int_card: 0,
+    img_link: "./assets/imagesFoodDatabase/proteinFoods/texturedSoya.png",
   },
 ];
 
