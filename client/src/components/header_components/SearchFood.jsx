@@ -8,30 +8,6 @@ import "jspdf-autotable";
 /* import { addFoodWeight } from "/Users/jose/Desktop/freenutritionjsx/client/src/functions.js" */
 
 const SearchFood = () => {
-  /* my server food */
-  /* const [foodDatabase, setFoodDatabase] = useState([]);
-
-  const getFoods = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/admin");
-      const jsonData = await response.json();
-
-      setFoodDatabase(jsonData);
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
-
-  useEffect(() => {
-    getFoods();
-  }, []); */
-
-  /*  */
-
-  /* useEffect(() => {
-    addFoodWeight();
-  }, []); */
-
   const {
     arrFoods,
     setArrFoods,
@@ -76,6 +52,7 @@ const SearchFood = () => {
       name: arrFoods[0].name,
       foodWeight: arrFoods[0].foodWeight,
       type: arrFoods[0].type,
+      img_link: arrFoods[0].img_link,
     };
 
     const requestColumnId = Object.entries(columns).find(
@@ -130,8 +107,7 @@ console.log("itemAdd", itemAdd) */
     //cambia el valor de la propiedad foodWeight
 
     for (let i = 0; i < nintCards().length; i++) {
-      arrFoods[i].foodWeight =
-        Math.round((arrFoods[i].weight_int * addOuputsFoods()[i]) / 5) * 5;
+      arrFoods[i].foodWeight = arrFoods[i].weight_int * addOuputsFoods()[i];
     }
 
     return;
@@ -395,7 +371,7 @@ console.log("itemAdd", itemAdd) */
         arrAdd.push(add);
       }
 
-      return Math.round(arrAdd.reduce((a, b) => a + b));
+      return arrAdd.reduce((a, b) => a + b);
     }
   }
 
@@ -411,7 +387,7 @@ console.log("itemAdd", itemAdd) */
         arrAdd.push(add);
       }
 
-      return Math.round(arrAdd.reduce((a, b) => a + b));
+      return arrAdd.reduce((a, b) => a + b);
     }
   }
 
@@ -427,7 +403,7 @@ console.log("itemAdd", itemAdd) */
         arrAdd.push(add);
       }
 
-      return Math.round(arrAdd.reduce((a, b) => a + b));
+      return arrAdd.reduce((a, b) => a + b);
     }
   }
 
@@ -438,7 +414,7 @@ console.log("itemAdd", itemAdd) */
     if (addProteins() == 0) {
       return 0;
     } else {
-      return Math.round((100 * addProteins() * 4) / addKcal());
+      return (100 * addProteins() * 4) / addKcal();
     }
   };
 
@@ -446,14 +422,14 @@ console.log("itemAdd", itemAdd) */
     if (addLipids() == 0) {
       return 0;
     } else {
-      return Math.round((100 * addLipids() * 9) / addKcal());
+      return (100 * addLipids() * 9) / addKcal();
     }
   };
   const percenCarb = () => {
     if (addHc() == 0) {
       return 0;
     } else {
-      return Math.round((100 * addHc() * 4) / addKcal());
+      return (100 * addHc() * 4) / addKcal();
     }
   };
   //JSPDF
@@ -491,7 +467,7 @@ console.log("itemAdd", itemAdd) */
         (ingredient) => ingredient.idUnique === element.idUnique
       );
 
-      element.foodWeight = arrFoods[index].foodWeight + "g";
+      element.foodWeight = Math.round(arrFoods[index].foodWeight) + "g";
     });
 
     console.log("arrBreakfast NOW", arrBreakfast);
@@ -515,7 +491,7 @@ console.log("itemAdd", itemAdd) */
         (ingredient) => ingredient.idUnique === element.idUnique
       );
 
-      element.foodWeight = arrFoods[index].foodWeight + "g";
+      element.foodWeight = Math.round(arrFoods[index].foodWeight) + "g";
     });
 
     console.log("arrLunch NOW", arrLunch);
@@ -539,7 +515,7 @@ console.log("itemAdd", itemAdd) */
         (ingredient) => ingredient.idUnique === element.idUnique
       );
 
-      element.foodWeight = arrFoods[index].foodWeight + "g";
+      element.foodWeight = Math.round(arrFoods[index].foodWeight) + "g";
     });
 
     console.log("arrDinner NOW", arrDinner);
@@ -565,7 +541,7 @@ console.log("itemAdd", itemAdd) */
             (ingredient) => ingredient.idUnique === element.idUnique
           );
 
-          element.foodWeight = arrFoods[index].foodWeight + "g";
+          element.foodWeight = Math.round(arrFoods[index].foodWeight) + "g";
         });
 
         console.log("arrSnack NOW", arrSnack);
@@ -578,16 +554,34 @@ console.log("itemAdd", itemAdd) */
   let today = new Date();
 
   /* let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate(); */
-  let date = today.getDate()+ ' / '+(today.getMonth()+1)+' / '+today.getFullYear();
+  let date =
+    today.getDate() +
+    " / " +
+    (today.getMonth() + 1) +
+    " / " +
+    today.getFullYear();
 
+    const formatAddProteins = ()=>{
+      return Math.round(addProteins())
+    }
+    const formatAddLipids = ()=>{
+      return Math.round(addLipids())
+    }
+    const formatAddHc = ()=>{
+      return Math.round(addHc())
+    }
+  
+    const formatAddKcal = ()=>{
+      return Math.round(addKcal())
+    }
 
   const getArrInformation = () => {
     let arrInformation = [
       {
-        proteins: addProteins() + "g" + " / " + percenProt() + "%",
-        fats: addLipids() + "g" + " / " + percenLip() + "%",
-        carbohydrates: addHc() + "g" + " / " + percenCarb() + "%",
-        calories: addKcal() + " kcal" ,
+        proteins: Math.round(addProteins()) + "g" + " / " + Math.round(percenProt()) + "%",
+        fats: Math.round(addLipids()) + "g" + " / " + Math.round(percenLip()) + "%",
+        carbohydrates: Math.round(addHc()) + "g" + " / " + Math.round(percenCarb()) + "%",
+        calories: Math.round(addKcal()) + " kcal",
         date: date,
       },
     ];

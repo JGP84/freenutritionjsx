@@ -8,6 +8,8 @@ import Login from "./pages/Login";
 
 import { UserContext } from "./UserContext";
 
+import foodsDatabase from "../src/components/foodDatabase.jsx"
+
 function App() {
   
   const [showSnack, setShowSnack] = useState(false);
@@ -16,13 +18,13 @@ function App() {
 
   const [arrFoods, setArrFoods] = useState([]);
   
-  const [inputProt, setInputProt] = useState(50);
+  const [inputProt, setInputProt] = useState(75);
   const [inputLip, setInputLip] = useState(78);
-  const [inputCarb, setInputCarb] = useState(275);
+  const [inputCarb, setInputCarb] = useState(250);
 
-  const [inputProtPerc, setInputProtPerc] = useState(10);
+  const [inputProtPerc, setInputProtPerc] = useState(15);
   const [inputLipPerc, setInputLipPerc] = useState(35);
-  const [inputCarbPerc, setInputCarbPerc] = useState(55);
+  const [inputCarbPerc, setInputCarbPerc] = useState(50);
 
 
   const [columns, setColumns] = useState({
@@ -48,7 +50,7 @@ function App() {
     /* my server food */
     const [foodDatabase, setFoodDatabase] = useState([]);
   
-    const getFoods = async () => {
+   /*  const getFoods = async () => {
       try {
         const response = await fetch("http://localhost:5000/admin");
         const jsonData = await response.json();
@@ -57,7 +59,16 @@ function App() {
       } catch (err) {
         console.error(err.message);
       }
-    };
+    }; */
+
+
+  
+
+
+    const getFoods =  () => {
+      setFoodDatabase(foodsDatabase)
+    }
+
   
     useEffect(() => {
       getFoods();

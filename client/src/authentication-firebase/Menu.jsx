@@ -42,7 +42,7 @@ const Menu = () => {
             )}
           </li>
           <li className="nav-item">
-            {!user ? (
+            {user ==="admin@admin.com" ? (
               <Link className="nav-link" to="/admin">
                 Admin
               </Link>
@@ -54,7 +54,7 @@ const Menu = () => {
 
         {user ? (
           <button onClick={closeSesion} className="btn btn-danger">
-            Sign out
+            Sign Out
           </button>
         ) : (
           <span></span>

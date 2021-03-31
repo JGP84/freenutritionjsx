@@ -53,7 +53,7 @@ const InputMacrosPercentage = () => {
     addFoodWeight();
 
     /* Prot */
-    const inputProtein = 10;
+    const inputProtein = 15;
     setInputProtPerc(inputProtein);
     const percentageToGramsProt = ((inputProtein / 100) * inputKcal) / 4;
     setInputProt(percentageToGramsProt);
@@ -69,7 +69,7 @@ const InputMacrosPercentage = () => {
     /*  */
 
     /*Carb  */
-    const inputCarbohidrats = 55;
+    const inputCarbohidrats = 50;
     setInputCarbPerc(inputCarbohidrats);
     const percentageToGramsCarb = ((inputCarbohidrats / 100) * inputKcal) / 4;
     setInputCarb(percentageToGramsCarb);
@@ -83,8 +83,7 @@ const InputMacrosPercentage = () => {
 
   function addFoodWeight() {
     for (let i = 0; i < nintCards().length; i++) {
-      arrFoods[i].foodWeight =
-        Math.round((arrFoods[i].weight_int * addOuputsFoods()[i]) / 5) * 5;
+      arrFoods[i].foodWeight = arrFoods[i].weight_int * addOuputsFoods()[i];
     }
 
     return;

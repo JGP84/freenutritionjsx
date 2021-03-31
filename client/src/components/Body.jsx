@@ -64,8 +64,7 @@ function Body() {
     //cambia el valor de la propiedad foodWeight
 
     for (let i = 0; i < nintCards().length; i++) {
-      arrFoods[i].foodWeight =
-        Math.round((arrFoods[i].weight_int * addOuputsFoods()[i]) / 5) * 5;
+      arrFoods[i].foodWeight = arrFoods[i].weight_int * addOuputsFoods()[i];
     }
 
     return;
@@ -385,6 +384,8 @@ function Body() {
       idUnique: arrFoods[0].idUnique,
       name: arrFoods[0].name,
       foodWeight: arrFoods[0].foodWeight,
+      type: arrFoods[0].type,
+      img_link: arrFoods[0].img_link,
     };
 
     const requestColumnId = Object.entries(columns).find(
@@ -620,19 +621,11 @@ function Body() {
                                                 ingredient.idUnique ===
                                                 item.idUnique
                                             )),
-                                            arrFoods[index].foodWeight)
+                                            Math.round(arrFoods[index].foodWeight))
                                           }
-                                          {"g"}{" "}
-                                          {
-                                            /* ((index = arrFoods.findIndex(
-                                              (ingredient) =>
-                                                ingredient.idUnique ===
-                                                item.idUnique
-                                            )), */
-                                            arrFoods[index].name
-                                          }
+                                          {"g"} {item.name}
                                           <img
-                                            src={arrFoods[index].img_link}
+                                            src={item.img_link}
                                             alt="foodImg"
                                             width="30%"
                                           />

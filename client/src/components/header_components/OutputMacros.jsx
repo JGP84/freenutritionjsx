@@ -67,8 +67,7 @@ const OutputMacros = () => {
     //cambia el valor de la propiedad foodWeight
 
     for (let i = 0; i < nintCards().length; i++) {
-      arrFoods[i].foodWeight =
-        Math.round((arrFoods[i].weight_int * addOuputsFoods()[i]) / 5) * 5;
+      arrFoods[i].foodWeight = arrFoods[i].weight_int * addOuputsFoods()[i];
     }
 
     return;
@@ -332,7 +331,7 @@ const OutputMacros = () => {
         arrAdd.push(add);
       }
 
-      return Math.round(arrAdd.reduce((a, b) => a + b));
+      return arrAdd.reduce((a, b) => a + b);
     }
   }
 
@@ -348,7 +347,7 @@ const OutputMacros = () => {
         arrAdd.push(add);
       }
 
-      return Math.round(arrAdd.reduce((a, b) => a + b));
+      return arrAdd.reduce((a, b) => a + b);
     }
   }
 
@@ -364,14 +363,26 @@ const OutputMacros = () => {
         arrAdd.push(add);
       }
 
-      return Math.round(arrAdd.reduce((a, b) => a + b));
+      return arrAdd.reduce((a, b) => a + b);
     }
   }
 
   function addKcal() {
     return addProteins() * 4 + addLipids() * 9 + addHc() * 4;
   }
+  const formatAddProteins = ()=>{
+    return Math.round(addProteins())
+  }
+  const formatAddLipids = ()=>{
+    return Math.round(addLipids())
+  }
+  const formatAddHc = ()=>{
+    return Math.round(addHc())
+  }
 
+  const formatAddKcal = ()=>{
+    return Math.round(addKcal())
+  }
   return (
     <>
       <div className="form-row d-flex p-3">
@@ -390,7 +401,7 @@ const OutputMacros = () => {
                 id="ouputMacros"
                 className="form-control w-75 text-center"
                 placeholder="Protein in g"
-                value={addProteins() + "g" + " / " + percenProt() + "%"}
+                value={formatAddProteins() + "g" + " / " + percenProt() + "%"}
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "rgba(255, 99, 132, 1)" }}
               ></input>
@@ -403,7 +414,7 @@ const OutputMacros = () => {
                 id="ouputMacros"
                 className="form-control w-75 text-center"
                 placeholder="Lipids in g"
-                value={addLipids() + "g" + " / " + percenLip() + "%"}
+                value={formatAddLipids() + "g" + " / " + percenLip() + "%"}
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "rgba(255, 205, 86, 1)" }}
               ></input>
@@ -416,7 +427,7 @@ const OutputMacros = () => {
                 id="ouputMacros"
                 className="form-control w-75 text-center"
                 placeholder="Carbohydrates in g"
-                value={addHc() + "g" + " / " + percenCarb() + "%"}
+                value={formatAddHc() + "g" + " / " + percenCarb() + "%"}
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "rgba(255, 159, 64, 1)" }}
               ></input>
@@ -436,7 +447,7 @@ const OutputMacros = () => {
             <input
               className="form-control w-75 col-auto kcal"
               placeholder="Carbohydrates in g"
-              value={addKcal() + "Kcal"}
+              value={formatAddKcal() + "Kcal"}
               onChange={addFoodWeight}
             ></input>
           </div>

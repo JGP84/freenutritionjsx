@@ -6,32 +6,31 @@ import uuid from "react-uuid";
 
 function addFoodWeight(arrFoods) {
   //cambia el valor de la propiedad foodWeight
-  
+
   for (let i = 0; i < nintCards().length; i++) {
-    arrFoods[i].foodWeight =
-      Math.round((arrFoods[i].weight_int * addOuputsFoods()[i]) / 5) * 5;
+    arrFoods[i].foodWeight = Math.round(
+      arrFoods[i].weight_int * addOuputsFoods()[i]
+    );
   }
 
   return;
-
-
 }
 
 function nintCards(arrFoods) {
   const nintCards = [];
 
-  if (arrFoods){
-  if (arrFoods.length < 1) {
-    return [];
-  } else {
-    for (let i = 0; i < arrFoods.length; i++) {
-      let x = arrFoods[i].n_int_card;
+  if (arrFoods) {
+    if (arrFoods.length < 1) {
+      return [];
+    } else {
+      for (let i = 0; i < arrFoods.length; i++) {
+        let x = arrFoods[i].n_int_card;
 
-      nintCards.push(x);
+        nintCards.push(x);
+      }
+
+      return nintCards;
     }
-
-    return nintCards;
-  }
   }
   return [];
 }
@@ -267,64 +266,58 @@ function gHcIntCards(arrFoods) {
 }
 
 function addProteins(arrFoods) {
+  if (nintCards()) {
+    if (nintCards().length < 1) {
+      return 0;
+    } else {
+      const arrAdd = [];
 
-  if(nintCards()){
-  if (nintCards().length < 1) {
-    return 0;
-  } else {
-    const arrAdd = [];
+      for (let i = 0; i < nintCards().length; i++) {
+        const add = arrFoods[i].prot * addOuputsFoods()[i];
 
-    for (let i = 0; i < nintCards().length; i++) {
-      const add = arrFoods[i].prot * addOuputsFoods()[i];
+        arrAdd.push(add);
+      }
 
-      arrAdd.push(add);
+      return Math.round(arrAdd.reduce((a, b) => a + b));
     }
-
-    return Math.round(arrAdd.reduce((a, b) => a + b));
   }
-
-}
-return 0;
+  return 0;
 }
 
 function addLipids(arrFoods) {
+  if (nintCards()) {
+    if (nintCards().length < 1) {
+      return 0;
+    } else {
+      const arrAdd = [];
 
-  if(nintCards()){
-  if (nintCards().length < 1) {
-    return 0;
-  } else {
-    const arrAdd = [];
+      for (let i = 0; i < nintCards().length; i++) {
+        const add = arrFoods[i].lip * addOuputsFoods()[i];
 
-    for (let i = 0; i < nintCards().length; i++) {
-      const add = arrFoods[i].lip * addOuputsFoods()[i];
+        arrAdd.push(add);
+      }
 
-      arrAdd.push(add);
+      return Math.round(arrAdd.reduce((a, b) => a + b));
     }
-
-    return Math.round(arrAdd.reduce((a, b) => a + b));
-  }
-
   }
   return 0;
 }
 
 function addHc(arrFoods) {
+  if (nintCards()) {
+    if (nintCards().length < 1) {
+      return 0;
+    } else {
+      const arrAdd = [];
 
-  if(nintCards()){
-  if (nintCards().length < 1) {
-    return 0;
-  } else {
-    const arrAdd = [];
+      for (let i = 0; i < nintCards().length; i++) {
+        const add = arrFoods[i].hc * addOuputsFoods()[i];
 
-    for (let i = 0; i < nintCards().length; i++) {
-      const add = arrFoods[i].hc * addOuputsFoods()[i];
+        arrAdd.push(add);
+      }
 
-      arrAdd.push(add);
+      return Math.round(arrAdd.reduce((a, b) => a + b));
     }
-
-    return Math.round(arrAdd.reduce((a, b) => a + b));
-  }
-
   }
   return 0;
 }

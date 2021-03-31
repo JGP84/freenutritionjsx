@@ -1,16 +1,17 @@
 import { useState, useContext } from "react";
 import { UserContext } from "/Users/jose/Desktop/freenutritionjsx/client/src/UserContext.js";
 
-const EditItem = ( ) => {
+const EditItem = () => {
   const {
     arrFoods,
     setArrFoods,
-    columns, 
+    columns,
     setColumns,
     foodDatabase,
     inputProt,
     inputLip,
-    inputCarb, itemEdit
+    inputCarb,
+    itemEdit,
   } = useContext(UserContext);
 
   const [name, setName] = useState("");
@@ -32,7 +33,7 @@ const EditItem = ( ) => {
 
     /*  const arrFoodsReverse = [...arrFoods].reverse() */
 
-   /*  const indexItem = arrFoods.findIndex(
+    /*  const indexItem = arrFoods.findIndex(
       (element) => element.idUnique === itemIdUnique.itemIdUnique
     );
 
@@ -52,8 +53,7 @@ const EditItem = ( ) => {
     //cambia el valor de la propiedad foodWeight
 
     for (let i = 0; i < nintCards().length; i++) {
-      arrFoods[i].foodWeight =
-        Math.round((arrFoods[i].weight_int * addOuputsFoods()[i]) / 5) * 5;
+      arrFoods[i].foodWeight = arrFoods[i].weight_int * addOuputsFoods()[i];
     }
 
     return;
@@ -345,9 +345,9 @@ const EditItem = ( ) => {
                 onChange={(e) => setName(e.target.value)}
               ></input>
 
-            
-
-              <h5 className="d-flex justify-content-start mt-3 text-dark" >N_int_card</h5>
+              <h5 className="d-flex justify-content-start mt-3 text-dark">
+                N_int_card
+              </h5>
               <input
                 type="number"
                 className="form-control"

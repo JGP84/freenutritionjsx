@@ -1,4 +1,3 @@
-
 import React, { useContext } from "react";
 import { UserContext } from "../../UserContext.js";
 
@@ -11,33 +10,31 @@ const InputMacros = () => {
     inputLip,
     setInputLip,
     inputCarb,
-    setInputCarb, arrFoods
-    
+    setInputCarb,
+    arrFoods,
   } = useContext(UserContext);
 
-  
   function updateInputProt(event) {
     const inputProtein = event.target.value;
     setInputProt(inputProtein);
-    addFoodWeight()
+    addFoodWeight();
   }
   function updateInputLip(event) {
     const inputLipids = event.target.value;
     setInputLip(inputLipids);
-    addFoodWeight()
+    addFoodWeight();
   }
   function updateInputCarb(event) {
     const inputCarbohidrats = event.target.value;
     setInputCarb(inputCarbohidrats);
-    addFoodWeight()
+    addFoodWeight();
   }
 
   function addFoodWeight() {
     //cambia el valor de la propiedad foodWeight
 
     for (let i = 0; i < nintCards().length; i++) {
-      arrFoods[i].foodWeight =
-        Math.round((arrFoods[i].weight_int * addOuputsFoods()[i]) / 5) * 5;
+      arrFoods[i].foodWeight = arrFoods[i].weight_int * addOuputsFoods()[i];
     }
 
     return;
@@ -289,21 +286,17 @@ const InputMacros = () => {
     }
   }
 
-  const formatProt = ()=>{
-    return Math.round(inputProt) 
-  }
- 
-  const formatLip = ()=>{
-    return Math.round(inputLip)
-  }
+  const formatProt = () => {
+    return Math.round(inputProt);
+  };
 
-  const formatCarb = ()=>{
-    return Math.round(inputCarb)
-  }
+  const formatLip = () => {
+    return Math.round(inputLip);
+  };
 
-  
-  
-  
+  const formatCarb = () => {
+    return Math.round(inputCarb);
+  };
 
   return (
     <form className="col p-3">
@@ -321,12 +314,11 @@ const InputMacros = () => {
           <input
             name="inputProt"
             id="inputMacros"
-            onChange= {updateInputProt}
+            onChange={updateInputProt}
             type="number"
             className="form-control w-75"
             placeholder="Protein in g"
             /* value={formatProt()}  */
-            
           ></input>
         </div>
         <div className="col-md-4 mb-3">
@@ -342,7 +334,6 @@ const InputMacros = () => {
             className="form-control w-75"
             placeholder="Lipids in g"
             /* value={formatLip()} */
-            
           ></input>
         </div>
         <div className="col-md-4 mb-3">
@@ -358,7 +349,6 @@ const InputMacros = () => {
             className="form-control w-75"
             placeholder="Carbohydrates in g"
             /* value={formatCarb()} */
-            
           ></input>
         </div>
       </div>
