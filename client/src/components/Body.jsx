@@ -621,7 +621,8 @@ function Body() {
                                                 ingredient.idUnique ===
                                                 item.idUnique
                                             )),
-                                            Math.round(arrFoods[index].foodWeight))
+                                            (Math.round(arrFoods[index].foodWeight))/10)*10
+                                            
                                           }
                                           {"g"} {item.name}
                                           <img

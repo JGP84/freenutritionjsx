@@ -561,19 +561,7 @@ console.log("itemAdd", itemAdd) */
     " / " +
     today.getFullYear();
 
-    const formatAddProteins = ()=>{
-      return Math.round(addProteins())
-    }
-    const formatAddLipids = ()=>{
-      return Math.round(addLipids())
-    }
-    const formatAddHc = ()=>{
-      return Math.round(addHc())
-    }
-  
-    const formatAddKcal = ()=>{
-      return Math.round(addKcal())
-    }
+
 
   const getArrInformation = () => {
     let arrInformation = [
