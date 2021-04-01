@@ -1,11 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "./firebaseconfig";
+import { UserContext } from "../UserContext.js";
 
 
 const Menu = () => {
+
+  const {
+    user, setUser
+  } = useContext(UserContext);
+
   const history = useHistory();
-  const [user, setUser] = useState(null);
+  /* const [user, setUser] = useState(null); */
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
