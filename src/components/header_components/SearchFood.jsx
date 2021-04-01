@@ -467,7 +467,7 @@ console.log("itemAdd", itemAdd) */
         (ingredient) => ingredient.idUnique === element.idUnique
       );
 
-      element.foodWeight = Math.round(arrFoods[index].foodWeight) + "g";
+      element.foodWeight = Math.round(arrFoods[index].foodWeight / 5 ) * 5 + "g";
     });
 
     console.log("arrBreakfast NOW", arrBreakfast);
@@ -491,7 +491,7 @@ console.log("itemAdd", itemAdd) */
         (ingredient) => ingredient.idUnique === element.idUnique
       );
 
-      element.foodWeight = Math.round(arrFoods[index].foodWeight) + "g";
+      element.foodWeight = Math.round(arrFoods[index].foodWeight / 5 ) * 5 + "g";
     });
 
     console.log("arrLunch NOW", arrLunch);
@@ -515,7 +515,7 @@ console.log("itemAdd", itemAdd) */
         (ingredient) => ingredient.idUnique === element.idUnique
       );
 
-      element.foodWeight = Math.round(arrFoods[index].foodWeight) + "g";
+      element.foodWeight = Math.round(arrFoods[index].foodWeight / 5 ) * 5 + "g";
     });
 
     console.log("arrDinner NOW", arrDinner);
@@ -541,7 +541,7 @@ console.log("itemAdd", itemAdd) */
             (ingredient) => ingredient.idUnique === element.idUnique
           );
 
-          element.foodWeight = Math.round(arrFoods[index].foodWeight) + "g";
+          element.foodWeight = Math.round(arrFoods[index].foodWeight / 5 ) * 5 + "g";
         });
 
         console.log("arrSnack NOW", arrSnack);
