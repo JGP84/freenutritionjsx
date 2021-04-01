@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 
 import { UserContext } from "./UserContext";
 
-import foodsDatabase from "../src/components/foodDatabase.jsx"
+/* import foodsDatabase from "../src/components/foodDatabase.jsx" */
 
 function App() {
   
@@ -18,13 +18,13 @@ function App() {
 
   const [arrFoods, setArrFoods] = useState([]);
   
-  const [inputProt, setInputProt] = useState(75);
+  const [inputProt, setInputProt] = useState(100);
   const [inputLip, setInputLip] = useState(78);
-  const [inputCarb, setInputCarb] = useState(250);
+  const [inputCarb, setInputCarb] = useState(225);
 
-  const [inputProtPerc, setInputProtPerc] = useState(15);
+  const [inputProtPerc, setInputProtPerc] = useState(20);
   const [inputLipPerc, setInputLipPerc] = useState(35);
-  const [inputCarbPerc, setInputCarbPerc] = useState(50);
+  const [inputCarbPerc, setInputCarbPerc] = useState(45);
 
 
   const [columns, setColumns] = useState({
@@ -50,24 +50,24 @@ function App() {
     /* my server food */
     const [foodDatabase, setFoodDatabase] = useState([]);
   
-   /*  const getFoods = async () => {
+    const getFoods = async () => {
       try {
-        const response = await fetch("http://localhost:5000/admin");
+        const response = await fetch("https://backend-freenutrition.herokuapp.com/");
         const jsonData = await response.json();
   
         setFoodDatabase(jsonData);
       } catch (err) {
         console.error(err.message);
       }
-    }; */
+    };
 
 
   
 
 
-    const getFoods =  () => {
+    /* const getFoods =  () => {
       setFoodDatabase(foodsDatabase)
-    }
+    } */
 
   
     useEffect(() => {

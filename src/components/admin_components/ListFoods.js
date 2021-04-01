@@ -9,7 +9,7 @@ const ListFoods = () => {
 
   const deleteFood = async (id) => {
     try {
-      const deleteFood = await fetch(`/admin/${id}`, {
+      const deleteFood = await fetch(`https://backend-freenutrition.herokuapp.com/${id}`, {
         method: "DELETE",
       });
 
@@ -23,7 +23,7 @@ const ListFoods = () => {
 
   const getFoods = async () => {
     try {
-      const response = await fetch("/admin");
+      const response = await fetch("https://backend-freenutrition.herokuapp.com/");
       const jsonData = await response.json();
 
       setFoodDatabase(jsonData);

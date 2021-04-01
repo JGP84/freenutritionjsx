@@ -4,6 +4,7 @@ const InputFood = () => {
   const [name, setName] = useState("");
 
   const onSubmitForm = async(e) =>{
+   /*  console.log("foods", foods) */
       e.preventDefault();
       try {
           const body = { name };
@@ -12,7 +13,7 @@ const InputFood = () => {
       //remember this heroku app is just our server serving the build static content and also holding the restful api
 
       //https://freenutrition.herokuapp.com/foods
-          const response = await fetch("/admin", {
+          const response = await fetch("https://backend-freenutrition.herokuapp.com/", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(body)

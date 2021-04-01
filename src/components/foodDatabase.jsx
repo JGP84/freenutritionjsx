@@ -48,7 +48,7 @@ const foodDatabase = [
   //starchyFoods
   {
     food_id: 4,
-    name: "Oats",
+    name: "oats",
     type: "starchyFoods",
     weight_int: 14,
     prot: 3.32,

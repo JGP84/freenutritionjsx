@@ -370,19 +370,19 @@ const OutputMacros = () => {
   function addKcal() {
     return addProteins() * 4 + addLipids() * 9 + addHc() * 4;
   }
-  const formatAddProteins = ()=>{
-    return Math.round(addProteins())
-  }
-  const formatAddLipids = ()=>{
-    return Math.round(addLipids())
-  }
-  const formatAddHc = ()=>{
-    return Math.round(addHc())
-  }
+  const formatAddProteins = () => {
+    return Math.round(addProteins());
+  };
+  const formatAddLipids = () => {
+    return Math.round(addLipids());
+  };
+  const formatAddHc = () => {
+    return Math.round(addHc());
+  };
 
-  const formatAddKcal = ()=>{
-    return Math.round(addKcal())
-  }
+  const formatAddKcal = () => {
+    return Math.round(addKcal());
+  };
   return (
     <>
       <div className="form-row d-flex p-3">

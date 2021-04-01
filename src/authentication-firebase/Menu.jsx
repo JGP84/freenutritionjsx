@@ -18,7 +18,7 @@ const Menu = () => {
   const closeSesion = () => {
     auth.signOut();
     setUser(null);
-    history.push("/");
+    history.push("/login");
   };
 
   return (

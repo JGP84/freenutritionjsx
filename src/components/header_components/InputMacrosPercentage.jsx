@@ -53,7 +53,7 @@ const InputMacrosPercentage = () => {
     addFoodWeight();
 
     /* Prot */
-    const inputProtein = 15;
+    const inputProtein = 20;
     setInputProtPerc(inputProtein);
     const percentageToGramsProt = ((inputProtein / 100) * inputKcal) / 4;
     setInputProt(percentageToGramsProt);
@@ -69,7 +69,7 @@ const InputMacrosPercentage = () => {
     /*  */
 
     /*Carb  */
-    const inputCarbohidrats = 50;
+    const inputCarbohidrats = 45;
     setInputCarbPerc(inputCarbohidrats);
     const percentageToGramsCarb = ((inputCarbohidrats / 100) * inputKcal) / 4;
     setInputCarb(percentageToGramsCarb);

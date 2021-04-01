@@ -26,7 +26,7 @@ const EditFoodDatabase = ({ food }) => {
         n_int_card,
         img_link,
       };
-      await fetch(`/admin/${food.food_id}`, {
+      await fetch(`https://backend-freenutrition.herokuapp.com/${food.food_id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
