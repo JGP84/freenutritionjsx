@@ -1,10 +1,18 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../UserContext.js";
 
+/* Functions in InputRadio:
+
+*/
+
+
+
+
+
 const InputRadio = () => {
 
     const {
-        isReqGrams, setIsReqGrams
+         setIsReqGrams
         
       } = useContext(UserContext);
 

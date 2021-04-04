@@ -1,7 +1,58 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../UserContext.js";
 
-/* import { addFoodWeight } from "/Users/jose/Desktop/freenutritionjsx/client/src/functions.js" */
+import {  addFoodWeight,
+  nintCards,
+  addOuputsFoods,
+  starchyFoodsIndex,
+  n_int_starchyFoods,
+  totalHc,
+  proteinFoodIndex,
+  lipidsIndex,
+  totalProtein,
+  totalLipids,
+  nintProtein,
+  nintLipids,
+  gProtIntCards,
+  gLipIntCards,
+  gHcIntCards  } from "../../functionsParams" 
+
+/* Functions in InputMacros:
+
+updateInputProt
+updateInputLip
+updateInputCarb
+
+*****
+addFoodWeight
+nintCards
+addOuputsFoods
+starchyFoodsIndex
+n_int_starchyFoods
+totalHc
+proteinFoodIndex
+lipidsIndex
+totalProtein
+totalLipids
+nintProtein
+nintLipids
+gProtIntCards
+gLipIntCards
+gHcIntCards
+******
+
+formatProt
+formatLip
+formatCarb
+
+
+
+
+
+
+
+
+*/
 
 const InputMacros = () => {
   const {
@@ -17,20 +68,24 @@ const InputMacros = () => {
   function updateInputProt(event) {
     const inputProtein = event.target.value;
     setInputProt(inputProtein);
-    addFoodWeight();
+    addFoodWeight(arrFoods);
   }
   function updateInputLip(event) {
     const inputLipids = event.target.value;
     setInputLip(inputLipids);
-    addFoodWeight();
+    addFoodWeight(arrFoods);
   }
   function updateInputCarb(event) {
     const inputCarbohidrats = event.target.value;
     setInputCarb(inputCarbohidrats);
-    addFoodWeight();
+    addFoodWeight(arrFoods);
   }
 
-  function addFoodWeight() {
+
+/////////////////
+
+
+ /*  function addFoodWeight() {
     //cambia el valor de la propiedad foodWeight
 
     for (let i = 0; i < nintCards().length; i++) {
@@ -284,7 +339,11 @@ const InputMacros = () => {
 
       return gHcIntCards;
     }
-  }
+  } */
+
+
+
+  //////////////////////
 
   const formatProt = () => {
     return Math.round(inputProt);

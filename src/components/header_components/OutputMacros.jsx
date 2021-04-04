@@ -3,6 +3,49 @@ import { UserContext } from "../../UserContext.js";
 
 import { Doughnut } from "react-chartjs-2";
 
+/* Functions in OutputMacros:
+
+percenProt
+percenLip
+percenCarb
+
+*******
+addFoodWeight
+nintCards
+addOuputsFoods
+starchyFoodsIndex
+n_int_starchyFoods
+totalHc
+proteinFoodIndex
+lipidsIndex
+totalProtein
+totalLipids
+nintProtein
+nintLipids
+gProtIntCards
+gLipIntCards
+gHcIntCards
+*****
+
+addProteins
+addLipids
+addHc
+addKcal
+
+formatAddProteins
+formatAddLipids
+formatAddHc
+formatAddKcal
+
+
+
+
+*/
+
+
+
+
+
 /* import {
   addFoodWeight,
   addProteins,

@@ -5,41 +5,48 @@ import { BsTrash, BsFiles } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
 import EditItem from "../components/body_components/EditItem";
 
+/* Functions in Body:
+
+*****
+addFoodWeight
+nintCards
+addOuputsFoods
+starchyFoodsIndex
+n_int_starchyFoods
+totalHc
+proteinFoodIndex
+lipidsIndex
+totalProtein
+totalLipids
+nintProtein
+nintLipids
+gProtIntCards
+gLipIntCards
+gHcIntCards
+*****
+
+
+addColumn
+deleteItem
+duplicateItem
+launchModal
+
+*******
+functions modal:
+updateFood
+changeName
+changeN_int_card
+
+*/
+
 /* import Tarjeta from "./Tarjeta"; */
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-/* import {
-  addFoodWeight,
- 
-   addFood,
-  editar,
-  save,
-  eliminar,
-  duplicateItem,
-  allDelete,
-  nintCards,
-  addOuputsFoods,
-  starchyFoodsIndex,
-  n_int_starchyFoods,
-  totalHc,
-  proteinFoodIndex,
-  lipidsIndex,
-  totalProtein,
-  totalLipids,
-  nintProtein,
-  nintLipids,
-  addProteins,
-  addLipids,
-  addHc,
-  addKcal,
-  gProtIntCards,
-  gLipIntCards,
-  gHcIntCards, 
-} from "../functions"; */
+
 
 /* import { addFoodWeight } from "../functions"; */
 
-//componente a exportar (Body):
+
 
 function Body() {
   /*   useEffect(() => {

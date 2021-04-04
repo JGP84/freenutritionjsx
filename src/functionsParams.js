@@ -4,19 +4,20 @@ import uuid from "react-uuid";
 
 /* const { arrFoods, setArrFoods, foodNew, setFoodNew, columns, setColumns, inputProt, setInputProt, inputLip, setInputLip, inputCarb, setInputCarb} = useContext( UserContext ); */
 
-function addFoodWeight() {
+function addFoodWeight(arrFoods) {
  
 
-  for (let i = 0; i < nintCards().length; i++) {
-    arrFoods[i].foodWeight = arrFoods[i].weight_int * addOuputsFoods()[i];
+  for (let i = 0; i < nintCards(arrFoods).length; i++) {
+    arrFoods[i].foodWeight = arrFoods[i].weight_int * addOuputsFoods(arrFoods)[i];
   }
 
   return;
 }
 
-function nintCards() {
+function nintCards(arrFoods) {
   const nintCards = [];
 
+  
   if (arrFoods.length < 1) {
     return [];
   } else {
@@ -30,13 +31,14 @@ function nintCards() {
   }
 }
 
-function addOuputsFoods() {
+function addOuputsFoods(arrFoods) {
   //insertamos los intercambios de starchyFoods
-  const arrOuputsFoods = JSON.parse(JSON.stringify(nintCards()));
+  const arrOuputsFoods = JSON.parse(JSON.stringify(nintCards(arrFoods)));
+  /* const arrOuputsFoods = []; */
 
-  for (let i = 0; i < nintCards().length; i++) {
-    arrOuputsFoods[starchyFoodsIndex()[i]] =
-      n_int_starchyFoods() / starchyFoodsIndex().length;
+  for (let i = 0; i < nintCards(arrFoods).length; i++) {
+    arrOuputsFoods[starchyFoodsIndex(arrFoods)[i]] =
+      n_int_starchyFoods() / starchyFoodsIndex(arrFoods).length;
   }
 
   //insertamos los intercambios de proteinFoods
@@ -52,7 +54,7 @@ function addOuputsFoods() {
   return arrOuputsFoods;
 }
 
-function starchyFoodsIndex() {
+function starchyFoodsIndex(arrFoods) {
   const indices1 = [];
 
   const element = "starchyFoods";
@@ -67,29 +69,29 @@ function starchyFoodsIndex() {
   return indices1;
 }
 
-function n_int_starchyFoods() {
-  return (inputCarb - totalHc()) / 14;
+function n_int_starchyFoods(inputCarb, arrFoods) {
+  return (inputCarb - totalHc(arrFoods)) / 14;
 }
 
-function totalHc() {
+function totalHc(arrFoods) {
   const arrAdd = [];
 
   let x = 0;
-  if (nintCards().length < 1) {
+  if (nintCards(arrFoods).length < 1) {
     x = 1;
   } else {
-    x = nintCards().length;
+    x = nintCards(arrFoods).length;
   }
 
   for (let i = 0; i < x; i++) {
-    const add = nintCards()[i] * gHcIntCards()[i];
+    const add = nintCards(arrFoods)[i] * gHcIntCards()[i];
     arrAdd.push(add);
   }
 
   return arrAdd.reduce((a, b) => a + b);
 }
 
-function proteinFoodIndex() {
+function proteinFoodIndex(arrFoods) {
   const indices2 = [];
 
   const element2 = "proteinFoods";
@@ -104,7 +106,7 @@ function proteinFoodIndex() {
   return indices2;
 }
 
-function lipidsIndex() {
+function lipidsIndex(arrFoods) {
   const indices3 = [];
 
   const element3 = "fats";
@@ -119,10 +121,10 @@ function lipidsIndex() {
   return indices3;
 }
 
-function totalProtein() {
+function totalProtein(arrFoods) {
   const arrAdd = [];
 
-  const nintCards1 = JSON.parse(JSON.stringify(nintCards()));
+  const nintCards1 = JSON.parse(JSON.stringify(nintCards(arrFoods)));
 
   const indices = [];
 
@@ -140,10 +142,10 @@ function totalProtein() {
   }
 
   let x = 0;
-  if (nintCards().length < 1) {
+  if (nintCards(arrFoods).length < 1) {
     x = 1;
   } else {
-    x = nintCards().length;
+    x = nintCards(arrFoods).length;
   }
 
   for (let i = 0; i < x; i++) {
@@ -154,10 +156,10 @@ function totalProtein() {
   return arrAdd.reduce((a, b) => a + b);
 }
 
-function totalLipids() {
+function totalLipids(arrFoods) {
   const arrAdd = [];
 
-  const nintCards2 = JSON.parse(JSON.stringify(nintCards()));
+  const nintCards2 = JSON.parse(JSON.stringify(nintCards(arrFoods)));
 
   const indices = [];
 
@@ -190,10 +192,10 @@ function totalLipids() {
   }
 
   let x = 0;
-  if (nintCards().length < 1) {
+  if (nintCards(arrFoods).length < 1) {
     x = 1;
   } else {
-    x = nintCards().length;
+    x = nintCards(arrFoods).length;
   }
 
   for (let i = 0; i < x; i++) {
@@ -204,15 +206,15 @@ function totalLipids() {
   return arrAdd.reduce((a, b) => a + b);
 }
 
-function nintProtein() {
-  return (inputProt - totalProtein()) / 7;
+function nintProtein(inputProt, arrFoods) {
+  return (inputProt - totalProtein(arrFoods)) / 7;
 }
 
-function nintLipids() {
-  return (inputLip - totalLipids()) / 5;
+function nintLipids(inputLip, arrFoods) {
+  return (inputLip - totalLipids(arrFoods)) / 5;
 }
 
-function gProtIntCards() {
+function gProtIntCards(arrFoods) {
   const gProtIntCards = [];
 
   if (arrFoods.length < 1) {
@@ -228,7 +230,7 @@ function gProtIntCards() {
   }
 }
 
-function gLipIntCards() {
+function gLipIntCards(arrFoods) {
   const gLipIntCards = [];
 
   if (arrFoods.length < 1) {
@@ -244,7 +246,7 @@ function gLipIntCards() {
   }
 }
 
-function gHcIntCards() {
+function gHcIntCards(arrFoods) {
   const gHcIntCards = [];
 
   if (arrFoods.length < 1) {
@@ -275,5 +277,5 @@ export {
   nintLipids,
   gProtIntCards,
   gLipIntCards,
-  gHcIntCards,
+  gHcIntCards
 };

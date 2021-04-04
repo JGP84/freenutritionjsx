@@ -3,6 +3,35 @@ import { UserContext } from "../../UserContext.js";
 
 /* import { addFoodWeight } from "/Users/jose/Desktop/freenutritionjsx/client/src/functions.js" */
 
+/* Functions in InputMacrosPercentage:
+
+updateInputProtPerc
+updateInputLipPerc
+updateInputCarbPerc
+updateInputKcalPerc
+
+*****
+addFoodWeight
+nintCards
+addOuputsFoods
+starchyFoodsIndex
+n_int_starchyFoods
+totalHc
+proteinFoodIndex
+lipidsIndex
+totalProtein
+totalLipids
+nintProtein
+nintLipids
+gProtIntCards
+gLipIntCards
+gHcIntCards
+*****
+
+handler
+
+*/
+
 const InputMacrosPercentage = () => {
   const [inputKcal, setInputKcal] = useState(2000);
   /* const [inputProtPerc, setInputProtPerc] = useState(0); */

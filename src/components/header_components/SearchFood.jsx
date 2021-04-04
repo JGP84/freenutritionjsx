@@ -5,6 +5,53 @@ import uuid from "react-uuid";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
+
+/* Functions in SearchFood:
+
+updateFoodNew
+
+addFood
+allDelete
+
+*****
+addFoodWeight
+nintCards
+addOuputsFoods
+starchyFoodsIndex
+n_int_starchyFoods
+totalHc
+proteinFoodIndex
+lipidsIndex
+totalProtein
+totalLipids
+nintProtein
+nintLipids
+gProtIntCards
+gLipIntCards
+gHcIntCards
+*****
+
+
+addProteins
+addLipids
+addHc
+addKcal
+
+percenProt
+percenLip
+percenCarb
+
+getArrBreakfast
+getArrLunch
+getArrDinner
+getArrSnack
+
+getArrInformation
+handler
+*/
+
+
+
 /* import { addFoodWeight } from "/Users/jose/Desktop/freenutritionjsx/client/src/functions.js" */
 
 const SearchFood = () => {
