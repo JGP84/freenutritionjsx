@@ -29,7 +29,7 @@ const Menu = () => {
         <ul className="navbar-nav mr-auto ">
           <li className="nav-item">
             {user === "admin@admin.com" ? (
-              <Link className="nav-link" to="/admin">
+              <Link className="nav-link" to="/">
                 Home
               </Link>
             ) : (
