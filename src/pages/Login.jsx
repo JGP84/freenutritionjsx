@@ -2,6 +2,7 @@ import { useState } from "react";
 import { auth } from "../authentication-firebase/firebaseconfig";
 import { useHistory } from "react-router-dom";
 import Menu from "../authentication-firebase/Menu";
+import LoginForm from "../components/login_components/LoginForm";
 
 const Login = () => {
   const history = useHistory();
@@ -39,7 +40,26 @@ const Login = () => {
       });
   };
 
+
+  var x = document.getElementById("login");
+      var y = document.getElementById("register");
+      var z = document.getElementById("btn");
+
+      function register() {
+        x.style.left = "-400px";
+        y.style.left = "50px";
+        z.style.left = "110px";
+      }
+      function login() {
+        x.style.left = "50x";
+        y.style.left = "450px";
+        z.style.left = "0px";
+      }
+
   return (
+
+
+
     <>
     <Menu />
     {/* Test new login */}
@@ -79,7 +99,10 @@ const Login = () => {
         <h2>Please create an account or login to access the application </h2>
       </div>
 
-      <div className="row mt-5">
+            <LoginForm/>
+
+
+     {/*  <div className="row mt-5">
         <div className="col"> </div>
         <div className="col">
           <form onSubmit={registerUser} className="form-group">
@@ -122,7 +145,10 @@ const Login = () => {
           </button>
         </div>
         <div className="col"></div>
-      </div>
+      </div> */}
+
+      
+
     </>
   );
 };
