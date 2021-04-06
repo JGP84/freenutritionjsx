@@ -9,9 +9,12 @@ const ListFoods = () => {
 
   const deleteFood = async (id) => {
     try {
-      const deleteFood = await fetch(`https://backend-freenutrition.herokuapp.com/${id}`, {
-        method: "DELETE",
-      });
+      const deleteFood = await fetch(
+        `https://backend-challenge-ts.herokuapp.com/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       setFoodDatabase(foods.filter((food) => food.food_id !== id));
 
@@ -23,7 +26,9 @@ const ListFoods = () => {
 
   const getFoods = async () => {
     try {
-      const response = await fetch("https://backend-freenutrition.herokuapp.com/");
+      const response = await fetch(
+        "https://backend-challenge-ts.herokuapp.com/"
+      );
       const jsonData = await response.json();
 
       setFoodDatabase(jsonData);
@@ -39,8 +44,9 @@ const ListFoods = () => {
   return (
     <>
       <table
-      style={{ backgroundColor:  "white" }}
-      className="table mt-5 text-center">
+        style={{ backgroundColor: "white" }}
+        className="table mt-5 text-center"
+      >
         <thead>
           <tr>
             <th scope="col">Name</th>

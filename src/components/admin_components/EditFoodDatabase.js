@@ -26,11 +26,14 @@ const EditFoodDatabase = ({ food }) => {
         n_int_card,
         img_link,
       };
-      await fetch(`https://backend-freenutrition.herokuapp.com/${food.food_id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
+      await fetch(
+        `https://backend-challenge-ts.herokuapp.com/${food.food_id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        }
+      );
 
       window.location = "/admin";
     } catch (err) {
@@ -78,49 +81,63 @@ const EditFoodDatabase = ({ food }) => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               ></input>
-              <h5 className="d-flex justify-content-start mt-3 text-dark">Type</h5>
+              <h5 className="d-flex justify-content-start mt-3 text-dark">
+                Type
+              </h5>
               <input
                 type="text"
                 className="form-control"
                 value={type}
                 onChange={(e) => setType(e.target.value)}
               ></input>
-              <h5 className="d-flex justify-content-start mt-3 text-dark">weight_int</h5>
+              <h5 className="d-flex justify-content-start mt-3 text-dark">
+                weight_int
+              </h5>
               <input
                 type="number"
                 className="form-control"
                 value={weight_int}
                 onChange={(e) => setweight_int(e.target.value)}
               ></input>
-              <h5 className="d-flex justify-content-start mt-3 text-dark">Prot</h5>
+              <h5 className="d-flex justify-content-start mt-3 text-dark">
+                Prot
+              </h5>
               <input
                 type="number"
                 className="form-control"
                 value={prot}
                 onChange={(e) => setProt(e.target.value)}
               ></input>
-              <h5 className="d-flex justify-content-start mt-3 text-dark">Lip</h5>
+              <h5 className="d-flex justify-content-start mt-3 text-dark">
+                Lip
+              </h5>
               <input
                 type="number"
                 className="form-control"
                 value={lip}
                 onChange={(e) => setLip(e.target.value)}
               ></input>
-              <h5 className="d-flex justify-content-start mt-3 text-dark">Hc</h5>
+              <h5 className="d-flex justify-content-start mt-3 text-dark">
+                Hc
+              </h5>
               <input
                 type="number"
                 className="form-control"
                 value={hc}
                 onChange={(e) => setHc(e.target.value)}
               ></input>
-              <h5 className="d-flex justify-content-start mt-3 text-dark">N_int_card</h5>
+              <h5 className="d-flex justify-content-start mt-3 text-dark">
+                N_int_card
+              </h5>
               <input
                 type="number"
                 className="form-control"
                 value={n_int_card}
                 onChange={(e) => setN_int_card(e.target.value)}
               ></input>
-              <h5 className="d-flex justify-content-start mt-3 text-dark">Img_link</h5>
+              <h5 className="d-flex justify-content-start mt-3 text-dark">
+                Img_link
+              </h5>
               <input
                 type="text"
                 className="form-control"

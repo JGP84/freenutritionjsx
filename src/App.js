@@ -48,7 +48,7 @@ function App() {
   const getFoods = async () => {
     try {
       const response = await fetch(
-        "https://backend-freenutrition.herokuapp.com/"
+        "https://backend-challenge-ts.herokuapp.com/"
       );
       const jsonData = await response.json();
 
