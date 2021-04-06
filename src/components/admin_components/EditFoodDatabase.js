@@ -157,6 +157,7 @@ const EditFoodDatabase = ({ food }) => {
               <button
                 type="button"
                 className="btn btn-danger"
+                data-bs-dismiss="modal"
                 onClick={(e) => updateFood(e)}
               >
                 Close
