@@ -92,7 +92,7 @@ const OutputMacros = () => {
           "rgba(255, 99, 132, 1)",
           "rgba(255, 205, 86, 1)",
 
-          "rgba(255, 159, 64, 1)",
+          "#b65c03",
         ],
       },
     ],
@@ -442,7 +442,7 @@ const OutputMacros = () => {
               </label>
               <input
                 id="ouputMacros"
-                className="form-control w-75 text-center"
+                className="form-control w-75 text-center mt-1"
                 placeholder="Protein in g"
                 value={percenProt() + "%" + " / " +  formatAddProteins()+ "g"}
                 onChange={addFoodWeight}
@@ -455,7 +455,7 @@ const OutputMacros = () => {
               </label>
               <input
                 id="ouputMacros"
-                className="form-control w-75 text-center"
+                className="form-control w-75 text-center mt-1"
                 placeholder="Lipids in g"
                 value={percenLip()  + "%" + " / " + formatAddLipids() + "g"}
                 onChange={addFoodWeight}
@@ -468,11 +468,11 @@ const OutputMacros = () => {
               </label>
               <input
                 id="ouputMacros"
-                className="form-control w-75 text-center"
+                className="form-control w-75 text-center mt-1"
                 placeholder="Carbohydrates in g"
                 value={ percenCarb()+ "%" + " / " + formatAddHc() + "g"}
                 onChange={addFoodWeight}
-                style={{ backgroundColor: "rgba(255, 159, 64, 1)" }}
+                style={{ backgroundColor: "#b65c03" }}
               ></input>
             </div>
           </div>
@@ -483,12 +483,12 @@ const OutputMacros = () => {
             <Doughnut data={data} options={options} />
           </div>
 
-          <div>
+          <div className= "divMacros ">
             <label>
               <h4>CALORIES</h4>
             </label>
             <input
-              className="form-control w-100 col-auto kcalOuput"
+              className="form-control col-auto kcalOuput"
               placeholder="Carbohydrates in g"
               value={formatAddKcal() + "Kcal"}
               onChange={addFoodWeight}

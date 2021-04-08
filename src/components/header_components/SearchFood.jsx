@@ -734,7 +734,7 @@ console.log("itemAdd", itemAdd) */
           <label>
             <h2> Search your food:</h2>
           </label>
-          <div className="input-group mt-2">
+          <div className="input-group mt-1">
             <input
               id="inputSearchFood"
               type="text"
@@ -762,7 +762,7 @@ console.log("itemAdd", itemAdd) */
             </div>
           </div>
 
-          <div className="col mt-2">
+          <div className="col mt-5">
             <button
               className=" btn btn-success"
               type="button"
@@ -771,7 +771,7 @@ console.log("itemAdd", itemAdd) */
               PDF Plan
             </button>
             <button
-              className=" btn btn-danger m-2 "
+              className=" btn btn-danger ms-3 "
               type="button"
               onClick={allDelete}
             >

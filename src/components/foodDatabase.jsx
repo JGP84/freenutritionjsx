@@ -1,49 +1,49 @@
 const foodDatabase = [
-  //vegetables
+  //veggies
   {
     food_id: 0,
     name: "letucce",
-    type: "vegetables",
+    type: "veggies",
     weight_int: 150,
     prot: 2.1,
     lip: 0.6,
     hc: 2.6,
     n_int_card: 1,
-    img_link: "./assets/imagesFoodDatabase/vegetables/lettuce.png",
+    img_link: "./assets/imagesFoodDatabase/veggies/lettuce.png",
   },
 
   {
     food_id: 1,
     name: "tomato",
-    type: "vegetables",
+    type: "veggies",
     weight_int: 150,
     prot: 1.4,
     lip: 0.2,
     hc: 5.3,
     n_int_card: 1,
-    img_link: "./assets/imagesFoodDatabase/vegetables/rsz_tomato.png",
+    img_link: "./assets/imagesFoodDatabase/veggies/rsz_tomato.png",
   },
   {
     food_id: 2,
     name: "carrot",
-    type: "vegetables",
+    type: "veggies",
     weight_int: 100,
     prot: 0.8,
     lip: 0.3,
     hc: 7,
     n_int_card: 1,
-    img_link: "./assets/imagesFoodDatabase/vegetables/carrot.png",
+    img_link: "./assets/imagesFoodDatabase/veggies/carrot.png",
   },
   {
     food_id: 3,
     name: "broccoli",
-    type: "vegetables",
+    type: "veggies",
     weight_int: 150,
     prot: 4.5,
     lip: 0.6,
     hc: 3.6,
     n_int_card: 1,
-    img_link: "./assets/imagesFoodDatabase/vegetables/broccoli_8.png",
+    img_link: "./assets/imagesFoodDatabase/veggies/broccoli_8.png",
   },
   //starchyFoods
   {
@@ -235,7 +235,6 @@ const foodDatabase = [
     hc: 14,
     n_int_card: 1,
     img_link: "./assets/imagesFoodDatabase/fruits/apple_K.png",
-    
   },
 
   {

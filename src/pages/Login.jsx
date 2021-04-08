@@ -2,7 +2,7 @@ import { useState } from "react";
 import { auth } from "../authentication-firebase/firebaseconfig";
 import { useHistory } from "react-router-dom";
 import Menu from "../authentication-firebase/Menu";
-import LoginForm from "../components/login_components/LoginForm";
+/* import LoginForm from "../components/login_components/LoginForm"; */
 
 const Login = () => {
   const history = useHistory();
@@ -99,12 +99,12 @@ const Login = () => {
         <h2>Please create an account or login to access the application </h2>
       </div>
 
-      <div className="d-flex justify-content-center  mt-5">
+      {/* <div className="d-flex justify-content-center  mt-5">
             <LoginForm/>  
 
-      </div>
+      </div> */}
 
-     {/*  <div className="row mt-5">
+      <div className="row mt-5">
         <div className="col"> </div>
         <div className="col">
           <form onSubmit={registerUser} className="form-group">
@@ -147,7 +147,7 @@ const Login = () => {
           </button>
         </div>
         <div className="col"></div>
-      </div> */}
+      </div>
 
       
 

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../UserContext.js";
 
-import {  addFoodWeight,
+/* import {  addFoodWeight,
   nintCards,
   addOuputsFoods,
   starchyFoodsIndex,
@@ -15,7 +15,7 @@ import {  addFoodWeight,
   nintLipids,
   gProtIntCards,
   gLipIntCards,
-  gHcIntCards  } from "../../functionsParams" 
+  gHcIntCards  } from "../../functionsParams"  */
 
 /* Functions in InputMacros:
 
@@ -85,7 +85,7 @@ const InputMacros = () => {
 /////////////////
 
 
- /*  function addFoodWeight() {
+  function addFoodWeight() {
     //cambia el valor de la propiedad foodWeight
 
     for (let i = 0; i < nintCards().length; i++) {
@@ -339,7 +339,7 @@ const InputMacros = () => {
 
       return gHcIntCards;
     }
-  } */
+  }
 
 
 
@@ -358,14 +358,13 @@ const InputMacros = () => {
   };
 
   return (
-    <form className="col p-3">
-      {/* <label>
-        {" "}
-        <h2>Requirements</h2>
-      </label> */}
-      <hr />
+    <form className="col p-3 mt-4">
+      
+      
       <div className="form-row d-flex flex-row ">
         <div className="col-md-4 mb-3">
+
+        <div className="divMacros">
           <label>
             {" "}
             <h4>Proteins (g)</h4>
@@ -375,12 +374,16 @@ const InputMacros = () => {
             id="inputMacros"
             onChange={updateInputProt}
             type="number"
-            className="form-control w-75"
-            placeholder="Protein in g"
+            className="inputMacros mt-1"
+            placeholder="Pro g"
             /* value={formatProt()}  */
           ></input>
+          </div>
+
         </div>
         <div className="col-md-4 mb-3">
+
+        <div className="divMacros">
           <label>
             {" "}
             <h4>Fats (g)</h4>
@@ -390,25 +393,32 @@ const InputMacros = () => {
             id="inputMacros"
             onChange={updateInputLip}
             type="number"
-            className="form-control w-75"
-            placeholder="Lipids in g"
+            className="inputMacros mt-1"
+            placeholder="Lip g"
             /* value={formatLip()} */
           ></input>
+            </div>
+
         </div>
         <div className="col-md-4 mb-3">
+
+        <div className="divMacros">
           <label>
             {" "}
-            <h4>Carbohydrates (g)</h4>
+            <h4>CH (g)</h4>
           </label>
           <input
             name="inputCarb"
             id="inputMacros"
             onChange={updateInputCarb}
             type="number"
-            className="form-control w-75"
-            placeholder="Carbohydrates in g"
+            className="inputMacros mt-1"
+            placeholder="CH g"
             /* value={formatCarb()} */
           ></input>
+          </div>
+
+
         </div>
       </div>
     </form>

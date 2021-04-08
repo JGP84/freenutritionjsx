@@ -23,7 +23,7 @@ const InputRadio = () => {
 
   return (
     <>
-      <div className="d-flex  align-items-center p-3">
+      <div className="d-flex  align-items-center mt-5 p-3">
         <label>
           {" "}
           <h2>Requirements</h2>

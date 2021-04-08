@@ -1,59 +1,130 @@
-.cardItem{
-font-size: 19px;
-font-weight: bold;
-height:80px ;
-display: flex;
-flex-direction: row;
-justify-content: space-around;
-align-items: center;
-
-/* width: 50px; */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+span {
+  font-weight: 500;
+  font-family: "Fira Sans", sans-serif;
+  color: #fffddd;
 }
 
-.pieChart{
-    height:200px ;
-}
-.kcal{
-    font-size: 30px;
-    
-    width: 200px;
-    background-color: transparent;
-    color: #FFFDDD;
-    height:60px ;
-    
-   /*  border: none; */
-   border-color:  white;
-   border-radius: 10px;
-    
-    text-align: center;
-    
-     
-}
-.kcalOuput{
-    font-size: 50px;
-    
-    background-color: transparent;
-    color: #FFFDDD;
-    border: none;
-}
-.inputPerc{
-    font-size: 22px;
-    background-color: transparent;
-    color: #FFFDDD;
-    width: 90px;
-   /*  border: none; */
-   border-color:  white;
-   border-radius: 10px;
-    
-    text-align: center;
-   /*  height: 60px; */
+body,
+html,
+.App,
+#root,
+.auth-wrapper {
+  width: 100%;
+  height: 100%;
 }
 
-.divProtein{
-    display: flex;
-    flex-direction: column;
-    /* align-items: center; */
+.navbar-light {
+  background-color: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+}
 
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+.auth-inner {
+  width: 450px;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  transition: all 0.3s;
+}
+
+.auth-wrapper .form-control:focus {
+  border-color: #167bff;
+  box-shadow: none;
+}
+
+.auth-wrapper h3 {
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+  padding-bottom: 20px;
+}
+
+.custom-control-label {
+  font-weight: 400;
+}
+
+.forgot-password,
+.forgot-password a {
+  text-align: right;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+
+.forgot-password a {
+  color: #167bff;
+}
+
+.cardItem {
+  font-size: 19px;
+  font-weight: bold;
+
+  height: 80px;
+
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.pieChart {
+  height: 200px;
+}
+.kcal {
+  font-size: 30px;
+
+  width: 200px;
+  background-color: transparent;
+  color: #fffddd;
+  height: 60px;
+
+  /*  border: none; */
+  border-color: white;
+  border-radius: 5px;
+
+  text-align: center;
+}
+.kcalOuput {
+  font-size: 50px;
+
+  background-color: transparent;
+  color: #fffddd;
+  border: none;
+}
+.inputMacros {
+  font-size: 22px;
+  background-color: transparent;
+  color: #fffddd;
+  width: 90px;
+  /*  border: none; */
+  border-color: white;
+  border-radius: 5px;
+
+  text-align: center;
+  /*  height: 60px; */
+}
+
+.divMacros {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
 }
 
 /* *{
@@ -164,3 +235,16 @@ span{
     left: 450px;
 }
  */
+
+#inputSearchFood {
+  font-weight: bold;
+  font-size: 22px;
+  background-color: transparent;
+  color: #fffddd;
+}
+
+#ouputMacros {
+  font-weight: bold;
+  font-size: 22px;
+  /*  color: #FFFDDD; */
+}

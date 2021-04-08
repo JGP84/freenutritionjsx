@@ -372,49 +372,15 @@ const InputMacrosPercentage = () => {
 
   return (
     <form className="col p-3">
-      {/* <div className ="d-flex  align-items-center">
-     <label>
-        {" "}
-        <h2>Requirements</h2>
-      </label>
+    
 
-
-     
-      <div className ="ms-5">
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="flexRadioDefault"
-          id="flexRadioDefault1"
-        />
-        <label class="form-check-label" for="flexRadioDefault1">
-          Grams (g)
-        </label>
-      </div>
-
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="radio"
-          name="flexRadioDefault"
-          id="flexRadioDefault2"
-          checked
-        />
-        <label class="form-check-label" for="flexRadioDefault2">
-          Percentage (%)
-        </label>
-      </div>
-     </div>
-      </div> */}
-
-      <div className= "divProtein">
+      <div className= "divMacros  mb-5">
         <label>
           <h4>CALORIES</h4>
         </label>
         <input
           name="inputKcal"
-          className=" kcal"
+          className=" kcal mt-1"
           placeholder="Enter your Kcal"
           onChange={updateInputKcalPerc}
           type="number"
@@ -424,12 +390,12 @@ const InputMacrosPercentage = () => {
         ></input>
       </div>
 
-      {/*  */}
-      <hr />
+      {/* Macros */}
+   
       <div className="form-row d-flex flex-row ">
         <div className="col-md-4 mb-3">
 
-          <div className="divProtein">
+          <div className="divMacros">
           <label>
             {" "}
             <h4>Proteins (%)</h4>
@@ -439,7 +405,7 @@ const InputMacrosPercentage = () => {
             id="inputMacros"
             onChange={updateInputProtPerc}
             type="number"
-            className="inputPerc"
+            className="inputMacros mt-1"
             placeholder="Protein in %"
             value={inputProtPerc}
           ></input>
@@ -448,7 +414,7 @@ const InputMacrosPercentage = () => {
         </div>
         <div className="col-md-4 mb-3">
 
-        <div className="divProtein">
+        <div className="divMacros">
           <label>
             {" "}
             <h4>Fats (%)</h4>
@@ -458,7 +424,7 @@ const InputMacrosPercentage = () => {
             id="inputMacros"
             onChange={updateInputLipPerc}
             type="number"
-            className="inputPerc"
+            className="inputMacros mt-1"
             placeholder="Lipids in %"
             value={inputLipPerc}
           ></input>
@@ -468,7 +434,7 @@ const InputMacrosPercentage = () => {
 
         <div className="col-md-4 mb-3">
 
-        <div className="divProtein">
+        <div className="divMacros">
           <label>
             {" "}
             <h4>CH (%)</h4>
@@ -478,7 +444,7 @@ const InputMacrosPercentage = () => {
             id="inputMacros"
             onChange={updateInputCarbPerc}
             type="number"
-            className="inputPerc"
+            className="inputMacros mt-1"
             placeholder="Carbo. in %"
             value={inputCarbPerc}
           ></input>
