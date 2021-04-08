@@ -104,7 +104,7 @@ const Login = () => {
 
       </div> */}
 
-      <div className="row mt-5">
+      <div className="row mt-5 text-center">
         <div className="col"> </div>
         <div className="col">
           <form onSubmit={registerUser} className="form-group">
@@ -113,7 +113,7 @@ const Login = () => {
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
-              className="form-control"
+              className="form-control text-center mt-1 mb-3"
               placeholder="Enter email"
               type="text"
             />
@@ -122,7 +122,7 @@ const Login = () => {
               onChange={(e) => {
                 setPass(e.target.value);
               }}
-              className="form-control"
+              className="form-control text-center mt-1"
               placeholder="Enter password"
               type="password"
             />
