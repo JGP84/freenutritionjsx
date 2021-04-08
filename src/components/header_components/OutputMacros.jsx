@@ -444,7 +444,7 @@ const OutputMacros = () => {
                 id="ouputMacros"
                 className="form-control w-75 text-center"
                 placeholder="Protein in g"
-                value={formatAddProteins() + "g" + " / " + percenProt() + "%"}
+                value={percenProt() + "%" + " / " +  formatAddProteins()+ "g"}
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "rgba(255, 99, 132, 1)" }}
               ></input>
@@ -457,7 +457,7 @@ const OutputMacros = () => {
                 id="ouputMacros"
                 className="form-control w-75 text-center"
                 placeholder="Lipids in g"
-                value={formatAddLipids() + "g" + " / " + percenLip() + "%"}
+                value={percenLip()  + "%" + " / " + formatAddLipids() + "g"}
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "rgba(255, 205, 86, 1)" }}
               ></input>
@@ -470,7 +470,7 @@ const OutputMacros = () => {
                 id="ouputMacros"
                 className="form-control w-75 text-center"
                 placeholder="Carbohydrates in g"
-                value={formatAddHc() + "g" + " / " + percenCarb() + "%"}
+                value={ percenCarb()+ "%" + " / " + formatAddHc() + "g"}
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "rgba(255, 159, 64, 1)" }}
               ></input>
@@ -488,7 +488,7 @@ const OutputMacros = () => {
               <h4>CALORIES</h4>
             </label>
             <input
-              className="form-control w-75 col-auto kcal"
+              className="form-control w-100 col-auto kcalOuput"
               placeholder="Carbohydrates in g"
               value={formatAddKcal() + "Kcal"}
               onChange={addFoodWeight}

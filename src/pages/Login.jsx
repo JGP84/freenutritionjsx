@@ -99,8 +99,10 @@ const Login = () => {
         <h2>Please create an account or login to access the application </h2>
       </div>
 
-            <LoginForm/>
+      <div className="d-flex justify-content-center  mt-5">
+            <LoginForm/>  
 
+      </div>
 
      {/*  <div className="row mt-5">
         <div className="col"> </div>

@@ -613,9 +613,9 @@ console.log("itemAdd", itemAdd) */
   const getArrInformation = () => {
     let arrInformation = [
       {
-        proteins: Math.round(addProteins()) + "g" + " / " + Math.round(percenProt()) + "%",
-        fats: Math.round(addLipids()) + "g" + " / " + Math.round(percenLip()) + "%",
-        carbohydrates: Math.round(addHc()) + "g" + " / " + Math.round(percenCarb()) + "%",
+        proteins: Math.round(percenProt())  + "%" + " / " + Math.round(addProteins())  + "g",
+        fats: Math.round(percenLip())  + "%" + " / " + Math.round(addLipids())  + "g",
+        carbohydrates: Math.round(percenCarb())  + "%" + " / " + Math.round(addHc())  + "g",
         calories: Math.round(addKcal()) + " kcal",
         date: date,
       },

@@ -1,4 +1,6 @@
 .cardItem{
+font-size: 19px;
+font-weight: bold;
 height:80px ;
 display: flex;
 flex-direction: row;
@@ -11,9 +13,47 @@ align-items: center;
 .pieChart{
     height:200px ;
 }
-
 .kcal{
     font-size: 30px;
+    
+    width: 200px;
+    background-color: transparent;
+    color: #FFFDDD;
+    height:60px ;
+    
+   /*  border: none; */
+   border-color:  white;
+   border-radius: 10px;
+    
+    text-align: center;
+    
+     
+}
+.kcalOuput{
+    font-size: 50px;
+    
+    background-color: transparent;
+    color: #FFFDDD;
+    border: none;
+}
+.inputPerc{
+    font-size: 22px;
+    background-color: transparent;
+    color: #FFFDDD;
+    width: 90px;
+   /*  border: none; */
+   border-color:  white;
+   border-radius: 10px;
+    
+    text-align: center;
+   /*  height: 60px; */
+}
+
+.divProtein{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+
 }
 
 /* *{

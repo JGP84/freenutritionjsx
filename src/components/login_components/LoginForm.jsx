@@ -79,12 +79,13 @@ function LoginForm() {
                 setPass(e.target.value);
               }}
             />
-            <button type="submit" disabled={!formik.isValid}>
-              Submit
+            <button
+            className="btn btn-primary btn-block mt-4" type="submit" /* disabled={!formik.isValid} */>
+              Register
             </button>
             <button
               onClick={loginUser}
-              className="btn btn-success btn-block mt-4"
+              className="btn btn-success btn-block mt-4 mx-4"
             >
               Login
             </button>

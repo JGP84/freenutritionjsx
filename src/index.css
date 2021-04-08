@@ -102,16 +102,20 @@ body, html, .App, #root, .auth-wrapper {
 }
 
 #inputMacros{
-  font-weight: bold;
-  font-size: 18px ;
+  /* font-weight: bold; */
+  
+  /* font-size: 18px ; */
 }
 #inputSearchFood{
   font-weight: bold;
   font-size: 22px ;
+  background-color: transparent;
+    color: #FFFDDD;
 }
 
 #ouputMacros{
   font-weight: bold;
-  font-size: larger;
+  font-size: 22px;
+ /*  color: #FFFDDD; */
 }
 

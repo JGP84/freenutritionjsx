@@ -408,13 +408,13 @@ const InputMacrosPercentage = () => {
      </div>
       </div> */}
 
-      <div>
+      <div className= "divProtein">
         <label>
           <h4>CALORIES</h4>
         </label>
         <input
           name="inputKcal"
-          className="form-control w-75 col-auto kcal"
+          className=" kcal"
           placeholder="Enter your Kcal"
           onChange={updateInputKcalPerc}
           type="number"
@@ -428,6 +428,8 @@ const InputMacrosPercentage = () => {
       <hr />
       <div className="form-row d-flex flex-row ">
         <div className="col-md-4 mb-3">
+
+          <div className="divProtein">
           <label>
             {" "}
             <h4>Proteins (%)</h4>
@@ -437,12 +439,16 @@ const InputMacrosPercentage = () => {
             id="inputMacros"
             onChange={updateInputProtPerc}
             type="number"
-            className="form-control w-75"
+            className="inputPerc"
             placeholder="Protein in %"
             value={inputProtPerc}
           ></input>
         </div>
+
+        </div>
         <div className="col-md-4 mb-3">
+
+        <div className="divProtein">
           <label>
             {" "}
             <h4>Fats (%)</h4>
@@ -452,25 +458,32 @@ const InputMacrosPercentage = () => {
             id="inputMacros"
             onChange={updateInputLipPerc}
             type="number"
-            className="form-control w-75"
+            className="inputPerc"
             placeholder="Lipids in %"
             value={inputLipPerc}
           ></input>
         </div>
+        </div>
+
+
         <div className="col-md-4 mb-3">
+
+        <div className="divProtein">
           <label>
             {" "}
-            <h4>Carbohydrates (%)</h4>
+            <h4>CH (%)</h4>
           </label>
           <input
             name="inputCarb"
             id="inputMacros"
             onChange={updateInputCarbPerc}
             type="number"
-            className="form-control w-75"
+            className="inputPerc"
             placeholder="Carbo. in %"
             value={inputCarbPerc}
           ></input>
+            </div>
+
         </div>
       </div>
     </form>

@@ -591,6 +591,7 @@ function Body() {
                                 padding: 4,
                                 width: 250,
                                 minHeight: 500,
+                                borderRadius:"10px",
                               }}
                             >
                               {column.items.map((item, index) => {
@@ -602,6 +603,7 @@ function Body() {
                                     key={item.idUnique}
                                     draggableId={item.idUnique}
                                     index={index}
+                                    
                                   >
                                     {(provided, snapshot) => {
                                       return (
@@ -615,9 +617,16 @@ function Body() {
                                             padding: 16,
                                             margin: "0 0 8px 0",
                                             minHeight: "50px",
-                                            backgroundColor: snapshot.isDragging
-                                              ? "#263B4A"
-                                              : "#456C86",
+                                            borderRadius:"10px",
+                                            backgroundColor:snapshot.isDragging
+                                            ? "#263B4A"
+                                            : item.type === "starchyFoods" ? ("rgba(255, 159, 64, 1)") : item.type === "fats" ? (
+                                              "rgba(255, 205, 86, 1)"
+                                            ): item.type === "proteinFoods" ? (
+                                              "rgba(255, 99, 132, 1)"
+                                            ):"#45866F", 
+                                            /* ):"#456C86",  */
+                                       
                                             color: "white",
                                             ...provided.draggableProps.style,
                                           }}
