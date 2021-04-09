@@ -24,6 +24,9 @@ const Login = () => {
         if (err.code === "auth/weak-password") {
           setMsgError("Password must be 6 characters or more");
         }
+        if (err.code === "auth/email-already-in-use") {
+          setMsgError("The email address is already in use by another account");
+        }
       });
   };
 
@@ -36,7 +39,7 @@ const Login = () => {
       .catch((err) => {
         console.log("err", err);
         if (err.code === "auth/invalid-email") {
-          setMsgError("Email equired in correct format");
+          setMsgError("Email required in correct format");
         }
         if (err.code === "auth/user-not-found") {
           setMsgError("Wrong User");
@@ -44,6 +47,7 @@ const Login = () => {
         if (err.code === "auth/wrong-password") {
           setMsgError("Wrong Password");
         }
+
       });
   };
 
@@ -82,7 +86,7 @@ const Login = () => {
             />
 
             {msgerror != null ? (
-              <span className="text-danger text-small d-block ">
+              <span className="text-danger text-small d-block mt-4">
                 {msgerror}
               </span>
             ) : (
