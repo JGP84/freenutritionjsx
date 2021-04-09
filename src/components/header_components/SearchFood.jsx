@@ -750,7 +750,7 @@ const SearchFood = () => {
       <div className="col p-3">
         <div className="col ">
           <label>
-            <h2> Search your food:</h2>
+            <h2> Search your food</h2>
           </label>
           <div className="input-group mt-1">
             <input
