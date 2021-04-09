@@ -17,7 +17,7 @@ const Login = () => {
         history.push("/");
       })
       .catch((err) => {
-        console.log("err", err)
+        console.log("err", err);
         if (err.code === "auth/invalid-email") {
           setMsgError("Email equired in correct format");
         }
@@ -34,7 +34,7 @@ const Login = () => {
         history.push("/");
       })
       .catch((err) => {
-        console.log("err", err)
+        console.log("err", err);
         if (err.code === "auth/invalid-email") {
           setMsgError("Email equired in correct format");
         }
@@ -44,7 +44,6 @@ const Login = () => {
         if (err.code === "auth/wrong-password") {
           setMsgError("Wrong Password");
         }
-        
       });
   };
 
@@ -62,11 +61,12 @@ const Login = () => {
         <div className="col">
           <form onSubmit={registerUser} className="form-group">
             <label>Email address</label>
+
             <input
               onChange={(e) => {
                 setEmail(e.target.value);
               }}
-              className="form-control text-center mt-1 mb-3"
+              className="form-control text-center mt-1 mb-1"
               placeholder="Enter email"
               type="email"
             />
@@ -76,7 +76,7 @@ const Login = () => {
               onChange={(e) => {
                 setPass(e.target.value);
               }}
-              className="form-control text-center mt-1 mb-2"
+              className="form-control text-center mt-1 "
               type="password"
               placeholder="Password"
             />
@@ -88,18 +88,21 @@ const Login = () => {
             ) : (
               <span></span>
             )}
-              
+
             <input
-              className="btn btn-primary btn-block mt-4"
+              className="btn btn-primary w-100 mt-4 "
               value="Create Account"
               type="submit"
             />
           </form>
-          <p className="text-white mt-3"
-          >or</p>
+
+          <div>
+            <span className="textOr">or</span>
+          </div>
           <button
+            type="button"
             onClick={loginUser}
-            className="btn btn-success btn-block mt-1"
+            className="btn btn-success w-100 "
           >
             Login
           </button>
