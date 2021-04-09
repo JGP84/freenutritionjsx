@@ -77,6 +77,8 @@ const SearchFood = () => {
   function addFood() {
     let index = foodDatabase.findIndex((item) => item.name === foodNew);
 
+    if (index !== -1) {
+
     arrFoods.unshift({
       food_id: foodDatabase[index].food_id,
       name: foodNew,
@@ -108,10 +110,7 @@ const SearchFood = () => {
 
     const column = columns[requestColumnId];
 
-    /* console.log("requestColumnId", requestColumnId);
-
-    console.log("column", column.items); */
-
+    
     setColumns({
       ...columns,
       [requestColumnId]: {
@@ -119,13 +118,12 @@ const SearchFood = () => {
         items: [...column.items, itemAdd],
       },
     });
-    ///
-    console.log("arrFoods add", arrFoods);
-    /* console.log("arrFoods", arrFoods)
-console.log("itemAdd", itemAdd) */
-    console.log("columns", columns);
+   
 
     setFoodNew("");
+
+  } else {}
+
   }
 
   function allDelete() {
