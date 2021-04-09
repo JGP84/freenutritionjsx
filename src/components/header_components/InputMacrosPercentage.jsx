@@ -402,13 +402,14 @@ const InputMacrosPercentage = () => {
           </label>
           <input
             name="inputProt"
-            id="inputMacros"
+           
             onChange={updateInputProtPerc}
             type="number"
             className="inputMacros mt-1"
             placeholder="Protein in %"
             value={inputProtPerc}
           ></input>
+          
         </div>
 
         </div>
@@ -421,7 +422,7 @@ const InputMacrosPercentage = () => {
           </label>
           <input
             name="inputLip"
-            id="inputMacros"
+           
             onChange={updateInputLipPerc}
             type="number"
             className="inputMacros mt-1"
@@ -441,7 +442,7 @@ const InputMacrosPercentage = () => {
           </label>
           <input
             name="inputCarb"
-            id="inputMacros"
+           
             onChange={updateInputCarbPerc}
             type="number"
             className="inputMacros mt-1"

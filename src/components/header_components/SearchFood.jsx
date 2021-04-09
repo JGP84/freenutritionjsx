@@ -127,25 +127,45 @@ const SearchFood = () => {
   }
 
   function allDelete() {
-    window.location.replace("");
+    /* window.location.replace(""); */
 
-    /* setArrFoods([]);
+    setArrFoods([]);
 
     setColumns({
       [uuid()]: {
-        name: "breakfast",
+        name: "Breakfast",
         items: [],
       },
       [uuid()]: {
-        name: "lunch",
+        name: "Lunch",
         items: [],
       },
 
       [uuid()]: {
-        name: "dinner",
+        name: "Dinner",
+        items: [],
+      },
+    });
+
+    /* arrFoods.splice(0, arrFoods.length)
+
+    setColumns({
+      [uuid()]: {
+        name: "Breakfast",
+        items: [],
+      },
+      [uuid()]: {
+        name: "Lunch",
+        items: [],
+      },
+
+      [uuid()]: {
+        name: "Dinner",
         items: [],
       },
     }); */
+
+
   }
 
   function addFoodWeight() {

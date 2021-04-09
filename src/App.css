@@ -120,6 +120,18 @@ html,
   text-align: center;
   /*  height: 60px; */
 }
+#inputSearchFood {
+  font-weight: bold;
+  font-size: 22px;
+  background-color: transparent;
+  color: #fffddd;
+}
+
+.ouputMacros {
+  font-weight: bold;
+  font-size: 22px;
+  /*  color: #FFFDDD; */
+}
 
 .divMacros {
   display: flex;
@@ -236,15 +248,4 @@ span{
 }
  */
 
-#inputSearchFood {
-  font-weight: bold;
-  font-size: 22px;
-  background-color: transparent;
-  color: #fffddd;
-}
 
-#ouputMacros {
-  font-weight: bold;
-  font-size: 22px;
-  /*  color: #FFFDDD; */
-}

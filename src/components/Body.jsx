@@ -1,9 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../UserContext";
 import uuid from "react-uuid";
 import { BsTrash, BsFiles } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
-import EditItem from "../components/body_components/EditItem";
+/* import EditItem from "../components/body_components/EditItem"; */
 
 /* Functions in Body:
 
@@ -58,7 +58,7 @@ function Body() {
     inputLip,
     inputCarb,
     setShowSnack,
-    showSnack,
+    
     /* itemEdit,
     setItemEdit, */
   } = useContext(UserContext);
@@ -340,10 +340,10 @@ function Body() {
 
     setArrFoods(arrayFiltrado);
 
-    console.log("itemIdUnique delete", itemIdUnique);
+    
 
     const indexSplice = arrFoods.findIndex(
-      (item) => item.idUnique == itemIdUnique
+      (item) => item.idUnique === itemIdUnique
     );
 
     arrFoods.splice(indexSplice, 1);

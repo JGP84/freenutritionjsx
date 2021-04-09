@@ -60,7 +60,7 @@ const OutputMacros = () => {
   /* DoughnutChart */
 
   const percenProt = () => {
-    if (addProteins() == 0) {
+    if (addProteins() === 0) {
       return 0;
     } else {
       return Math.round((100 * addProteins() * 4) / addKcal());
@@ -68,14 +68,14 @@ const OutputMacros = () => {
   };
 
   const percenLip = () => {
-    if (addLipids() == 0) {
+    if (addLipids() === 0) {
       return 0;
     } else {
       return Math.round((100 * addLipids() * 9) / addKcal());
     }
   };
   const percenCarb = () => {
-    if (addHc() == 0) {
+    if (addHc() === 0) {
       return 0;
     } else {
       return Math.round((100 * addHc() * 4) / addKcal());
@@ -441,8 +441,8 @@ const OutputMacros = () => {
                 <h4>Proteins</h4>
               </label>
               <input
-                id="ouputMacros"
-                className="form-control w-75 text-center mt-1"
+               
+                className="form-control w-75 text-center mt-1 ouputMacros"
                 placeholder="Protein in g"
                 value={percenProt() + "%" + " / " +  formatAddProteins()+ "g"}
                 onChange={addFoodWeight}
@@ -454,8 +454,8 @@ const OutputMacros = () => {
                 <h4>Fats</h4>
               </label>
               <input
-                id="ouputMacros"
-                className="form-control w-75 text-center mt-1"
+               
+                className="form-control w-75 text-center mt-1 ouputMacros"
                 placeholder="Lipids in g"
                 value={percenLip()  + "%" + " / " + formatAddLipids() + "g"}
                 onChange={addFoodWeight}
@@ -467,8 +467,8 @@ const OutputMacros = () => {
                 <h4>Carbohydrates</h4>
               </label>
               <input
-                id="ouputMacros"
-                className="form-control w-75 text-center mt-1"
+                
+                className="form-control w-75 text-center mt-1 ouputMacros"
                 placeholder="Carbohydrates in g"
                 value={ percenCarb()+ "%" + " / " + formatAddHc() + "g"}
                 onChange={addFoodWeight}

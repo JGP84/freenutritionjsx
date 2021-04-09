@@ -86,13 +86,17 @@ const InputMacros = () => {
 
 
   function addFoodWeight() {
-    //cambia el valor de la propiedad foodWeight
+    
 
     for (let i = 0; i < nintCards().length; i++) {
       arrFoods[i].foodWeight = arrFoods[i].weight_int * addOuputsFoods()[i];
     }
 
     return;
+
+
+
+
   }
 
   function nintCards() {
@@ -371,12 +375,12 @@ const InputMacros = () => {
           </label>
           <input
             name="inputProt"
-            id="inputMacros"
+            
             onChange={updateInputProt}
             type="number"
             className="inputMacros mt-1"
             placeholder="Pro g"
-            /* value={formatProt()}  */
+            value={formatProt()} 
           ></input>
           </div>
 
@@ -390,12 +394,12 @@ const InputMacros = () => {
           </label>
           <input
             name="inputLip"
-            id="inputMacros"
+            
             onChange={updateInputLip}
             type="number"
             className="inputMacros mt-1"
             placeholder="Lip g"
-            /* value={formatLip()} */
+            value={formatLip()}
           ></input>
             </div>
 
@@ -409,12 +413,12 @@ const InputMacros = () => {
           </label>
           <input
             name="inputCarb"
-            id="inputMacros"
+            
             onChange={updateInputCarb}
             type="number"
             className="inputMacros mt-1"
             placeholder="CH g"
-            /* value={formatCarb()} */
+            value={formatCarb()}
           ></input>
           </div>
 
