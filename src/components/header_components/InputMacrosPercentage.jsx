@@ -398,7 +398,7 @@ const InputMacrosPercentage = () => {
           <div className="divMacros">
           <label>
             {" "}
-            <h4>Proteins (%)</h4>
+            <h4>% Prot </h4>
           </label>
           <input
             name="inputProt"
@@ -418,7 +418,7 @@ const InputMacrosPercentage = () => {
         <div className="divMacros">
           <label>
             {" "}
-            <h4>Fats (%)</h4>
+            <h4>% Fats </h4>
           </label>
           <input
             name="inputLip"
@@ -438,7 +438,7 @@ const InputMacrosPercentage = () => {
         <div className="divMacros">
           <label>
             {" "}
-            <h4>CH (%)</h4>
+            <h4>% Carb </h4>
           </label>
           <input
             name="inputCarb"

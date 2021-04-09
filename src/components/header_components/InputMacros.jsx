@@ -371,7 +371,7 @@ const InputMacros = () => {
         <div className="divMacros">
           <label>
             {" "}
-            <h4>Proteins (g)</h4>
+            <h4>g Prot</h4>
           </label>
           <input
             name="inputProt"
@@ -390,7 +390,7 @@ const InputMacros = () => {
         <div className="divMacros">
           <label>
             {" "}
-            <h4>Fats (g)</h4>
+            <h4>g Fats </h4>
           </label>
           <input
             name="inputLip"
@@ -409,7 +409,7 @@ const InputMacros = () => {
         <div className="divMacros">
           <label>
             {" "}
-            <h4>CH (g)</h4>
+            <h4>g Carb </h4>
           </label>
           <input
             name="inputCarb"
