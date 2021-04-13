@@ -104,6 +104,8 @@ const InputMacros = () => {
     //insertamos los intercambios de starchyFoods
     const arrOuputsFoods = nintCards();
 
+    console.log("arrOuputsFoods.length", arrOuputsFoods.length);
+
     arrOuputsFoods.forEach((i) => {
       arrOuputsFoods[starchyFoodsIndex()[i]] =
         n_int_starchyFoods() / starchyFoodsIndex().length;
@@ -145,7 +147,7 @@ const InputMacros = () => {
     let arrAdd = [];
 
     arrAdd = nintCards().map((item, i) => {
-      return item = nintCards()[i] * gHcIntCards()[i];
+      return (item = nintCards()[i] * gHcIntCards()[i]);
     });
 
     return arrAdd.reduce((a, b) => a + b);
@@ -197,7 +199,7 @@ const InputMacros = () => {
     let arrAdd = [];
 
     arrAdd = nintCards().map((item, i) => {
-      return item = nintCards()[i] * gProtIntCards()[i];
+      return (item = nintCards()[i] * gProtIntCards()[i]);
     });
 
     return arrAdd.reduce((a, b) => a + b);
@@ -230,7 +232,7 @@ const InputMacros = () => {
     let arrAdd = [];
 
     arrAdd = nintCards().map((item, i) => {
-      return item = nintCards()[i] * gLipIntCards()[i];
+      return (item = nintCards()[i] * gLipIntCards()[i]);
     });
     return arrAdd.reduce((a, b) => a + b);
   }
@@ -246,27 +248,25 @@ const InputMacros = () => {
   function gProtIntCards() {
     let gProtIntCards = [];
 
-    gProtIntCards = arrFoods.map((item, i) => {
-      return item = arrFoods[i].prot;
-    });
-    return gProtIntCards;
+    return (gProtIntCards = arrFoods.map((item, i) => {
+      return (item = arrFoods[i].prot);
+    }));
   }
 
   function gLipIntCards() {
     let gLipIntCards = [];
-    gLipIntCards = arrFoods.map((item, i) => {
-      return item = arrFoods[i].prot;
-    });
-    return gLipIntCards;
+
+    return (gLipIntCards = arrFoods.map((item, i) => {
+      return (item = arrFoods[i].lip);
+    }));
   }
 
   function gHcIntCards() {
     let gHcIntCards = [];
 
-    gHcIntCards = arrFoods.map((item, i) => {
-      return item = arrFoods[i].prot;
-    });
-    return gHcIntCards;
+    return (gHcIntCards = arrFoods.map((item, i) => {
+      return (item = arrFoods[i].hc);
+    }));
   }
 
   //////////////////////
