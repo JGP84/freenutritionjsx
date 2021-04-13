@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../UserContext.js";
+import NumberFormat from "react-number-format";
 
 /* import {  addFoodWeight,
   nintCards,
@@ -81,58 +82,42 @@ const InputMacros = () => {
     addFoodWeight(arrFoods);
   }
 
-
-/////////////////
-
+  /////////////////
 
   function addFoodWeight() {
-    
-
-    for (let i = 0; i < nintCards().length; i++) {
-      arrFoods[i].foodWeight = arrFoods[i].weight_int * addOuputsFoods()[i];
-    }
-
-    return;
-
-
-
-
+    arrFoods.forEach((item, i) => {
+      item.foodWeight = item.weight_int * addOuputsFoods()[i];
+    });
   }
 
   function nintCards() {
-    const nintCards = [];
+    let nintCards = [];
 
-    if (arrFoods.length < 1) {
-      return [];
-    } else {
-      for (let i = 0; i < arrFoods.length; i++) {
-        let x = arrFoods[i].n_int_card;
+    nintCards = arrFoods.map((item) => {
+      return item.n_int_card;
+    });
 
-        nintCards.push(x);
-      }
-
-      return nintCards;
-    }
+    return nintCards;
   }
 
   function addOuputsFoods() {
     //insertamos los intercambios de starchyFoods
-    const arrOuputsFoods = JSON.parse(JSON.stringify(nintCards()));
+    const arrOuputsFoods = nintCards();
 
-    for (let i = 0; i < nintCards().length; i++) {
+    arrOuputsFoods.forEach((i) => {
       arrOuputsFoods[starchyFoodsIndex()[i]] =
         n_int_starchyFoods() / starchyFoodsIndex().length;
-    }
+    });
 
     //insertamos los intercambios de proteinFoods
-    for (let i = 0; i < nintCards().length; i++) {
+    arrOuputsFoods.forEach((i) => {
       arrOuputsFoods[proteinFoodIndex()[i]] =
         nintProtein() / proteinFoodIndex().length;
-    }
+    });
     //insertamos los intercambios de lipidos
-    for (let i = 0; i < nintCards().length; i++) {
+    arrOuputsFoods.forEach((i) => {
       arrOuputsFoods[lipidsIndex()[i]] = nintLipids() / lipidsIndex().length;
-    }
+    });
 
     return arrOuputsFoods;
   }
@@ -157,19 +142,11 @@ const InputMacros = () => {
   }
 
   function totalHc() {
-    const arrAdd = [];
+    let arrAdd = [];
 
-    let x = 0;
-    if (nintCards().length < 1) {
-      x = 1;
-    } else {
-      x = nintCards().length;
-    }
-
-    for (let i = 0; i < x; i++) {
-      const add = nintCards()[i] * gHcIntCards()[i];
-      arrAdd.push(add);
-    }
+    arrAdd = nintCards().map((item, i) => {
+      return item = nintCards()[i] * gHcIntCards()[i];
+    });
 
     return arrAdd.reduce((a, b) => a + b);
   }
@@ -205,10 +182,6 @@ const InputMacros = () => {
   }
 
   function totalProtein() {
-    const arrAdd = [];
-
-    const nintCards1 = JSON.parse(JSON.stringify(nintCards()));
-
     const indices = [];
 
     const element = "starchyFoods";
@@ -219,31 +192,18 @@ const InputMacros = () => {
 
       idx = arrFoods.map((e) => e.type).indexOf(element, idx + 1);
     }
+    ///
 
-    for (let i = 0; i < indices.length; i++) {
-      nintCards1[indices[i]] = n_int_starchyFoods() / indices.length;
-    }
+    let arrAdd = [];
 
-    let x = 0;
-    if (nintCards().length < 1) {
-      x = 1;
-    } else {
-      x = nintCards().length;
-    }
-
-    for (let i = 0; i < x; i++) {
-      const add = nintCards1[i] * gProtIntCards()[i];
-      arrAdd.push(add);
-    }
+    arrAdd = nintCards().map((item, i) => {
+      return item = nintCards()[i] * gProtIntCards()[i];
+    });
 
     return arrAdd.reduce((a, b) => a + b);
   }
 
   function totalLipids() {
-    const arrAdd = [];
-
-    const nintCards2 = JSON.parse(JSON.stringify(nintCards()));
-
     const indices = [];
 
     const element = "starchyFoods";
@@ -253,10 +213,6 @@ const InputMacros = () => {
       indices.push(idx);
 
       idx = arrFoods.map((e) => e.type).indexOf(element, idx + 1);
-    }
-
-    for (let i = 0; i < indices.length; i++) {
-      nintCards2[indices[i]] = n_int_starchyFoods() / indices.length;
     }
     //calculo lo mismo para los indices proteinas
     const indices1 = [];
@@ -270,22 +226,12 @@ const InputMacros = () => {
       idx1 = arrFoods.map((e) => e.type).indexOf(element1, idx1 + 1);
     }
 
-    for (let i = 0; i < indices.length; i++) {
-      nintCards2[indices1[i]] = nintProtein() / indices1.length;
-    }
+    ///
+    let arrAdd = [];
 
-    let x = 0;
-    if (nintCards().length < 1) {
-      x = 1;
-    } else {
-      x = nintCards().length;
-    }
-
-    for (let i = 0; i < x; i++) {
-      const add = nintCards2[i] * gLipIntCards()[i];
-      arrAdd.push(add);
-    }
-
+    arrAdd = nintCards().map((item, i) => {
+      return item = nintCards()[i] * gLipIntCards()[i];
+    });
     return arrAdd.reduce((a, b) => a + b);
   }
 
@@ -298,59 +244,37 @@ const InputMacros = () => {
   }
 
   function gProtIntCards() {
-    const gProtIntCards = [];
+    let gProtIntCards = [];
 
-    if (arrFoods.length < 1) {
-      return [];
-    } else {
-      for (let i = 0; i < arrFoods.length; i++) {
-        let x = arrFoods[i].prot;
-
-        gProtIntCards.push(x);
-      }
-
-      return gProtIntCards;
-    }
+    gProtIntCards = arrFoods.map((item, i) => {
+      return item = arrFoods[i].prot;
+    });
+    return gProtIntCards;
   }
 
   function gLipIntCards() {
-    const gLipIntCards = [];
-
-    if (arrFoods.length < 1) {
-      return [];
-    } else {
-      for (let i = 0; i < arrFoods.length; i++) {
-        let x = arrFoods[i].lip;
-
-        gLipIntCards.push(x);
-      }
-
-      return gLipIntCards;
-    }
+    let gLipIntCards = [];
+    gLipIntCards = arrFoods.map((item, i) => {
+      return item = arrFoods[i].prot;
+    });
+    return gLipIntCards;
   }
 
   function gHcIntCards() {
-    const gHcIntCards = [];
+    let gHcIntCards = [];
 
-    if (arrFoods.length < 1) {
-      return [];
-    } else {
-      for (let i = 0; i < arrFoods.length; i++) {
-        let x = arrFoods[i].hc;
-
-        gHcIntCards.push(x);
-      }
-
-      return gHcIntCards;
-    }
+    gHcIntCards = arrFoods.map((item, i) => {
+      return item = arrFoods[i].prot;
+    });
+    return gHcIntCards;
   }
-
-
 
   //////////////////////
 
   const formatProt = () => {
-    return Math.round(inputProt);
+    let formatProt = Math.round(inputProt);
+    /* formatProt=`${formatProt}g` */
+    return formatProt;
   };
 
   const formatLip = () => {
@@ -363,66 +287,56 @@ const InputMacros = () => {
 
   return (
     <form className="col p-3 mt-4">
-      
-      
       <div className="form-row d-flex flex-row ">
         <div className="col-md-4 mb-3">
-
-        <div className="divMacros">
-          <label>
-            {" "}
-            <h4>g Prot</h4>
-          </label>
-          <input
-            name="inputProt"
-            
-            onChange={updateInputProt}
-            type="number"
-            className="inputMacros mt-1"
-            placeholder="Pro g"
-            value={formatProt()} 
-          ></input>
+          <div className="divMacros">
+            <label>
+              {" "}
+              <h4>g Prot</h4>
+            </label>
+            <NumberFormat
+              name="inputProt"
+              onChange={updateInputProt}
+              type="number"
+              className="inputMacros mt-1"
+              placeholder="Pro g"
+              /* suffix={'g'} */
+              /* displayType={'text'} */
+              value={formatProt()}
+            ></NumberFormat>
           </div>
-
         </div>
         <div className="col-md-4 mb-3">
-
-        <div className="divMacros">
-          <label>
-            {" "}
-            <h4>g Fats </h4>
-          </label>
-          <input
-            name="inputLip"
-            
-            onChange={updateInputLip}
-            type="number"
-            className="inputMacros mt-1"
-            placeholder="Lip g"
-            value={formatLip()}
-          ></input>
-            </div>
-
+          <div className="divMacros">
+            <label>
+              {" "}
+              <h4>g Fats </h4>
+            </label>
+            <input
+              name="inputLip"
+              onChange={updateInputLip}
+              type="number"
+              className="inputMacros mt-1"
+              placeholder="Lip g"
+              value={formatLip()}
+            ></input>
+          </div>
         </div>
         <div className="col-md-4 mb-3">
-
-        <div className="divMacros">
-          <label>
-            {" "}
-            <h4>g Carb </h4>
-          </label>
-          <input
-            name="inputCarb"
-            
-            onChange={updateInputCarb}
-            type="number"
-            className="inputMacros mt-1"
-            placeholder="CH g"
-            value={formatCarb()}
-          ></input>
+          <div className="divMacros">
+            <label>
+              {" "}
+              <h4>g Carb </h4>
+            </label>
+            <input
+              name="inputCarb"
+              onChange={updateInputCarb}
+              type="number"
+              className="inputMacros mt-1"
+              placeholder="CH g"
+              value={formatCarb()}
+            ></input>
           </div>
-
-
         </div>
       </div>
     </form>

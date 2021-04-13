@@ -37,6 +37,7 @@ const InputRadio = () => {
               name="flexRadioDefault"
               id="flexRadioDefault1"
               onChange ={()=>setIsReqGrams(true)}
+              
             />
             <label className="form-check-label"         htmlFor="flexRadioDefault1">
               Percentage (%)
