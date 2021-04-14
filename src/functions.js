@@ -5,8 +5,6 @@ import uuid from "react-uuid";
 /* const { arrFoods, setArrFoods, foodNew, setFoodNew, columns, setColumns, inputProt, setInputProt, inputLip, setInputLip, inputCarb, setInputCarb} = useContext( UserContext ); */
 
 function addFoodWeight() {
- 
-
   for (let i = 0; i < nintCards().length; i++) {
     arrFoods[i].foodWeight = arrFoods[i].weight_int * addOuputsFoods()[i];
   }
@@ -36,7 +34,7 @@ function addOuputsFoods() {
 
   for (let i = 0; i < nintCards().length; i++) {
     arrOuputsFoods[starchyFoodsIndex()[i]] =
-      n_int_starchyFoods() / starchyFoodsIndex().length;
+      nintStarchyFoods() / starchyFoodsIndex().length;
   }
 
   //insertamos los intercambios de proteinFoods
@@ -67,7 +65,7 @@ function starchyFoodsIndex() {
   return indices1;
 }
 
-function n_int_starchyFoods() {
+function nintStarchyFoods() {
   return (inputCarb - totalHc()) / 14;
 }
 
@@ -136,7 +134,7 @@ function totalProtein() {
   }
 
   for (let i = 0; i < indices.length; i++) {
-    nintCards1[indices[i]] = n_int_starchyFoods() / indices.length;
+    nintCards1[indices[i]] = nintStarchyFoods() / indices.length;
   }
 
   let x = 0;
@@ -171,7 +169,7 @@ function totalLipids() {
   }
 
   for (let i = 0; i < indices.length; i++) {
-    nintCards2[indices[i]] = n_int_starchyFoods() / indices.length;
+    nintCards2[indices[i]] = nintStarchyFoods() / indices.length;
   }
   //calculo lo mismo para los indices proteinas
   const indices1 = [];
@@ -265,7 +263,7 @@ export {
   nintCards,
   addOuputsFoods,
   starchyFoodsIndex,
-  n_int_starchyFoods,
+  nintStarchyFoods,
   totalHc,
   proteinFoodIndex,
   lipidsIndex,

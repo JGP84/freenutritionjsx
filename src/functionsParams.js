@@ -5,10 +5,9 @@ import uuid from "react-uuid";
 /* const { arrFoods, setArrFoods, foodNew, setFoodNew, columns, setColumns, inputProt, setInputProt, inputLip, setInputLip, inputCarb, setInputCarb} = useContext( UserContext ); */
 
 function addFoodWeight(arrFoods) {
- 
-
   for (let i = 0; i < nintCards(arrFoods).length; i++) {
-    arrFoods[i].foodWeight = arrFoods[i].weight_int * addOuputsFoods(arrFoods)[i];
+    arrFoods[i].foodWeight =
+      arrFoods[i].weight_int * addOuputsFoods(arrFoods)[i];
   }
 
   return;
@@ -17,7 +16,6 @@ function addFoodWeight(arrFoods) {
 function nintCards(arrFoods) {
   const nintCards = [];
 
-  
   if (arrFoods.length < 1) {
     return [];
   } else {
@@ -38,7 +36,7 @@ function addOuputsFoods(arrFoods) {
 
   for (let i = 0; i < nintCards(arrFoods).length; i++) {
     arrOuputsFoods[starchyFoodsIndex(arrFoods)[i]] =
-      n_int_starchyFoods() / starchyFoodsIndex(arrFoods).length;
+      nintStarchyFoods() / starchyFoodsIndex(arrFoods).length;
   }
 
   //insertamos los intercambios de proteinFoods
@@ -69,7 +67,7 @@ function starchyFoodsIndex(arrFoods) {
   return indices1;
 }
 
-function n_int_starchyFoods(inputCarb, arrFoods) {
+function nintStarchyFoods(inputCarb, arrFoods) {
   return (inputCarb - totalHc(arrFoods)) / 14;
 }
 
@@ -138,7 +136,7 @@ function totalProtein(arrFoods) {
   }
 
   for (let i = 0; i < indices.length; i++) {
-    nintCards1[indices[i]] = n_int_starchyFoods() / indices.length;
+    nintCards1[indices[i]] = nintStarchyFoods() / indices.length;
   }
 
   let x = 0;
@@ -173,7 +171,7 @@ function totalLipids(arrFoods) {
   }
 
   for (let i = 0; i < indices.length; i++) {
-    nintCards2[indices[i]] = n_int_starchyFoods() / indices.length;
+    nintCards2[indices[i]] = nintStarchyFoods() / indices.length;
   }
   //calculo lo mismo para los indices proteinas
   const indices1 = [];
@@ -261,38 +259,44 @@ function gHcIntCards(arrFoods) {
     return gHcIntCards;
   }
 }
-////////
+/* Refactoring functions */
 
-const macrosIndex= (foodType, arrFoods) =>{
-
+const macrosIndex = (foodType, arrFoods) => {
   const indices = [];
 
   let idx = arrFoods.map((e) => e.type).indexOf(foodType);
   while (idx !== -1) {
-
     indices.push(idx);
 
     idx = arrFoods.map((e) => e.type).indexOf(foodType, idx + 1);
   }
 
   return indices;
-}
+};
 
-const gMacrosIntCards = (macro, arrFoods)=>{
+const gMacrosIntCards = (macro, arrFoods) => {
   let gProtIntCards = [];
 
   return (gProtIntCards = arrFoods.map((item, i) => {
     return (item = arrFoods[i][macro]);
   }));
-  
-}
+};
+const addMacros = (nintCards, macroIntCards) => {
+  let arrAdd = [];
+
+  arrAdd = nintCards().map((item, i) => {
+    return (item = nintCards()[i] * macroIntCards()[i]);
+  });
+
+  return arrAdd.reduce((a, b) => a + b);
+};
 
 export {
   addFoodWeight,
   nintCards,
   addOuputsFoods,
   starchyFoodsIndex,
-  n_int_starchyFoods,
+  nintStarchyFoods,
   totalHc,
   proteinFoodIndex,
   lipidsIndex,
@@ -304,5 +308,6 @@ export {
   gLipIntCards,
   gHcIntCards,
   macrosIndex,
-  gMacrosIntCards
+  gMacrosIntCards,
+  addMacros,
 };

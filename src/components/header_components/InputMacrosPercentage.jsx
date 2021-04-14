@@ -15,7 +15,7 @@ addFoodWeight
 nintCards
 addOuputsFoods
 starchyFoodsIndex
-n_int_starchyFoods
+nintStarchyFoods
 totalHc
 proteinFoodIndex
 lipidsIndex
@@ -140,7 +140,7 @@ const InputMacrosPercentage = () => {
 
     for (let i = 0; i < nintCards().length; i++) {
       arrOuputsFoods[starchyFoodsIndex()[i]] =
-        n_int_starchyFoods() / starchyFoodsIndex().length;
+        nintStarchyFoods() / starchyFoodsIndex().length;
     }
 
     //insertamos los intercambios de proteinFoods
@@ -171,7 +171,7 @@ const InputMacrosPercentage = () => {
     return indices1;
   }
 
-  function n_int_starchyFoods() {
+  function nintStarchyFoods() {
     return (inputCarb - totalHc()) / 14;
   }
 
@@ -240,7 +240,7 @@ const InputMacrosPercentage = () => {
     }
 
     for (let i = 0; i < indices.length; i++) {
-      nintCards1[indices[i]] = n_int_starchyFoods() / indices.length;
+      nintCards1[indices[i]] = nintStarchyFoods() / indices.length;
     }
 
     let x = 0;
@@ -275,7 +275,7 @@ const InputMacrosPercentage = () => {
     }
 
     for (let i = 0; i < indices.length; i++) {
-      nintCards2[indices[i]] = n_int_starchyFoods() / indices.length;
+      nintCards2[indices[i]] = nintStarchyFoods() / indices.length;
     }
     //calculo lo mismo para los indices proteinas
     const indices1 = [];
@@ -372,9 +372,7 @@ const InputMacrosPercentage = () => {
 
   return (
     <form className="col p-3">
-    
-
-      <div className= "divMacros  mb-5">
+      <div className="divMacros  mb-5">
         <label>
           <h4>CALORIES</h4>
         </label>
@@ -391,66 +389,56 @@ const InputMacrosPercentage = () => {
       </div>
 
       {/* Macros */}
-   
+
       <div className="form-row d-flex flex-row ">
         <div className="col-md-4 mb-3">
-
           <div className="divMacros">
-          <label>
-            {" "}
-            <h4>% Prot </h4>
-          </label>
-          <input
-            name="inputProt"
-           
-            onChange={updateInputProtPerc}
-            type="number"
-            className="inputMacros mt-1"
-            placeholder="Protein in %"
-            value={inputProtPerc}
-          ></input>
-          
-        </div>
-
+            <label>
+              {" "}
+              <h4>% Prot </h4>
+            </label>
+            <input
+              name="inputProt"
+              onChange={updateInputProtPerc}
+              type="number"
+              className="inputMacros mt-1"
+              placeholder="Protein in %"
+              value={inputProtPerc}
+            ></input>
+          </div>
         </div>
         <div className="col-md-4 mb-3">
-
-        <div className="divMacros">
-          <label>
-            {" "}
-            <h4>% Fats </h4>
-          </label>
-          <input
-            name="inputLip"
-           
-            onChange={updateInputLipPerc}
-            type="number"
-            className="inputMacros mt-1"
-            placeholder="Lipids in %"
-            value={inputLipPerc}
-          ></input>
+          <div className="divMacros">
+            <label>
+              {" "}
+              <h4>% Fats </h4>
+            </label>
+            <input
+              name="inputLip"
+              onChange={updateInputLipPerc}
+              type="number"
+              className="inputMacros mt-1"
+              placeholder="Lipids in %"
+              value={inputLipPerc}
+            ></input>
+          </div>
         </div>
-        </div>
-
 
         <div className="col-md-4 mb-3">
-
-        <div className="divMacros">
-          <label>
-            {" "}
-            <h4>% Carb </h4>
-          </label>
-          <input
-            name="inputCarb"
-           
-            onChange={updateInputCarbPerc}
-            type="number"
-            className="inputMacros mt-1"
-            placeholder="Carbo. in %"
-            value={inputCarbPerc}
-          ></input>
-            </div>
-
+          <div className="divMacros">
+            <label>
+              {" "}
+              <h4>% Carb </h4>
+            </label>
+            <input
+              name="inputCarb"
+              onChange={updateInputCarbPerc}
+              type="number"
+              className="inputMacros mt-1"
+              placeholder="Carbo. in %"
+              value={inputCarbPerc}
+            ></input>
+          </div>
         </div>
       </div>
     </form>

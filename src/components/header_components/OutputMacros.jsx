@@ -14,7 +14,7 @@ addFoodWeight
 nintCards
 addOuputsFoods
 starchyFoodsIndex
-n_int_starchyFoods
+nintStarchyFoods
 totalHc
 proteinFoodIndex
 lipidsIndex
@@ -41,10 +41,6 @@ formatAddKcal
 
 
 */
-
-
-
-
 
 /* import {
   addFoodWeight,
@@ -138,7 +134,7 @@ const OutputMacros = () => {
 
     for (let i = 0; i < nintCards().length; i++) {
       arrOuputsFoods[starchyFoodsIndex()[i]] =
-        n_int_starchyFoods() / starchyFoodsIndex().length;
+        nintStarchyFoods() / starchyFoodsIndex().length;
     }
 
     //insertamos los intercambios de proteinFoods
@@ -169,7 +165,7 @@ const OutputMacros = () => {
     return indices1;
   }
 
-  function n_int_starchyFoods() {
+  function nintStarchyFoods() {
     return (inputCarb - totalHc()) / 14;
   }
 
@@ -238,7 +234,7 @@ const OutputMacros = () => {
     }
 
     for (let i = 0; i < indices.length; i++) {
-      nintCards1[indices[i]] = n_int_starchyFoods() / indices.length;
+      nintCards1[indices[i]] = nintStarchyFoods() / indices.length;
     }
 
     let x = 0;
@@ -273,7 +269,7 @@ const OutputMacros = () => {
     }
 
     for (let i = 0; i < indices.length; i++) {
-      nintCards2[indices[i]] = n_int_starchyFoods() / indices.length;
+      nintCards2[indices[i]] = nintStarchyFoods() / indices.length;
     }
     //calculo lo mismo para los indices proteinas
     const indices1 = [];
@@ -441,10 +437,9 @@ const OutputMacros = () => {
                 <h4>Proteins</h4>
               </label>
               <input
-               
                 className="form-control w-75 text-center mt-1 ouputMacros"
                 placeholder="Protein in g"
-                value={percenProt() + "%" + " / " +  formatAddProteins()+ "g"}
+                value={percenProt() + "%" + " / " + formatAddProteins() + "g"}
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "rgba(255, 99, 132, 1)" }}
               ></input>
@@ -454,10 +449,9 @@ const OutputMacros = () => {
                 <h4>Fats</h4>
               </label>
               <input
-               
                 className="form-control w-75 text-center mt-1 ouputMacros"
                 placeholder="Lipids in g"
-                value={percenLip()  + "%" + " / " + formatAddLipids() + "g"}
+                value={percenLip() + "%" + " / " + formatAddLipids() + "g"}
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "rgba(255, 205, 86, 1)" }}
               ></input>
@@ -467,10 +461,9 @@ const OutputMacros = () => {
                 <h4>Carbohydrates</h4>
               </label>
               <input
-                
                 className="form-control w-75 text-center mt-1 ouputMacros"
                 placeholder="Carbohydrates in g"
-                value={ percenCarb()+ "%" + " / " + formatAddHc() + "g"}
+                value={percenCarb() + "%" + " / " + formatAddHc() + "g"}
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "#b65c03" }}
               ></input>
@@ -483,7 +476,7 @@ const OutputMacros = () => {
             <Doughnut data={data} options={options} />
           </div>
 
-          <div className= "divMacros ">
+          <div className="divMacros ">
             <label>
               <h4>CALORIES</h4>
             </label>

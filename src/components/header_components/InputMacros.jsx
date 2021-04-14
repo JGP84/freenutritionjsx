@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import { UserContext } from "../../UserContext.js";
 import NumberFormat from "react-number-format";
 
-import {macrosIndex, gMacrosIntCards} from "../../functionsParams"
+import { macrosIndex, gMacrosIntCards, addMacros } from "../../functionsParams";
 
 /* import {  addFoodWeight,
   nintCards,
   addOuputsFoods,
   starchyFoodsIndex,
-  n_int_starchyFoods,
+  nintStarchyFoods,
   totalHc,
   proteinFoodIndex,
   lipidsIndex,
@@ -31,7 +31,7 @@ addFoodWeight
 nintCards
 addOuputsFoods
 starchyFoodsIndex
-n_int_starchyFoods
+nintStarchyFoods
 totalHc
 proteinFoodIndex
 lipidsIndex
@@ -93,13 +93,11 @@ const InputMacros = () => {
   }
 
   function nintCards() {
-    let nintCards = [];
+    // return array
 
-    nintCards = arrFoods.map((item) => {
+    return arrFoods.map((item) => {
       return item.n_int_card;
     });
-
-    return nintCards;
   }
 
   function addOuputsFoods() {
@@ -108,7 +106,7 @@ const InputMacros = () => {
 
     arrOuputsFoods.forEach((i) => {
       arrOuputsFoods[starchyFoodsIndex()[i]] =
-        n_int_starchyFoods() / starchyFoodsIndex().length;
+        nintStarchyFoods() / starchyFoodsIndex().length;
     });
 
     //insert the exchanges of proteinFoods
@@ -124,90 +122,38 @@ const InputMacros = () => {
     return arrOuputsFoods;
   }
 
- 
-
   function starchyFoodsIndex() {
-   return macrosIndex("starchyFoods", arrFoods)
+    return macrosIndex("starchyFoods", arrFoods);
   }
 
-  function n_int_starchyFoods() {
+  function nintStarchyFoods() {
     return (inputCarb - totalHc()) / 14;
   }
 
   function totalHc() {
-    let arrAdd = [];
-
-    arrAdd = nintCards().map((item, i) => {
-      return (item = nintCards()[i] * gHcIntCards()[i]);
-    });
-
-    return arrAdd.reduce((a, b) => a + b);
+    return addMacros(nintCards, gHcIntCards);
   }
 
   function proteinFoodIndex() {
-
-    return macrosIndex("proteinFoods", arrFoods)
-
+    return macrosIndex("proteinFoods", arrFoods);
   }
 
   function lipidsIndex() {
-
-    return macrosIndex("fats", arrFoods)
-    
+    return macrosIndex("fats", arrFoods);
   }
 
   function totalProtein() {
-    const indices = [];
+    starchyFoodsIndex();
 
-    const element = "starchyFoods";
-
-    let idx = arrFoods.map((e) => e.type).indexOf(element);
-    while (idx !== -1) {
-      indices.push(idx);
-
-      idx = arrFoods.map((e) => e.type).indexOf(element, idx + 1);
-    }
-    ///
-
-    let arrAdd = [];
-
-    arrAdd = nintCards().map((item, i) => {
-      return (item = nintCards()[i] * gProtIntCards()[i]);
-    });
-
-    return arrAdd.reduce((a, b) => a + b);
+    return addMacros(nintCards, gProtIntCards);
   }
 
   function totalLipids() {
-    const indices = [];
+    starchyFoodsIndex();
 
-    const element = "starchyFoods";
+    proteinFoodIndex();
 
-    let idx = arrFoods.map((e) => e.type).indexOf(element);
-    while (idx !== -1) {
-      indices.push(idx);
-
-      idx = arrFoods.map((e) => e.type).indexOf(element, idx + 1);
-    }
-    //calculo lo mismo para los indices proteinas
-    const indices1 = [];
-
-    const element1 = "proteinFoods";
-
-    let idx1 = arrFoods.map((e) => e.type).indexOf(element1);
-    while (idx1 !== -1) {
-      indices1.push(idx1);
-
-      idx1 = arrFoods.map((e) => e.type).indexOf(element1, idx1 + 1);
-    }
-
-    ///
-    let arrAdd = [];
-
-    arrAdd = nintCards().map((item, i) => {
-      return (item = nintCards()[i] * gLipIntCards()[i]);
-    });
-    return arrAdd.reduce((a, b) => a + b);
+    return addMacros(nintCards, gLipIntCards);
   }
 
   function nintProtein() {
@@ -219,15 +165,15 @@ const InputMacros = () => {
   }
 
   function gProtIntCards() {
-    return gMacrosIntCards("prot", arrFoods)
+    return gMacrosIntCards("prot", arrFoods);
   }
 
   function gLipIntCards() {
-    return gMacrosIntCards("lip", arrFoods)
+    return gMacrosIntCards("lip", arrFoods);
   }
 
   function gHcIntCards() {
-    return gMacrosIntCards("hc", arrFoods)
+    return gMacrosIntCards("hc", arrFoods);
   }
 
   //////////////////////

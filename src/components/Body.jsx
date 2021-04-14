@@ -12,7 +12,7 @@ addFoodWeight
 nintCards
 addOuputsFoods
 starchyFoodsIndex
-n_int_starchyFoods
+nintStarchyFoods
 totalHc
 proteinFoodIndex
 lipidsIndex
@@ -58,7 +58,7 @@ function Body() {
     inputLip,
     inputCarb,
     setShowSnack,
-    
+
     /* itemEdit,
     setItemEdit, */
   } = useContext(UserContext);
@@ -95,7 +95,7 @@ function Body() {
 
     for (let i = 0; i < nintCards().length; i++) {
       arrOuputsFoods[starchyFoodsIndex()[i]] =
-        n_int_starchyFoods() / starchyFoodsIndex().length;
+        nintStarchyFoods() / starchyFoodsIndex().length;
     }
 
     //insertamos los intercambios de proteinFoods
@@ -126,7 +126,7 @@ function Body() {
     return indices1;
   }
 
-  function n_int_starchyFoods() {
+  function nintStarchyFoods() {
     return (inputCarb - totalHc()) / 14;
   }
 
@@ -195,7 +195,7 @@ function Body() {
     }
 
     for (let i = 0; i < indices.length; i++) {
-      nintCards1[indices[i]] = n_int_starchyFoods() / indices.length;
+      nintCards1[indices[i]] = nintStarchyFoods() / indices.length;
     }
 
     let x = 0;
@@ -230,7 +230,7 @@ function Body() {
     }
 
     for (let i = 0; i < indices.length; i++) {
-      nintCards2[indices[i]] = n_int_starchyFoods() / indices.length;
+      nintCards2[indices[i]] = nintStarchyFoods() / indices.length;
     }
     //calculo lo mismo para los indices proteinas
     const indices1 = [];
@@ -339,8 +339,6 @@ function Body() {
     );
 
     setArrFoods(arrayFiltrado);
-
-    
 
     const indexSplice = arrFoods.findIndex(
       (item) => item.idUnique === itemIdUnique

@@ -5,7 +5,6 @@ import uuid from "react-uuid";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-
 /* Functions in SearchFood:
 
 updateFoodNew
@@ -18,7 +17,7 @@ addFoodWeight
 nintCards
 addOuputsFoods
 starchyFoodsIndex
-n_int_starchyFoods
+nintStarchyFoods
 totalHc
 proteinFoodIndex
 lipidsIndex
@@ -50,8 +49,6 @@ getArrInformation
 handler
 */
 
-
-
 /* import { addFoodWeight } from "/Users/jose/Desktop/freenutritionjsx/client/src/functions.js" */
 
 const SearchFood = () => {
@@ -78,52 +75,48 @@ const SearchFood = () => {
     let index = foodDatabase.findIndex((item) => item.name === foodNew);
 
     if (index !== -1) {
+      arrFoods.unshift({
+        food_id: foodDatabase[index].food_id,
+        name: foodNew,
+        type: foodDatabase[index].type,
+        weight_int: foodDatabase[index].weight_int,
+        prot: foodDatabase[index].prot,
+        lip: foodDatabase[index].lip,
+        hc: foodDatabase[index].hc,
+        img_link: foodDatabase[index].img_link,
+        n_int_card: foodDatabase[index].n_int_card,
+        foodWeight: 0,
+        idUnique: uuid(),
+      });
 
-    arrFoods.unshift({
-      food_id: foodDatabase[index].food_id,
-      name: foodNew,
-      type: foodDatabase[index].type,
-      weight_int: foodDatabase[index].weight_int,
-      prot: foodDatabase[index].prot,
-      lip: foodDatabase[index].lip,
-      hc: foodDatabase[index].hc,
-      img_link: foodDatabase[index].img_link,
-      n_int_card: foodDatabase[index].n_int_card,
-      foodWeight: 0,
-      idUnique: uuid(),
-    });
+      addFoodWeight();
 
-    addFoodWeight();
+      /////
+      const itemAdd = {
+        idUnique: arrFoods[0].idUnique,
+        name: arrFoods[0].name,
+        foodWeight: arrFoods[0].foodWeight,
+        type: arrFoods[0].type,
+        img_link: arrFoods[0].img_link,
+      };
 
-    /////
-    const itemAdd = {
-      idUnique: arrFoods[0].idUnique,
-      name: arrFoods[0].name,
-      foodWeight: arrFoods[0].foodWeight,
-      type: arrFoods[0].type,
-      img_link: arrFoods[0].img_link,
-    };
+      const requestColumnId = Object.entries(columns).find(
+        (i) => i[1].name === "Breakfast"
+      )[0];
 
-    const requestColumnId = Object.entries(columns).find(
-      (i) => i[1].name === "Breakfast"
-    )[0];
+      const column = columns[requestColumnId];
 
-    const column = columns[requestColumnId];
+      setColumns({
+        ...columns,
+        [requestColumnId]: {
+          ...column,
+          items: [...column.items, itemAdd],
+        },
+      });
 
-    
-    setColumns({
-      ...columns,
-      [requestColumnId]: {
-        ...column,
-        items: [...column.items, itemAdd],
-      },
-    });
-   
-
-    setFoodNew("");
-
-  } else {}
-
+      setFoodNew("");
+    } else {
+    }
   }
 
   function allDelete() {
@@ -164,8 +157,6 @@ const SearchFood = () => {
         items: [],
       },
     }); */
-
-
   }
 
   function addFoodWeight() {
@@ -200,7 +191,7 @@ const SearchFood = () => {
 
     for (let i = 0; i < nintCards().length; i++) {
       arrOuputsFoods[starchyFoodsIndex()[i]] =
-        n_int_starchyFoods() / starchyFoodsIndex().length;
+        nintStarchyFoods() / starchyFoodsIndex().length;
     }
 
     //insertamos los intercambios de proteinFoods
@@ -231,7 +222,7 @@ const SearchFood = () => {
     return indices1;
   }
 
-  function n_int_starchyFoods() {
+  function nintStarchyFoods() {
     return (inputCarb - totalHc()) / 14;
   }
 
@@ -300,7 +291,7 @@ const SearchFood = () => {
     }
 
     for (let i = 0; i < indices.length; i++) {
-      nintCards1[indices[i]] = n_int_starchyFoods() / indices.length;
+      nintCards1[indices[i]] = nintStarchyFoods() / indices.length;
     }
 
     let x = 0;
@@ -335,7 +326,7 @@ const SearchFood = () => {
     }
 
     for (let i = 0; i < indices.length; i++) {
-      nintCards2[indices[i]] = n_int_starchyFoods() / indices.length;
+      nintCards2[indices[i]] = nintStarchyFoods() / indices.length;
     }
     //calculo lo mismo para los indices proteinas
     const indices1 = [];
@@ -532,7 +523,7 @@ const SearchFood = () => {
         (ingredient) => ingredient.idUnique === element.idUnique
       );
 
-      element.foodWeight = Math.round(arrFoods[index].foodWeight / 5 ) * 5 + "g";
+      element.foodWeight = Math.round(arrFoods[index].foodWeight / 5) * 5 + "g";
     });
 
     console.log("arrBreakfast NOW", arrBreakfast);
@@ -556,7 +547,7 @@ const SearchFood = () => {
         (ingredient) => ingredient.idUnique === element.idUnique
       );
 
-      element.foodWeight = Math.round(arrFoods[index].foodWeight / 5 ) * 5 + "g";
+      element.foodWeight = Math.round(arrFoods[index].foodWeight / 5) * 5 + "g";
     });
 
     console.log("arrLunch NOW", arrLunch);
@@ -580,7 +571,7 @@ const SearchFood = () => {
         (ingredient) => ingredient.idUnique === element.idUnique
       );
 
-      element.foodWeight = Math.round(arrFoods[index].foodWeight / 5 ) * 5 + "g";
+      element.foodWeight = Math.round(arrFoods[index].foodWeight / 5) * 5 + "g";
     });
 
     console.log("arrDinner NOW", arrDinner);
@@ -606,7 +597,8 @@ const SearchFood = () => {
             (ingredient) => ingredient.idUnique === element.idUnique
           );
 
-          element.foodWeight = Math.round(arrFoods[index].foodWeight / 5 ) * 5 + "g";
+          element.foodWeight =
+            Math.round(arrFoods[index].foodWeight / 5) * 5 + "g";
         });
 
         console.log("arrSnack NOW", arrSnack);
@@ -626,14 +618,19 @@ const SearchFood = () => {
     " / " +
     today.getFullYear();
 
-
-
   const getArrInformation = () => {
     let arrInformation = [
       {
-        proteins: Math.round(percenProt())  + "%" + " / " + Math.round(addProteins())  + "g",
-        fats: Math.round(percenLip())  + "%" + " / " + Math.round(addLipids())  + "g",
-        carbohydrates: Math.round(percenCarb())  + "%" + " / " + Math.round(addHc())  + "g",
+        proteins:
+          Math.round(percenProt()) +
+          "%" +
+          " / " +
+          Math.round(addProteins()) +
+          "g",
+        fats:
+          Math.round(percenLip()) + "%" + " / " + Math.round(addLipids()) + "g",
+        carbohydrates:
+          Math.round(percenCarb()) + "%" + " / " + Math.round(addHc()) + "g",
         calories: Math.round(addKcal()) + " kcal",
         date: date,
       },
