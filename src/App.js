@@ -18,9 +18,9 @@ function App() {
 
   const [arrFoods, setArrFoods] = useState([]);
 
-  const [inputProt, setInputProt] = useState(100);
-  const [inputLip, setInputLip] = useState(78);
-  const [inputCarb, setInputCarb] = useState(225);
+  const [inputProt, setInputProt] = useState(102);
+  const [inputLip, setInputLip] = useState(76);
+  const [inputCarb, setInputCarb] = useState(227);
 
   const [inputProtPerc, setInputProtPerc] = useState(20);
   const [inputLipPerc, setInputLipPerc] = useState(35);

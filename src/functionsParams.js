@@ -261,6 +261,31 @@ function gHcIntCards(arrFoods) {
     return gHcIntCards;
   }
 }
+////////
+
+const macrosIndex= (foodType, arrFoods) =>{
+
+  const indices = [];
+
+  let idx = arrFoods.map((e) => e.type).indexOf(foodType);
+  while (idx !== -1) {
+
+    indices.push(idx);
+
+    idx = arrFoods.map((e) => e.type).indexOf(foodType, idx + 1);
+  }
+
+  return indices;
+}
+
+const gMacrosIntCards = (macro, arrFoods)=>{
+  let gProtIntCards = [];
+
+  return (gProtIntCards = arrFoods.map((item, i) => {
+    return (item = arrFoods[i][macro]);
+  }));
+  
+}
 
 export {
   addFoodWeight,
@@ -277,5 +302,7 @@ export {
   nintLipids,
   gProtIntCards,
   gLipIntCards,
-  gHcIntCards
+  gHcIntCards,
+  macrosIndex,
+  gMacrosIntCards
 };

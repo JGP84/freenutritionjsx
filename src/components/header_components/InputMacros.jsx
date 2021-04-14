@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { UserContext } from "../../UserContext.js";
 import NumberFormat from "react-number-format";
 
+import {macrosIndex, gMacrosIntCards} from "../../functionsParams"
+
 /* import {  addFoodWeight,
   nintCards,
   addOuputsFoods,
@@ -101,22 +103,20 @@ const InputMacros = () => {
   }
 
   function addOuputsFoods() {
-    //insertamos los intercambios de starchyFoods
+    //insert the exchanges of starchyFoods
     const arrOuputsFoods = nintCards();
-
-    console.log("arrOuputsFoods.length", arrOuputsFoods.length);
 
     arrOuputsFoods.forEach((i) => {
       arrOuputsFoods[starchyFoodsIndex()[i]] =
         n_int_starchyFoods() / starchyFoodsIndex().length;
     });
 
-    //insertamos los intercambios de proteinFoods
+    //insert the exchanges of proteinFoods
     arrOuputsFoods.forEach((i) => {
       arrOuputsFoods[proteinFoodIndex()[i]] =
         nintProtein() / proteinFoodIndex().length;
     });
-    //insertamos los intercambios de lipidos
+    //insert the exchanges of fats
     arrOuputsFoods.forEach((i) => {
       arrOuputsFoods[lipidsIndex()[i]] = nintLipids() / lipidsIndex().length;
     });
@@ -124,19 +124,10 @@ const InputMacros = () => {
     return arrOuputsFoods;
   }
 
+ 
+
   function starchyFoodsIndex() {
-    const indices1 = [];
-
-    const element = "starchyFoods";
-
-    let idx = arrFoods.map((e) => e.type).indexOf(element);
-    while (idx !== -1) {
-      indices1.push(idx);
-
-      idx = arrFoods.map((e) => e.type).indexOf(element, idx + 1);
-    }
-
-    return indices1;
+   return macrosIndex("starchyFoods", arrFoods)
   }
 
   function n_int_starchyFoods() {
@@ -154,33 +145,15 @@ const InputMacros = () => {
   }
 
   function proteinFoodIndex() {
-    const indices2 = [];
 
-    const element2 = "proteinFoods";
+    return macrosIndex("proteinFoods", arrFoods)
 
-    let idx2 = arrFoods.map((e) => e.type).indexOf(element2);
-    while (idx2 !== -1) {
-      indices2.push(idx2);
-
-      idx2 = arrFoods.map((e) => e.type).indexOf(element2, idx2 + 1);
-    }
-
-    return indices2;
   }
 
   function lipidsIndex() {
-    const indices3 = [];
 
-    const element3 = "fats";
-
-    let idx3 = arrFoods.map((e) => e.type).indexOf(element3);
-    while (idx3 !== -1) {
-      indices3.push(idx3);
-
-      idx3 = arrFoods.map((e) => e.type).indexOf(element3, idx3 + 1);
-    }
-
-    return indices3;
+    return macrosIndex("fats", arrFoods)
+    
   }
 
   function totalProtein() {
@@ -246,27 +219,15 @@ const InputMacros = () => {
   }
 
   function gProtIntCards() {
-    let gProtIntCards = [];
-
-    return (gProtIntCards = arrFoods.map((item, i) => {
-      return (item = arrFoods[i].prot);
-    }));
+    return gMacrosIntCards("prot", arrFoods)
   }
 
   function gLipIntCards() {
-    let gLipIntCards = [];
-
-    return (gLipIntCards = arrFoods.map((item, i) => {
-      return (item = arrFoods[i].lip);
-    }));
+    return gMacrosIntCards("lip", arrFoods)
   }
 
   function gHcIntCards() {
-    let gHcIntCards = [];
-
-    return (gHcIntCards = arrFoods.map((item, i) => {
-      return (item = arrFoods[i].hc);
-    }));
+    return gMacrosIntCards("hc", arrFoods)
   }
 
   //////////////////////
