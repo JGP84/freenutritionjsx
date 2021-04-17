@@ -1,6 +1,8 @@
 import useDietLogic from "../../hooks/useDietLogic.jsx";
+import { percenProt, percenLip, percenCarb} from "../../functions/functionsParams";
+import DoughnutChart from "../DoughnutChart.jsx";
 
-import { Doughnut } from "react-chartjs-2";
+
 
 /* Functions in OutputMacros:
 
@@ -39,54 +41,7 @@ const OutputMacros = () => {
     formatAddKcal,
   } = useDietLogic();
 
-  /* DoughnutChart */
 
-  const percenProt = () => {
-    if (addProteins() === 0) {
-      return 0;
-    } else {
-      return Math.round((100 * addProteins() * 4) / addKcal());
-    }
-  };
-
-  const percenLip = () => {
-    if (addLipids() === 0) {
-      return 0;
-    } else {
-      return Math.round((100 * addLipids() * 9) / addKcal());
-    }
-  };
-  const percenCarb = () => {
-    if (addHc() === 0) {
-      return 0;
-    } else {
-      return Math.round((100 * addHc() * 4) / addKcal());
-    }
-  };
-
-  const data = {
-    /* labels: ["% Proteins", "% Lipids", "% Carbohydrates"] , */
-    datasets: [
-      {
-        label: "Macronutrients",
-        data: [percenProt(), percenLip(), percenCarb()],
-        backgroundColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(255, 205, 86, 1)",
-
-          "#b65c03",
-        ],
-      },
-    ],
-  };
-
-  const options = {
-    title: {
-      display: false,
-      text: "Macronutrients",
-    },
-  };
-  /* End DoughnutChart  */
 
   return (
     <>
@@ -105,7 +60,7 @@ const OutputMacros = () => {
               <input
                 className="form-control w-75 text-center mt-1 ouputMacros"
                 placeholder="Protein in g"
-                value={percenProt() + "%" + " / " + formatAddProteins() + "g"}
+                value={percenProt(addProteins, addKcal) + "%" + " / " + formatAddProteins() + "g"}
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "rgba(255, 99, 132, 1)" }}
               ></input>
@@ -117,7 +72,7 @@ const OutputMacros = () => {
               <input
                 className="form-control w-75 text-center mt-1 ouputMacros"
                 placeholder="Lipids in g"
-                value={percenLip() + "%" + " / " + formatAddLipids() + "g"}
+                value={percenLip(addLipids, addKcal) + "%" + " / " + formatAddLipids() + "g"}
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "rgba(255, 205, 86, 1)" }}
               ></input>
@@ -129,7 +84,7 @@ const OutputMacros = () => {
               <input
                 className="form-control w-75 text-center mt-1 ouputMacros"
                 placeholder="Carbohydrates in g"
-                value={percenCarb() + "%" + " / " + formatAddHc() + "g"}
+                value={percenCarb(addHc, addKcal) + "%" + " / " + formatAddHc() + "g"}
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "#b65c03" }}
               ></input>
@@ -139,7 +94,7 @@ const OutputMacros = () => {
         {/*  */}
         <div className="form-row d-flex">
           <div className="container mt-3 ">
-            <Doughnut data={data} options={options} />
+            <DoughnutChart />
           </div>
 
           <div className="divMacros ">
