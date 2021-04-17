@@ -5,6 +5,7 @@ import { UserContext } from "./../UserContext";
 
 
 const useDietLogic = () => {
+    
   const {
     inputProt,
     inputLip,
@@ -134,10 +135,86 @@ const macrosIndex = (foodType, arrFoods) => {
     return arrAdd.reduce((a, b) => a + b);
   };
 
+  /* Results */
+
+  function addProteins() {
+    if (nintCards().length < 1) {
+      return 0;
+    } else {
+      const arrAdd = [];
+
+      for (let i = 0; i < nintCards().length; i++) {
+        const add = arrFoods[i].prot * addOuputsFoods()[i];
+
+        arrAdd.push(add);
+      }
+
+      return arrAdd.reduce((a, b) => a + b);
+    }
+  }
+
+  function addLipids() {
+    if (nintCards().length < 1) {
+      return 0;
+    } else {
+      const arrAdd = [];
+
+      for (let i = 0; i < nintCards().length; i++) {
+        const add = arrFoods[i].lip * addOuputsFoods()[i];
+
+        arrAdd.push(add);
+      }
+
+      return arrAdd.reduce((a, b) => a + b);
+    }
+  }
+
+  function addHc() {
+    if (nintCards().length < 1) {
+      return 0;
+    } else {
+      const arrAdd = [];
+
+      for (let i = 0; i < nintCards().length; i++) {
+        const add = arrFoods[i].hc * addOuputsFoods()[i];
+
+        arrAdd.push(add);
+      }
+
+      return arrAdd.reduce((a, b) => a + b);
+    }
+  }
+
+  function addKcal() {
+    return addProteins() * 4 + addLipids() * 9 + addHc() * 4;
+  }
+
+  const formatAddProteins = () => {
+    return Math.round(addProteins());
+  };
+  const formatAddLipids = () => {
+    return Math.round(addLipids());
+  };
+  const formatAddHc = () => {
+    return Math.round(addHc());
+  };
+
+  const formatAddKcal = () => {
+    return Math.round(addKcal());
+  };
+
   return {
     addFoodWeight,
     nintCards,
     addOuputsFoods,
+    addProteins,
+    addLipids,
+    addHc,
+    formatAddProteins,
+    formatAddLipids,
+    formatAddHc,
+    addKcal,
+    formatAddKcal
   };
 };
 

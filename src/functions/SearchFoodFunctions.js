@@ -1,3 +1,4 @@
+
 function addFood(
   foodDatabase,
   foodNew,
@@ -6,7 +7,7 @@ function addFood(
   addFoodWeight,
   columns,
   setColumns,
-  setFoodNew, addOuputsFoods, inputCarb,inputProt, inputLip
+  setFoodNew, 
 ) {
   let index = foodDatabase.findIndex((item) => item.name === foodNew);
 
@@ -25,7 +26,7 @@ function addFood(
       idUnique: uuid(),
     });
 
-    addFoodWeight(arrFoods,addOuputsFoods,inputCarb,inputProt, inputLip);
+    addFoodWeight();
 
     /////
     const itemAdd = {
@@ -96,7 +97,7 @@ const getArrBreakfast = (columns, arrFoods ) => {
       element.foodWeight = Math.round(arrFoods[index].foodWeight / 5) * 5 + "g";
     });
 
-    console.log("arrBreakfast NOW", arrBreakfast);
+    
 
     return arrBreakfast;
   };
@@ -119,7 +120,7 @@ const getArrBreakfast = (columns, arrFoods ) => {
       element.foodWeight = Math.round(arrFoods[index].foodWeight / 5) * 5 + "g";
     });
 
-    console.log("arrLunch NOW", arrLunch);
+    
 
     return arrLunch;
   };
@@ -143,7 +144,7 @@ const getArrBreakfast = (columns, arrFoods ) => {
       element.foodWeight = Math.round(arrFoods[index].foodWeight / 5) * 5 + "g";
     });
 
-    console.log("arrDinner NOW", arrDinner);
+    
 
     return arrDinner;
   };
@@ -170,7 +171,7 @@ const getArrBreakfast = (columns, arrFoods ) => {
             Math.round(arrFoods[index].foodWeight / 5) * 5 + "g";
         });
 
-        console.log("arrSnack NOW", arrSnack);
+        
 
         return arrSnack;
       }
@@ -197,12 +198,12 @@ const getArrBreakfast = (columns, arrFoods ) => {
     return arrInformation;
   };
 
-  function exportPDF(columns, arrFoods, showSnack, percenProt, addProteins,percenLip, addLipids, percenCarb, addHc, addKcal, date, jsPDF ) {
+  function exportPDF(columns, arrFoods, showSnack, percenProt, addProteins,percenLip, addLipids, percenCarb, addHc, addKcal, date, jsPDF, nintCards, addOuputsFoods ) {
     const arrBreakfast = getArrBreakfast(columns, arrFoods);
     const arrLunch = getArrLunch(columns, arrFoods);
     const arrDinner = getArrDinner(columns, arrFoods);
     const arrSnack = getArrSnack(columns, arrFoods, showSnack);
-    const arrInformation = getArrInformation(percenProt, addProteins,percenLip, addLipids, percenCarb, addHc, addKcal, date);
+    const arrInformation = getArrInformation(percenProt, addProteins,percenLip, addLipids, percenCarb, addHc, addKcal, date, nintCards,arrFoods,addOuputsFoods);
 
     let vm = this;
     let columnsBreakfast = [

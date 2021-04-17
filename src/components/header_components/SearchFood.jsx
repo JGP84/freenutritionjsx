@@ -1,14 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../UserContext.js";
-/* import foodDatabase from "../foodDatabase"; */
 import uuid from "react-uuid";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-import {addFood, allDelete, getArrBreakfast, getArrLunch, getArrDinner, getArrSnack, getArrInformation, exportPDF  } from "../../functions/SearchFoodFunctions"
+import {addFood, allDelete, exportPDF  } from "../../functions/SearchFoodFunctions"
 
-import {addFoodWeight, addKcal, percenProt, percenLip, percenCarb, addProteins, addLipids, addHc,  
-  } from "../../functions/functionsParams.js"
+import { percenProt, percenLip, percenCarb} from "../../functions/functionsParams";
 
 import useDietLogic from "../../hooks/useDietLogic.jsx";
 
@@ -23,18 +21,6 @@ allDelete
 addFoodWeight
 nintCards
 addOuputsFoods
-starchyFoodsIndex
-nintStarchyFoods
-totalHc
-proteinFoodIndex
-lipidsIndex
-totalProtein
-totalLipids
-nintProtein
-nintLipids
-gProtIntCards
-gLipIntCards
-gHcIntCards
 *****
 
 
@@ -56,22 +42,19 @@ getArrInformation
 handler
 */
 
-/* import { addFoodWeight } from "/Users/jose/Desktop/freenutritionjsx/client/src/functions.js" */
+
 
 const SearchFood = () => {
   const {
     arrFoods,
     setArrFoods,
-    inputProt,
-    inputLip,
-    inputCarb,
     columns,
     setColumns,
     foodDatabase,
-    showSnack,
+    showSnack
   } = useContext(UserContext);
 
-  const { addFoodWeight, addOuputsFoods} = useDietLogic ();
+  const { addFoodWeight, addKcal, addProteins, addLipids, addHc, nintCards, addOuputsFoods } = useDietLogic ();
 
   const [foodNew, setFoodNew] = useState("");
 
@@ -98,14 +81,14 @@ const SearchFood = () => {
  /* Functions handles */
   const handler = (event) => {
     if (event.key === "Enter") {
-      addFood(foodDatabase,
+      addFood(  foodDatabase,
         foodNew,
         arrFoods,
         uuid,
         addFoodWeight,
         columns,
         setColumns,
-        setFoodNew, addOuputsFoods, inputCarb,inputProt, inputLip);
+        setFoodNew);
     }
   };
 
@@ -118,7 +101,7 @@ const SearchFood = () => {
       addFoodWeight,
       columns,
       setColumns,
-      setFoodNew, addOuputsFoods, inputCarb,inputProt, inputLip
+      setFoodNew 
     )
  }
 
@@ -126,7 +109,7 @@ const SearchFood = () => {
     allDelete(setArrFoods, setColumns, uuid)
  }
  const handleExportPDF = (e) => {
-  exportPDF(columns, arrFoods, showSnack, percenProt, addProteins,percenLip, addLipids, percenCarb, addHc, addKcal, date, jsPDF )
+  exportPDF(columns, arrFoods, showSnack, percenProt, addProteins,percenLip, addLipids, percenCarb, addHc, addKcal, date, jsPDF, nintCards, addOuputsFoods )
 }
 
   return (
