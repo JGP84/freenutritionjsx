@@ -1,28 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../UserContext.js";
 import NumberFormat from "react-number-format";
-
-
-
 import useDietLogic from "../../hooks/useDietLogic.jsx";
-
-
-
-/* import { macrosIndex, gMacrosIntCards, addMacros, addFoodWeight,
-  nintCards,
-  addOuputsFoods,
-  starchyFoodsIndex,
-  nintStarchyFoods,
-  totalHc,
-  proteinFoodIndex,
-  lipidsIndex,
-  totalProtein,
-  totalLipids,
-  nintProtein,
-  nintLipids,
-  gProtIntCards,
-  gLipIntCards,
-  gHcIntCards  } from "../../functionsParams"  */
 
 /* Functions in InputMacros:
 
@@ -38,14 +17,6 @@ useDietLogic addFoodWeight
 formatProt
 formatLip
 formatCarb
-
-
-
-
-
-
-
-
 */
 
 const InputMacros = () => {
@@ -56,10 +27,9 @@ const InputMacros = () => {
     setInputLip,
     inputCarb,
     setInputCarb,
-    
   } = useContext(UserContext);
 
-  const { addFoodWeight} = useDietLogic ();
+  const { addFoodWeight } = useDietLogic();
 
   function updateInputProt(event) {
     const inputProtein = event.target.value;
@@ -77,20 +47,8 @@ const InputMacros = () => {
     addFoodWeight();
   }
 
-  /////////////////
-
-  
-
- 
-
-
-
-
-  //////////////////////
-
   const formatProt = () => {
     let formatProt = Math.round(inputProt);
-    /* formatProt=`${formatProt}g` */
     return formatProt;
   };
 
@@ -108,7 +66,6 @@ const InputMacros = () => {
         <div className="col-md-4 mb-3">
           <div className="divMacros">
             <label>
-              {" "}
               <h4>g Prot</h4>
             </label>
             <NumberFormat
@@ -126,7 +83,6 @@ const InputMacros = () => {
         <div className="col-md-4 mb-3">
           <div className="divMacros">
             <label>
-              {" "}
               <h4>g Fats </h4>
             </label>
             <input
@@ -142,7 +98,6 @@ const InputMacros = () => {
         <div className="col-md-4 mb-3">
           <div className="divMacros">
             <label>
-              {" "}
               <h4>g Carb </h4>
             </label>
             <input
