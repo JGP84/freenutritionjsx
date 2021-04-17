@@ -4,9 +4,17 @@ import uuid from "react-uuid";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-import {addFood, allDelete, exportPDF  } from "../../functions/SearchFoodFunctions"
+import {
+  addFood,
+  allDelete,
+  exportPDF,
+} from "../../functions/searchFoodFunctions";
 
-import { percenProt, percenLip, percenCarb} from "../../functions/functionsParams";
+import {
+  percenProt,
+  percenLip,
+  percenCarb,
+} from "../../functions/functionsParams";
 
 import useDietLogic from "../../hooks/useDietLogic.jsx";
 
@@ -42,8 +50,6 @@ getArrInformation
 handler
 */
 
-
-
 const SearchFood = () => {
   const {
     arrFoods,
@@ -51,10 +57,18 @@ const SearchFood = () => {
     columns,
     setColumns,
     foodDatabase,
-    showSnack
+    showSnack,
   } = useContext(UserContext);
 
-  const { addFoodWeight, addKcal, addProteins, addLipids, addHc, nintCards, addOuputsFoods } = useDietLogic ();
+  const {
+    addFoodWeight,
+    addKcal,
+    addProteins,
+    addLipids,
+    addHc,
+    nintCards,
+    addOuputsFoods,
+  } = useDietLogic();
 
   const [foodNew, setFoodNew] = useState("");
 
@@ -63,12 +77,9 @@ const SearchFood = () => {
     setFoodNew(foodsNew);
   }
 
- 
- 
- //JSPDF date
+  //JSPDF date
   const today = new Date();
 
-  
   const date =
     today.getDate() +
     " / " +
@@ -76,19 +87,19 @@ const SearchFood = () => {
     " / " +
     today.getFullYear();
 
-  
-
- /* Functions handles */
+  /* Functions handles */
   const handler = (event) => {
     if (event.key === "Enter") {
-      addFood(  foodDatabase,
+      addFood(
+        foodDatabase,
         foodNew,
         arrFoods,
         uuid,
         addFoodWeight,
         columns,
         setColumns,
-        setFoodNew);
+        setFoodNew
+      );
     }
   };
 
@@ -101,16 +112,31 @@ const SearchFood = () => {
       addFoodWeight,
       columns,
       setColumns,
-      setFoodNew 
-    )
- }
+      setFoodNew
+    );
+  };
 
   const handleAllDelete = (e) => {
-    allDelete(setArrFoods, setColumns, uuid)
- }
- const handleExportPDF = (e) => {
-  exportPDF(columns, arrFoods, showSnack, percenProt, addProteins,percenLip, addLipids, percenCarb, addHc, addKcal, date, jsPDF, nintCards, addOuputsFoods )
-}
+    allDelete(setArrFoods, setColumns, uuid);
+  };
+  const handleExportPDF = (e) => {
+    exportPDF(
+      columns,
+      arrFoods,
+      showSnack,
+      percenProt,
+      addProteins,
+      percenLip,
+      addLipids,
+      percenCarb,
+      addHc,
+      addKcal,
+      date,
+      jsPDF,
+      nintCards,
+      addOuputsFoods
+    );
+  };
 
   return (
     <>

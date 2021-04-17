@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-    return (
-        
-            <nav className="navbar navbar-expand-md navbar-dark bg-dark d-flex justify-content-around">
+  return (
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark d-flex justify-content-around">
       <img
         src="/docs/4.5/assets/brand/bootstrap-solid.svg"
         width="30"
@@ -12,8 +11,10 @@ const Navbar = () => {
         alt=""
         loading="lazy"
       ></img>
-      <a className="navbar-brand" href="#"><h1>FreeNutritionPlanner.org</h1></a>
-      
+      <a className="navbar-brand" href="#">
+        <h1>FreeNutritionPlanner.org</h1>
+      </a>
+
       <ul className="navbar-nav">
         <li className="nav-item">
           <Link className="nav-link" to="/">
@@ -33,7 +34,6 @@ const Navbar = () => {
       </ul>
     </nav>
   );
-     
-}
+};
 
-export default Navbar
+export default Navbar;

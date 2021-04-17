@@ -3,6 +3,9 @@ import { UserContext } from "../UserContext";
 import uuid from "react-uuid";
 import { BsTrash, BsFiles } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import useDietLogic from "../hooks/useDietLogic";
+import { addColumn,deleteItem, duplicateItem, updateFood, changeName, changeN_int_card } from "./../functions/bodyFunctions";
 /* import EditItem from "../components/body_components/EditItem"; */
 
 /* Functions in Body:
@@ -40,7 +43,7 @@ changeN_int_card
 */
 
 /* import Tarjeta from "./Tarjeta"; */
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+
 
 /* import { addFoodWeight } from "../functions"; */
 
@@ -64,323 +67,49 @@ function Body() {
     setItemEdit, */
   } = useContext(UserContext);
 
-  function addFoodWeight() {
-    //cambia el valor de la propiedad foodWeight
+  const {
+    addFoodWeight,
+    addKcal,
+    addProteins,
+    addLipids,
+    addHc,
+    nintCards,
+    addOuputsFoods,
+  } = useDietLogic();
 
-    for (let i = 0; i < nintCards().length; i++) {
-      arrFoods[i].foodWeight = arrFoods[i].weight_int * addOuputsFoods()[i];
-    }
+ 
 
-    return;
-  }
+  
 
-  function nintCards() {
-    const nintCards = [];
+  
+  const addRice=()=>{
+    /* const arrRecipe = ["rice","chicken breast", "oil"] */
 
-    if (arrFoods.length < 1) {
-      return [];
-    } else {
-      for (let i = 0; i < arrFoods.length; i++) {
-        let x = arrFoods[i].n_int_card;
+    
+    /* for (let itemRecipe of arrRecipe){ */
 
-        nintCards.push(x);
-      }
+    let itemRecipe = "rice"
 
-      return nintCards;
-    }
-  }
+  
 
-  function addOuputsFoods() {
-    //insertamos los intercambios de starchyFoods
-    const arrOuputsFoods = JSON.parse(JSON.stringify(nintCards()));
+    let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
 
-    for (let i = 0; i < nintCards().length; i++) {
-      arrOuputsFoods[starchyFoodsIndex()[i]] =
-        nintStarchyFoods() / starchyFoodsIndex().length;
-    }
-
-    //insertamos los intercambios de proteinFoods
-    for (let i = 0; i < nintCards().length; i++) {
-      arrOuputsFoods[proteinFoodIndex()[i]] =
-        nintProtein() / proteinFoodIndex().length;
-    }
-    //insertamos los intercambios de lipidos
-    for (let i = 0; i < nintCards().length; i++) {
-      arrOuputsFoods[lipidsIndex()[i]] = nintLipids() / lipidsIndex().length;
-    }
-
-    return arrOuputsFoods;
-  }
-
-  function starchyFoodsIndex() {
-    const indices1 = [];
-
-    const element = "starchyFoods";
-
-    let idx = arrFoods.map((e) => e.type).indexOf(element);
-    while (idx !== -1) {
-      indices1.push(idx);
-
-      idx = arrFoods.map((e) => e.type).indexOf(element, idx + 1);
-    }
-
-    return indices1;
-  }
-
-  function nintStarchyFoods() {
-    return (inputCarb - totalHc()) / 14;
-  }
-
-  function totalHc() {
-    const arrAdd = [];
-
-    let x = 0;
-    if (nintCards().length < 1) {
-      x = 1;
-    } else {
-      x = nintCards().length;
-    }
-
-    for (let i = 0; i < x; i++) {
-      const add = nintCards()[i] * gHcIntCards()[i];
-      arrAdd.push(add);
-    }
-
-    return arrAdd.reduce((a, b) => a + b);
-  }
-
-  function proteinFoodIndex() {
-    const indices2 = [];
-
-    const element2 = "proteinFoods";
-
-    let idx2 = arrFoods.map((e) => e.type).indexOf(element2);
-    while (idx2 !== -1) {
-      indices2.push(idx2);
-
-      idx2 = arrFoods.map((e) => e.type).indexOf(element2, idx2 + 1);
-    }
-
-    return indices2;
-  }
-
-  function lipidsIndex() {
-    const indices3 = [];
-
-    const element3 = "fats";
-
-    let idx3 = arrFoods.map((e) => e.type).indexOf(element3);
-    while (idx3 !== -1) {
-      indices3.push(idx3);
-
-      idx3 = arrFoods.map((e) => e.type).indexOf(element3, idx3 + 1);
-    }
-
-    return indices3;
-  }
-
-  function totalProtein() {
-    const arrAdd = [];
-
-    const nintCards1 = JSON.parse(JSON.stringify(nintCards()));
-
-    const indices = [];
-
-    const element = "starchyFoods";
-
-    let idx = arrFoods.map((e) => e.type).indexOf(element);
-    while (idx !== -1) {
-      indices.push(idx);
-
-      idx = arrFoods.map((e) => e.type).indexOf(element, idx + 1);
-    }
-
-    for (let i = 0; i < indices.length; i++) {
-      nintCards1[indices[i]] = nintStarchyFoods() / indices.length;
-    }
-
-    let x = 0;
-    if (nintCards().length < 1) {
-      x = 1;
-    } else {
-      x = nintCards().length;
-    }
-
-    for (let i = 0; i < x; i++) {
-      const add = nintCards1[i] * gProtIntCards()[i];
-      arrAdd.push(add);
-    }
-
-    return arrAdd.reduce((a, b) => a + b);
-  }
-
-  function totalLipids() {
-    const arrAdd = [];
-
-    const nintCards2 = JSON.parse(JSON.stringify(nintCards()));
-
-    const indices = [];
-
-    const element = "starchyFoods";
-
-    let idx = arrFoods.map((e) => e.type).indexOf(element);
-    while (idx !== -1) {
-      indices.push(idx);
-
-      idx = arrFoods.map((e) => e.type).indexOf(element, idx + 1);
-    }
-
-    for (let i = 0; i < indices.length; i++) {
-      nintCards2[indices[i]] = nintStarchyFoods() / indices.length;
-    }
-    //calculo lo mismo para los indices proteinas
-    const indices1 = [];
-
-    const element1 = "proteinFoods";
-
-    let idx1 = arrFoods.map((e) => e.type).indexOf(element1);
-    while (idx1 !== -1) {
-      indices1.push(idx1);
-
-      idx1 = arrFoods.map((e) => e.type).indexOf(element1, idx1 + 1);
-    }
-
-    for (let i = 0; i < indices.length; i++) {
-      nintCards2[indices1[i]] = nintProtein() / indices1.length;
-    }
-
-    let x = 0;
-    if (nintCards().length < 1) {
-      x = 1;
-    } else {
-      x = nintCards().length;
-    }
-
-    for (let i = 0; i < x; i++) {
-      const add = nintCards2[i] * gLipIntCards()[i];
-      arrAdd.push(add);
-    }
-
-    return arrAdd.reduce((a, b) => a + b);
-  }
-
-  function nintProtein() {
-    return (inputProt - totalProtein()) / 7;
-  }
-
-  function nintLipids() {
-    return (inputLip - totalLipids()) / 5;
-  }
-
-  function gProtIntCards() {
-    const gProtIntCards = [];
-
-    if (arrFoods.length < 1) {
-      return [];
-    } else {
-      for (let i = 0; i < arrFoods.length; i++) {
-        let x = arrFoods[i].prot;
-
-        gProtIntCards.push(x);
-      }
-
-      return gProtIntCards;
-    }
-  }
-
-  function gLipIntCards() {
-    const gLipIntCards = [];
-
-    if (arrFoods.length < 1) {
-      return [];
-    } else {
-      for (let i = 0; i < arrFoods.length; i++) {
-        let x = arrFoods[i].lip;
-
-        gLipIntCards.push(x);
-      }
-
-      return gLipIntCards;
-    }
-  }
-
-  function gHcIntCards() {
-    const gHcIntCards = [];
-
-    if (arrFoods.length < 1) {
-      return [];
-    } else {
-      for (let i = 0; i < arrFoods.length; i++) {
-        let x = arrFoods[i].hc;
-
-        gHcIntCards.push(x);
-      }
-
-      return gHcIntCards;
-    }
-  }
-
-  const addColumn = () => {
-    setColumns({
-      ...columns,
-
-      [uuid()]: {
-        name: "Snack",
-        items: [],
-      },
-    });
-    setShowSnack(true);
-  };
-
-  const deleteItem = (itemIdUnique, columnId) => {
-    const column = columns[columnId];
-
-    const arrayFiltrado = arrFoods.filter(
-      (item) => item.idUnique !== itemIdUnique
-    );
-
-    setArrFoods(arrayFiltrado);
-
-    const indexSplice = arrFoods.findIndex(
-      (item) => item.idUnique === itemIdUnique
-    );
-
-    arrFoods.splice(indexSplice, 1);
-
-    addFoodWeight();
-
-    setColumns({
-      ...columns,
-      [columnId]: {
-        ...column,
-        items: [
-          ...column.items.filter((item) => item.idUnique !== itemIdUnique),
-        ],
-      },
-    });
-  };
-
-  function duplicateItem(itemName, columnName) {
-    const indexArrFoods = arrFoods.findIndex(
-      (element) => element.name === itemName
-    );
-
+ 
     arrFoods.unshift({
-      food_id: arrFoods[indexArrFoods].food_id,
-      name: arrFoods[indexArrFoods].name,
-      type: arrFoods[indexArrFoods].type,
-      weight_int: arrFoods[indexArrFoods].weight_int,
-      prot: arrFoods[indexArrFoods].prot,
-      lip: arrFoods[indexArrFoods].lip,
-      hc: arrFoods[indexArrFoods].hc,
-      img_link: arrFoods[indexArrFoods].img_link,
-      n_int_card: arrFoods[indexArrFoods].n_int_card,
+      food_id: foodDatabase[index].food_id,
+      name: itemRecipe,
+      type: foodDatabase[index].type,
+      weight_int: foodDatabase[index].weight_int,
+      prot: foodDatabase[index].prot,
+      lip: foodDatabase[index].lip,
+      hc: foodDatabase[index].hc,
+      img_link: foodDatabase[index].img_link,
+      n_int_card: foodDatabase[index].n_int_card,
       foodWeight: 0,
       idUnique: uuid(),
     });
 
     addFoodWeight();
-
 
     /////
     const itemAdd = {
@@ -392,7 +121,7 @@ function Body() {
     };
 
     const requestColumnId = Object.entries(columns).find(
-      (i) => i[1].name === columnName
+      (i) => i[1].name === "Breakfast"
     )[0];
 
     const column = columns[requestColumnId];
@@ -404,65 +133,10 @@ function Body() {
         items: [...column.items, itemAdd],
       },
     });
-    ///
 
-    /* console.log("arrFoods duplicate", arrFoods); */
-  }
-
-  const addRice=()=>{
-      /* const arrRecipe = ["rice","chicken breast", "oil"] */
-
-      
-      /* for (let itemRecipe of arrRecipe){ */
-
-      let itemRecipe = "rice"
-
-    
-
-      let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
-
-   
-      arrFoods.unshift({
-        food_id: foodDatabase[index].food_id,
-        name: itemRecipe,
-        type: foodDatabase[index].type,
-        weight_int: foodDatabase[index].weight_int,
-        prot: foodDatabase[index].prot,
-        lip: foodDatabase[index].lip,
-        hc: foodDatabase[index].hc,
-        img_link: foodDatabase[index].img_link,
-        n_int_card: foodDatabase[index].n_int_card,
-        foodWeight: 0,
-        idUnique: uuid(),
-      });
-
-      addFoodWeight();
-
-      /////
-      const itemAdd = {
-        idUnique: arrFoods[0].idUnique,
-        name: arrFoods[0].name,
-        foodWeight: arrFoods[0].foodWeight,
-        type: arrFoods[0].type,
-        img_link: arrFoods[0].img_link,
-      };
-
-      const requestColumnId = Object.entries(columns).find(
-        (i) => i[1].name === "Breakfast"
-      )[0];
-
-      const column = columns[requestColumnId];
-
-      setColumns({
-        ...columns,
-        [requestColumnId]: {
-          ...column,
-          items: [...column.items, itemAdd],
-        },
-      });
-
-   
-  }
+ 
+}
+ 
   const addChicken=()=>{
     /* const arrRecipe = ["rice","chicken breast", "oil"] */
 
@@ -620,103 +294,34 @@ const addRecipes =()=>{
     setColumnName(columnName);
   };
 
+  const handleAddColumn =()=>{
+    addColumn(setColumns,columns,uuid,setShowSnack)
+  }
+
   /* functions et variables modal */
 
   const [itemIdUnique, setItemIdUnique] = useState("initialState");
   const [columnName, setColumnName] = useState("initialState");
   const [name, setName] = useState("");
-
-  /* const [n_int_card, setN_int_card] = useState(""); */
   const [gramsInt_card, setGramsInt_card] = useState("");
 
-  const updateFood = (e) => {
-    e.preventDefault();
+ 
+  
 
-    changeName();
-    changeN_int_card();
-  };
+  const handleChangeName=()=>{
+    changeName(itemIdUnique, columns, arrFoods, setColumns, columnName, name)
+  }
 
-  const changeName = () => {
-    const indexItem = arrFoods.findIndex(
-      (element) => element.idUnique === itemIdUnique
-    );
+  const handleChangeN_int_card=()=>{
+    changeN_int_card(itemIdUnique, columnName, arrFoods, uuid, addFoodWeight, columns, setColumns, gramsInt_card)
+  }
 
-    arrFoods[indexItem].name = name;
-    console.log("arrFoods despues", arrFoods);
-
-    let arrEdited = [];
-
-    const requestColumnId = Object.entries(columns).find(
-      (i) => i[1].name === columnName
-    )[0];
-
-    const column = columns[requestColumnId];
-
-    arrEdited = [...column.items];
-
-    /* search index item edited */
-    const indexItemArrEdited = arrEdited.findIndex(
-      (element) => element.idUnique === itemIdUnique
-    );
-
-    arrEdited[indexItemArrEdited].name = name;
-
-    console.log("arrEdited", arrEdited);
-
-    setColumns({
-      ...columns,
-      [requestColumnId]: {
-        ...column,
-        items: [...arrEdited],
-      },
-    });
-  };
-
-  const changeN_int_card = () => {
-    const indexItem = arrFoods.findIndex(
-      (element) => element.idUnique === itemIdUnique
-    );
-
-    /* conversion grams to n_int_card */
-    const n_int_card = gramsInt_card / arrFoods[indexItem].weight_int;
-
-    arrFoods[indexItem].n_int_card = n_int_card;
-    console.log("arrFoods despues", arrFoods);
-
-    addFoodWeight();
-
-    let arrEdited = [];
-
-    const requestColumnId = Object.entries(columns).find(
-      (i) => i[1].name === columnName
-    )[0];
-
-    const column = columns[requestColumnId];
-
-    arrEdited = [...column.items];
-
-    /* search index item edited */
-    const indexItemArrEdited = arrEdited.findIndex(
-      (element) => element.idUnique === itemIdUnique
-    );
-
-    arrEdited[indexItemArrEdited].n_int_card = n_int_card;
-
-    console.log("arrEdited", arrEdited);
-
-    setColumns({
-      ...columns,
-      [requestColumnId]: {
-        ...column,
-        items: [...arrEdited],
-      },
-    });
-  };
   /* end functions modal */
+
 
   return (
     <div>
-      <button className="btn btn-outline-success m-3" onClick={addColumn}>
+      <button className="btn btn-outline-success m-3" onClick={handleAddColumn}>
         add Snack
       </button>
       <button className="btn btn-outline-success m-3" onClick={addRice}>
@@ -831,8 +436,7 @@ const addRecipes =()=>{
                                             style={{ fontSize: 25 }}
                                             onClick={() =>
                                               deleteItem(
-                                                item.idUnique,
-                                                columnId
+                                                item.idUnique, columnId, columns, arrFoods, setArrFoods, addFoodWeight, setColumns
                                               )
                                             }
                                           />
@@ -842,7 +446,7 @@ const addRecipes =()=>{
                                             onClick={() =>
                                               duplicateItem(
                                                 item.name,
-                                                column.name
+                                                column.name, arrFoods, uuid, addFoodWeight, columns, setColumns
                                               )
                                             }
                                           />
@@ -904,7 +508,7 @@ const addRecipes =()=>{
                                                     data-bs-dismiss="modal"
                                                     aria-label="Close"
                                                     onClick={(e) =>
-                                                      updateFood(e)
+                                                      updateFood(e, changeName,changeN_int_card)
                                                     }
                                                   ></button>
                                                 </div>
@@ -941,7 +545,7 @@ const addRecipes =()=>{
                                                     className="btn btn-warning"
                                                     data-bs-dismiss="modal"
                                                     onClick={(e) =>
-                                                      updateFood(e)
+                                                      updateFood(e,handleChangeName,handleChangeN_int_card)
                                                     }
                                                   >
                                                     Edit
@@ -950,7 +554,7 @@ const addRecipes =()=>{
                                                     type="button"
                                                     className="btn btn-danger"
                                                     onClick={(e) =>
-                                                      updateFood(e)
+                                                      updateFood(e, handleChangeName,handleChangeN_int_card)
                                                     }
                                                   >
                                                     Close
