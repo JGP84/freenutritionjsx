@@ -2,24 +2,12 @@ import React, { useContext } from "react";
 import { UserContext } from "../../UserContext.js";
 
 /* Functions in InputRadio:
-
+setIsReqGrams
 */
-
-
-
-
 
 const InputRadio = () => {
 
-    const {
-         setIsReqGrams
-        
-      } = useContext(UserContext);
-
-      /* const changeState = ()=> {
-        setIsReqGrams(false)
-      } */
-      
+  const { setIsReqGrams } = useContext(UserContext);
 
   return (
     <>
@@ -36,10 +24,9 @@ const InputRadio = () => {
               type="radio"
               name="flexRadioDefault"
               id="flexRadioDefault1"
-              onChange ={()=>setIsReqGrams(true)}
-              
+              onChange={() => setIsReqGrams(true)}
             />
-            <label className="form-check-label"         htmlFor="flexRadioDefault1">
+            <label className="form-check-label" htmlFor="flexRadioDefault1">
               Percentage (%)
             </label>
           </div>
@@ -50,7 +37,7 @@ const InputRadio = () => {
               type="radio"
               name="flexRadioDefault"
               id="flexRadioDefault2"
-              onChange ={()=>setIsReqGrams(false)}
+              onChange={() => setIsReqGrams(false)}
               /* checked */
             />
             <label className="form-check-label" htmlFor="flexRadioDefault2">
