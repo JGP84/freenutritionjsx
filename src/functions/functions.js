@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { UserContext } from "./UserContext";
+import { UserContext } from "../UserContext";
 import uuid from "react-uuid";
 
 /* const { arrFoods, setArrFoods, foodNew, setFoodNew, columns, setColumns, inputProt, setInputProt, inputLip, setInputLip, inputCarb, setInputCarb} = useContext( UserContext ); */

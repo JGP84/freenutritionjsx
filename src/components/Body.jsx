@@ -409,15 +409,15 @@ function Body() {
     /* console.log("arrFoods duplicate", arrFoods); */
   }
 
-  const addRecipe=()=>{
+  const addRice=()=>{
       /* const arrRecipe = ["rice","chicken breast", "oil"] */
 
       
       /* for (let itemRecipe of arrRecipe){ */
 
-      /* let itemRecipe = "rice" */
+      let itemRecipe = "rice"
 
-      const addRecipes=(itemRecipe)=>{
+    
 
       let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
 
@@ -461,15 +461,122 @@ function Body() {
         },
       });
 
-      console.log("itemRecipe", itemRecipe)
-      console.log("arrFoods", arrFoods)
-    }
-
-   /*  addRecipes("rice") */
-    setTimeout(addRecipes("chicken breast"), 3000) 
-    /* addRecipes("chicken breast") */
-    /* setTimeout(addRecipes("oil"), 3000)  */
+   
   }
+  const addChicken=()=>{
+    /* const arrRecipe = ["rice","chicken breast", "oil"] */
+
+    
+    /* for (let itemRecipe of arrRecipe){ */
+
+    let itemRecipe = "chicken breast"
+
+  
+
+    let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
+
+ 
+    arrFoods.unshift({
+      food_id: foodDatabase[index].food_id,
+      name: itemRecipe,
+      type: foodDatabase[index].type,
+      weight_int: foodDatabase[index].weight_int,
+      prot: foodDatabase[index].prot,
+      lip: foodDatabase[index].lip,
+      hc: foodDatabase[index].hc,
+      img_link: foodDatabase[index].img_link,
+      n_int_card: foodDatabase[index].n_int_card,
+      foodWeight: 0,
+      idUnique: uuid(),
+    });
+
+    addFoodWeight();
+
+    /////
+    const itemAdd = {
+      idUnique: arrFoods[0].idUnique,
+      name: arrFoods[0].name,
+      foodWeight: arrFoods[0].foodWeight,
+      type: arrFoods[0].type,
+      img_link: arrFoods[0].img_link,
+    };
+
+    const requestColumnId = Object.entries(columns).find(
+      (i) => i[1].name === "Breakfast"
+    )[0];
+
+    const column = columns[requestColumnId];
+
+    setColumns({
+      ...columns,
+      [requestColumnId]: {
+        ...column,
+        items: [...column.items, itemAdd],
+      },
+    });
+
+ 
+}
+
+const addOil=()=>{
+  /* const arrRecipe = ["rice","chicken breast", "oil"] */
+
+  
+  /* for (let itemRecipe of arrRecipe){ */
+
+  let itemRecipe = "oil"
+
+
+
+  let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
+
+
+  arrFoods.unshift({
+    food_id: foodDatabase[index].food_id,
+    name: itemRecipe,
+    type: foodDatabase[index].type,
+    weight_int: foodDatabase[index].weight_int,
+    prot: foodDatabase[index].prot,
+    lip: foodDatabase[index].lip,
+    hc: foodDatabase[index].hc,
+    img_link: foodDatabase[index].img_link,
+    n_int_card: foodDatabase[index].n_int_card,
+    foodWeight: 0,
+    idUnique: uuid(),
+  });
+
+  addFoodWeight();
+
+  /////
+  const itemAdd = {
+    idUnique: arrFoods[0].idUnique,
+    name: arrFoods[0].name,
+    foodWeight: arrFoods[0].foodWeight,
+    type: arrFoods[0].type,
+    img_link: arrFoods[0].img_link,
+  };
+
+  const requestColumnId = Object.entries(columns).find(
+    (i) => i[1].name === "Breakfast"
+  )[0];
+
+  const column = columns[requestColumnId];
+
+  setColumns({
+    ...columns,
+    [requestColumnId]: {
+      ...column,
+      items: [...column.items, itemAdd],
+    },
+  });
+
+
+}
+const addRecipes =()=>{
+  addRice()
+  addChicken()
+  addOil()
+}
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -612,9 +719,18 @@ function Body() {
       <button className="btn btn-outline-success m-3" onClick={addColumn}>
         add Snack
       </button>
-      <button className="btn btn-outline-success m-3" onClick={addRecipe}>
-        add Recipe
+      <button className="btn btn-outline-success m-3" onClick={addRice}>
+        Rice
       </button>
+      <button className="btn btn-outline-success m-3" onClick={addChicken}>
+        Chicken breast
+      </button>
+      <button className="btn btn-outline-success m-3" onClick={addOil}>
+        Oil
+      </button>
+     {/*  <button className="btn btn-outline-success m-3" onClick={addRecipes}>
+        all recipes
+      </button> */}
       <div className="container">
         {
           <div

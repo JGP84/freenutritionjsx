@@ -2,9 +2,13 @@ import React, { useContext } from "react";
 import { UserContext } from "../../UserContext.js";
 import NumberFormat from "react-number-format";
 
-import { macrosIndex, gMacrosIntCards, addMacros } from "../../functionsParams";
 
-/* import {  addFoodWeight,
+
+import useDietLogic from "../../hooks/useDietLogic.jsx";
+
+
+
+/* import { macrosIndex, gMacrosIntCards, addMacros, addFoodWeight,
   nintCards,
   addOuputsFoods,
   starchyFoodsIndex,
@@ -27,21 +31,8 @@ updateInputLip
 updateInputCarb
 
 *****
-addFoodWeight
-nintCards
-addOuputsFoods
-starchyFoodsIndex
-nintStarchyFoods
-totalHc
-proteinFoodIndex
-lipidsIndex
-totalProtein
-totalLipids
-nintProtein
-nintLipids
-gProtIntCards
-gLipIntCards
-gHcIntCards
+useDietLogic addFoodWeight
+
 ******
 
 formatProt
@@ -65,116 +56,35 @@ const InputMacros = () => {
     setInputLip,
     inputCarb,
     setInputCarb,
-    arrFoods,
+    
   } = useContext(UserContext);
+
+  const { addFoodWeight} = useDietLogic ();
 
   function updateInputProt(event) {
     const inputProtein = event.target.value;
     setInputProt(inputProtein);
-    addFoodWeight(arrFoods);
+    addFoodWeight();
   }
   function updateInputLip(event) {
     const inputLipids = event.target.value;
     setInputLip(inputLipids);
-    addFoodWeight(arrFoods);
+    addFoodWeight();
   }
   function updateInputCarb(event) {
     const inputCarbohidrats = event.target.value;
     setInputCarb(inputCarbohidrats);
-    addFoodWeight(arrFoods);
+    addFoodWeight();
   }
 
   /////////////////
 
-  function addFoodWeight() {
-    arrFoods.forEach((item, i) => {
-      item.foodWeight = item.weight_int * addOuputsFoods()[i];
-    });
-  }
+  
 
-  function nintCards() {
-    // return array
+ 
 
-    return arrFoods.map((item) => {
-      return item.n_int_card;
-    });
-  }
 
-  function addOuputsFoods() {
-    //insert the exchanges of starchyFoods
-    const arrOuputsFoods = nintCards();
 
-    arrOuputsFoods.forEach((i) => {
-      arrOuputsFoods[starchyFoodsIndex()[i]] =
-        nintStarchyFoods() / starchyFoodsIndex().length;
-    });
-
-    //insert the exchanges of proteinFoods
-    arrOuputsFoods.forEach((i) => {
-      arrOuputsFoods[proteinFoodIndex()[i]] =
-        nintProtein() / proteinFoodIndex().length;
-    });
-    //insert the exchanges of fats
-    arrOuputsFoods.forEach((i) => {
-      arrOuputsFoods[lipidsIndex()[i]] = nintLipids() / lipidsIndex().length;
-    });
-
-    return arrOuputsFoods;
-  }
-
-  function starchyFoodsIndex() {
-    return macrosIndex("starchyFoods", arrFoods);
-  }
-
-  function nintStarchyFoods() {
-    return (inputCarb - totalHc()) / 14;
-  }
-
-  function totalHc() {
-    return addMacros(nintCards, gHcIntCards);
-  }
-
-  function proteinFoodIndex() {
-    return macrosIndex("proteinFoods", arrFoods);
-  }
-
-  function lipidsIndex() {
-    return macrosIndex("fats", arrFoods);
-  }
-
-  function totalProtein() {
-    starchyFoodsIndex();
-
-    return addMacros(nintCards, gProtIntCards);
-  }
-
-  function totalLipids() {
-    starchyFoodsIndex();
-
-    proteinFoodIndex();
-
-    return addMacros(nintCards, gLipIntCards);
-  }
-
-  function nintProtein() {
-    return (inputProt - totalProtein()) / 7;
-  }
-
-  function nintLipids() {
-    return (inputLip - totalLipids()) / 5;
-  }
-
-  function gProtIntCards() {
-    return gMacrosIntCards("prot", arrFoods);
-  }
-
-  function gLipIntCards() {
-    return gMacrosIntCards("lip", arrFoods);
-  }
-
-  function gHcIntCards() {
-    return gMacrosIntCards("hc", arrFoods);
-  }
 
   //////////////////////
 
