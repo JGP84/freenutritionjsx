@@ -141,10 +141,11 @@ const useDietLogic = () => {
       nintCards0[indices[i]] = NintFoodType() / indices.length;
     }
   };
-  const getArrOuputsFoods = (arrOuputsFoods, foodIndex, nintFood) => {
-    arrOuputsFoods.forEach((i) => {
-      arrOuputsFoods[foodIndex()[i]] = nintFood() / foodIndex().length;
-    });
+
+  const getArrOuputsFoods = (arr, foodIndex, nintFood) => {
+    for (let i = 0; i < nintCards().length; i++) {
+      arr[foodIndex()[i]] = nintFood() / foodIndex().length;
+    }
   };
 
   /* Results */

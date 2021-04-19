@@ -95,6 +95,7 @@ function duplicateItem(
       items: [...column.items, itemAdd],
     },
   });
+
 }
 /* functions et variables modal */
 

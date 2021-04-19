@@ -92,6 +92,8 @@ function Body() {
 
     const column = columns[requestColumnId];
 
+    addFoodWeight();
+
     setColumns({
       ...columns,
       [requestColumnId]: {
@@ -99,6 +101,7 @@ function Body() {
         items: [...column.items, itemAdd],
       },
     });
+    
   };
 
   const addChicken = () => {
@@ -382,6 +385,7 @@ function Body() {
                                               arrFoods[index].foodWeight / 5
                                             ) * 5)
                                           }
+                                         {/*  {Math.round(item.foodWeight)} */}
                                           {"g"} {item.name}
                                           <img
                                             src={item.img_link}

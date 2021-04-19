@@ -281,14 +281,16 @@ function exportPDF(
 
     {
       margin: { top: 60 },
-    }
-  );
+      /* theme: 'plain' */
+    },
+   );
   doc.autoTable(
     columnsLunch,
     arrLunch,
 
     {
       margin: { top: 120 },
+      /* theme: 'plain' */
     }
   );
   doc.autoTable(
@@ -297,6 +299,7 @@ function exportPDF(
 
     {
       margin: { top: 120 },
+      /* theme: 'plain' */
     }
   );
 
@@ -307,6 +310,7 @@ function exportPDF(
 
       {
         margin: { top: 120 },
+        /* theme: 'plain' */
       }
     );
   }
@@ -317,6 +321,7 @@ function exportPDF(
 
     {
       margin: { top: 120 },
+      /* theme: 'plain' */
     }
   );
 
