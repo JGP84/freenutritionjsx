@@ -1,17 +1,8 @@
 import { useContext } from "react";
 import { UserContext } from "./../UserContext";
 
-
-
-
 const useDietLogic = () => {
-    
-  const {
-    inputProt,
-    inputLip,
-    inputCarb,
-    arrFoods,
-  } = useContext(UserContext);
+  const { inputProt, inputLip, inputCarb, arrFoods } = useContext(UserContext);
 
   function addFoodWeight() {
     arrFoods.forEach((item, i) => {
@@ -31,20 +22,15 @@ const useDietLogic = () => {
     //insert the exchanges of starchyFoods
     const arrOuputsFoods = nintCards();
 
-    arrOuputsFoods.forEach((i) => {
-      arrOuputsFoods[starchyFoodsIndex()[i]] =
-        nintStarchyFoods() / starchyFoodsIndex().length;
-    });
+    getArrOuputsFoods(arrOuputsFoods, starchyFoodsIndex, nintStarchyFoods);
 
     //insert the exchanges of proteinFoods
-    arrOuputsFoods.forEach((i) => {
-      arrOuputsFoods[proteinFoodIndex()[i]] =
-        nintProtein() / proteinFoodIndex().length;
-    });
+
+    getArrOuputsFoods(arrOuputsFoods, proteinFoodIndex, nintProtein);
+
     //insert the exchanges of fats
-    arrOuputsFoods.forEach((i) => {
-      arrOuputsFoods[lipidsIndex()[i]] = nintLipids() / lipidsIndex().length;
-    });
+
+    getArrOuputsFoods(arrOuputsFoods, lipidsIndex, nintLipids);
 
     return arrOuputsFoods;
   }
@@ -58,7 +44,9 @@ const useDietLogic = () => {
   }
 
   function totalHc() {
-    return addMacros(nintCards, gHcIntCards);
+    const nintCards0 = nintCards();
+
+    return addMacros(nintCards0, gHcIntCards);
   }
 
   function proteinFoodIndex() {
@@ -70,17 +58,32 @@ const useDietLogic = () => {
   }
 
   function totalProtein() {
-    starchyFoodsIndex();
+    const nintCards0 = nintCards();
 
-    return addMacros(nintCards, gProtIntCards);
+    const indices = macrosIndex("starchyFoods", arrFoods);
+
+    getNintFoodType(nintStarchyFoods, indices, nintCards0);
+
+    /////
+
+    return addMacros(nintCards0, gProtIntCards);
   }
 
   function totalLipids() {
-    starchyFoodsIndex();
+    const nintCards0 = nintCards();
 
-    proteinFoodIndex();
+    const indices = macrosIndex("starchyFoods", arrFoods);
 
-    return addMacros(nintCards, gLipIntCards);
+    getNintFoodType(nintStarchyFoods, indices, nintCards0);
+    //////
+
+    const indices2 = macrosIndex("proteinFoods", arrFoods);
+
+    getNintFoodType(nintProtein, indices2, nintCards0);
+
+    //////
+
+    return addMacros(nintCards0, gLipIntCards);
   }
 
   function nintProtein() {
@@ -92,47 +95,56 @@ const useDietLogic = () => {
   }
 
   function gProtIntCards() {
-    return gMacrosIntCards("prot", arrFoods);
+    return gMacrosIntCards("prot");
   }
 
   function gLipIntCards() {
-    return gMacrosIntCards("lip", arrFoods);
+    return gMacrosIntCards("lip");
   }
 
   function gHcIntCards() {
-    return gMacrosIntCards("hc", arrFoods);
+    return gMacrosIntCards("hc");
   }
+  /* Refactoring functions */
 
-/* Refactoring functions */
-
-const macrosIndex = (foodType, arrFoods) => {
+  const macrosIndex = (foodType, arrFoods) => {
     const indices = [];
-  
+
     let idx = arrFoods.map((e) => e.type).indexOf(foodType);
     while (idx !== -1) {
       indices.push(idx);
-  
+
       idx = arrFoods.map((e) => e.type).indexOf(foodType, idx + 1);
     }
-  
+
     return indices;
   };
-  
-  const gMacrosIntCards = (macro, arrFoods) => {
-    
+
+  const gMacrosIntCards = (macro) => {
     return arrFoods.map((item, i) => {
-     return item = arrFoods[i][macro]
-     });
-   
-  };
-  const addMacros = (nintCards, macroIntCards, arrFoods) => {
-    let arrAdd = [];
-  
-    arrAdd = nintCards(arrFoods).map((item, i) => {
-      return (item = nintCards(arrFoods)[i] * macroIntCards()[i]);
+      return (item = arrFoods[i][macro]);
     });
-  
+  };
+
+  const addMacros = (nintCards0, macroIntCards) => {
+    let arrAdd = [];
+
+    arrAdd = nintCards0.map((item, i) => {
+      return (item = nintCards0[i] * macroIntCards()[i]);
+    });
+
     return arrAdd.reduce((a, b) => a + b);
+  };
+
+  const getNintFoodType = (NintFoodType, indices, nintCards0) => {
+    for (let i = 0; i < indices.length; i++) {
+      nintCards0[indices[i]] = NintFoodType() / indices.length;
+    }
+  };
+  const getArrOuputsFoods = (arrOuputsFoods, foodIndex, nintFood) => {
+    arrOuputsFoods.forEach((i) => {
+      arrOuputsFoods[foodIndex()[i]] = nintFood() / foodIndex().length;
+    });
   };
 
   /* Results */
@@ -214,7 +226,7 @@ const macrosIndex = (foodType, arrFoods) => {
     formatAddLipids,
     formatAddHc,
     addKcal,
-    formatAddKcal
+    formatAddKcal,
   };
 };
 

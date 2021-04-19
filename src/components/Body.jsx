@@ -5,27 +5,21 @@ import { BsTrash, BsFiles } from "react-icons/bs";
 import { FiEdit } from "react-icons/fi";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import useDietLogic from "../hooks/useDietLogic";
-import { addColumn,deleteItem, duplicateItem, updateFood, changeName, changeN_int_card } from "./../functions/bodyFunctions";
+import {
+  addColumn,
+  deleteItem,
+  duplicateItem,
+  updateFood,
+  changeName,
+  changeN_int_card,
+} from "./../functions/bodyFunctions";
 /* import EditItem from "../components/body_components/EditItem"; */
 
 /* Functions in Body:
 
 *****
 addFoodWeight
-nintCards
-addOuputsFoods
-starchyFoodsIndex
-nintStarchyFoods
-totalHc
-proteinFoodIndex
-lipidsIndex
-totalProtein
-totalLipids
-nintProtein
-nintLipids
-gProtIntCards
-gLipIntCards
-gHcIntCards
+
 *****
 
 
@@ -44,57 +38,29 @@ changeN_int_card
 
 /* import Tarjeta from "./Tarjeta"; */
 
-
 /* import { addFoodWeight } from "../functions"; */
 
 function Body() {
-  /*   useEffect(() => {
-    addFoodWeight();
-  }, []); */
-
   const {
     foodDatabase,
     arrFoods,
     setArrFoods,
     columns,
     setColumns,
-    inputProt,
-    inputLip,
-    inputCarb,
     setShowSnack,
-
-    /* itemEdit,
-    setItemEdit, */
   } = useContext(UserContext);
 
-  const {
-    addFoodWeight,
-    addKcal,
-    addProteins,
-    addLipids,
-    addHc,
-    nintCards,
-    addOuputsFoods,
-  } = useDietLogic();
+  const { addFoodWeight } = useDietLogic();
 
- 
-
-  
-
-  
-  const addRice=()=>{
+  const addRice = () => {
     /* const arrRecipe = ["rice","chicken breast", "oil"] */
 
-    
     /* for (let itemRecipe of arrRecipe){ */
 
-    let itemRecipe = "rice"
-
-  
+    let itemRecipe = "rice";
 
     let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
 
- 
     arrFoods.unshift({
       food_id: foodDatabase[index].food_id,
       name: itemRecipe,
@@ -133,124 +99,110 @@ function Body() {
         items: [...column.items, itemAdd],
       },
     });
-
- 
-}
- 
-  const addChicken=()=>{
-    /* const arrRecipe = ["rice","chicken breast", "oil"] */
-
-    
-    /* for (let itemRecipe of arrRecipe){ */
-
-    let itemRecipe = "chicken breast"
-
-  
-
-    let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
-
- 
-    arrFoods.unshift({
-      food_id: foodDatabase[index].food_id,
-      name: itemRecipe,
-      type: foodDatabase[index].type,
-      weight_int: foodDatabase[index].weight_int,
-      prot: foodDatabase[index].prot,
-      lip: foodDatabase[index].lip,
-      hc: foodDatabase[index].hc,
-      img_link: foodDatabase[index].img_link,
-      n_int_card: foodDatabase[index].n_int_card,
-      foodWeight: 0,
-      idUnique: uuid(),
-    });
-
-    addFoodWeight();
-
-    /////
-    const itemAdd = {
-      idUnique: arrFoods[0].idUnique,
-      name: arrFoods[0].name,
-      foodWeight: arrFoods[0].foodWeight,
-      type: arrFoods[0].type,
-      img_link: arrFoods[0].img_link,
-    };
-
-    const requestColumnId = Object.entries(columns).find(
-      (i) => i[1].name === "Breakfast"
-    )[0];
-
-    const column = columns[requestColumnId];
-
-    setColumns({
-      ...columns,
-      [requestColumnId]: {
-        ...column,
-        items: [...column.items, itemAdd],
-      },
-    });
-
- 
-}
-
-const addOil=()=>{
-  /* const arrRecipe = ["rice","chicken breast", "oil"] */
-
-  
-  /* for (let itemRecipe of arrRecipe){ */
-
-  let itemRecipe = "oil"
-
-
-
-  let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
-
-
-  arrFoods.unshift({
-    food_id: foodDatabase[index].food_id,
-    name: itemRecipe,
-    type: foodDatabase[index].type,
-    weight_int: foodDatabase[index].weight_int,
-    prot: foodDatabase[index].prot,
-    lip: foodDatabase[index].lip,
-    hc: foodDatabase[index].hc,
-    img_link: foodDatabase[index].img_link,
-    n_int_card: foodDatabase[index].n_int_card,
-    foodWeight: 0,
-    idUnique: uuid(),
-  });
-
-  addFoodWeight();
-
-  /////
-  const itemAdd = {
-    idUnique: arrFoods[0].idUnique,
-    name: arrFoods[0].name,
-    foodWeight: arrFoods[0].foodWeight,
-    type: arrFoods[0].type,
-    img_link: arrFoods[0].img_link,
   };
 
-  const requestColumnId = Object.entries(columns).find(
-    (i) => i[1].name === "Breakfast"
-  )[0];
+  const addChicken = () => {
+    /* const arrRecipe = ["rice","chicken breast", "oil"] */
 
-  const column = columns[requestColumnId];
+    /* for (let itemRecipe of arrRecipe){ */
 
-  setColumns({
-    ...columns,
-    [requestColumnId]: {
-      ...column,
-      items: [...column.items, itemAdd],
-    },
-  });
+    let itemRecipe = "chicken breast";
 
+    let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
 
-}
-const addRecipes =()=>{
-  addRice()
-  addChicken()
-  addOil()
-}
+    arrFoods.unshift({
+      food_id: foodDatabase[index].food_id,
+      name: itemRecipe,
+      type: foodDatabase[index].type,
+      weight_int: foodDatabase[index].weight_int,
+      prot: foodDatabase[index].prot,
+      lip: foodDatabase[index].lip,
+      hc: foodDatabase[index].hc,
+      img_link: foodDatabase[index].img_link,
+      n_int_card: foodDatabase[index].n_int_card,
+      foodWeight: 0,
+      idUnique: uuid(),
+    });
+
+    addFoodWeight();
+
+    /////
+    const itemAdd = {
+      idUnique: arrFoods[0].idUnique,
+      name: arrFoods[0].name,
+      foodWeight: arrFoods[0].foodWeight,
+      type: arrFoods[0].type,
+      img_link: arrFoods[0].img_link,
+    };
+
+    const requestColumnId = Object.entries(columns).find(
+      (i) => i[1].name === "Breakfast"
+    )[0];
+
+    const column = columns[requestColumnId];
+
+    setColumns({
+      ...columns,
+      [requestColumnId]: {
+        ...column,
+        items: [...column.items, itemAdd],
+      },
+    });
+  };
+
+  const addOil = () => {
+    /* const arrRecipe = ["rice","chicken breast", "oil"] */
+
+    /* for (let itemRecipe of arrRecipe){ */
+
+    let itemRecipe = "oil";
+
+    let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
+
+    arrFoods.unshift({
+      food_id: foodDatabase[index].food_id,
+      name: itemRecipe,
+      type: foodDatabase[index].type,
+      weight_int: foodDatabase[index].weight_int,
+      prot: foodDatabase[index].prot,
+      lip: foodDatabase[index].lip,
+      hc: foodDatabase[index].hc,
+      img_link: foodDatabase[index].img_link,
+      n_int_card: foodDatabase[index].n_int_card,
+      foodWeight: 0,
+      idUnique: uuid(),
+    });
+
+    addFoodWeight();
+
+    /////
+    const itemAdd = {
+      idUnique: arrFoods[0].idUnique,
+      name: arrFoods[0].name,
+      foodWeight: arrFoods[0].foodWeight,
+      type: arrFoods[0].type,
+      img_link: arrFoods[0].img_link,
+    };
+
+    const requestColumnId = Object.entries(columns).find(
+      (i) => i[1].name === "Breakfast"
+    )[0];
+
+    const column = columns[requestColumnId];
+
+    setColumns({
+      ...columns,
+      [requestColumnId]: {
+        ...column,
+        items: [...column.items, itemAdd],
+      },
+    });
+  };
+  const addRecipes = () => {
+    addRice();
+    addChicken();
+    addOil();
+  };
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -294,9 +246,9 @@ const addRecipes =()=>{
     setColumnName(columnName);
   };
 
-  const handleAddColumn =()=>{
-    addColumn(setColumns,columns,uuid,setShowSnack)
-  }
+  const handleAddColumn = () => {
+    addColumn(setColumns, columns, uuid, setShowSnack);
+  };
 
   /* functions et variables modal */
 
@@ -305,19 +257,24 @@ const addRecipes =()=>{
   const [name, setName] = useState("");
   const [gramsInt_card, setGramsInt_card] = useState("");
 
- 
-  
+  const handleChangeName = () => {
+    changeName(itemIdUnique, columns, arrFoods, setColumns, columnName, name);
+  };
 
-  const handleChangeName=()=>{
-    changeName(itemIdUnique, columns, arrFoods, setColumns, columnName, name)
-  }
-
-  const handleChangeN_int_card=()=>{
-    changeN_int_card(itemIdUnique, columnName, arrFoods, uuid, addFoodWeight, columns, setColumns, gramsInt_card)
-  }
+  const handleChangeN_int_card = () => {
+    changeN_int_card(
+      itemIdUnique,
+      columnName,
+      arrFoods,
+      uuid,
+      addFoodWeight,
+      columns,
+      setColumns,
+      gramsInt_card
+    );
+  };
 
   /* end functions modal */
-
 
   return (
     <div>
@@ -333,7 +290,7 @@ const addRecipes =()=>{
       <button className="btn btn-outline-success m-3" onClick={addOil}>
         Oil
       </button>
-     {/*  <button className="btn btn-outline-success m-3" onClick={addRecipes}>
+      {/*  <button className="btn btn-outline-success m-3" onClick={addRecipes}>
         all recipes
       </button> */}
       <div className="container">
@@ -436,7 +393,13 @@ const addRecipes =()=>{
                                             style={{ fontSize: 25 }}
                                             onClick={() =>
                                               deleteItem(
-                                                item.idUnique, columnId, columns, arrFoods, setArrFoods, addFoodWeight, setColumns
+                                                item.idUnique,
+                                                columnId,
+                                                columns,
+                                                arrFoods,
+                                                setArrFoods,
+                                                addFoodWeight,
+                                                setColumns
                                               )
                                             }
                                           />
@@ -446,7 +409,12 @@ const addRecipes =()=>{
                                             onClick={() =>
                                               duplicateItem(
                                                 item.name,
-                                                column.name, arrFoods, uuid, addFoodWeight, columns, setColumns
+                                                column.name,
+                                                arrFoods,
+                                                uuid,
+                                                addFoodWeight,
+                                                columns,
+                                                setColumns
                                               )
                                             }
                                           />
@@ -508,7 +476,11 @@ const addRecipes =()=>{
                                                     data-bs-dismiss="modal"
                                                     aria-label="Close"
                                                     onClick={(e) =>
-                                                      updateFood(e, changeName,changeN_int_card)
+                                                      updateFood(
+                                                        e,
+                                                        changeName,
+                                                        changeN_int_card
+                                                      )
                                                     }
                                                   ></button>
                                                 </div>
@@ -545,7 +517,11 @@ const addRecipes =()=>{
                                                     className="btn btn-warning"
                                                     data-bs-dismiss="modal"
                                                     onClick={(e) =>
-                                                      updateFood(e,handleChangeName,handleChangeN_int_card)
+                                                      updateFood(
+                                                        e,
+                                                        handleChangeName,
+                                                        handleChangeN_int_card
+                                                      )
                                                     }
                                                   >
                                                     Edit
@@ -554,7 +530,11 @@ const addRecipes =()=>{
                                                     type="button"
                                                     className="btn btn-danger"
                                                     onClick={(e) =>
-                                                      updateFood(e, handleChangeName,handleChangeN_int_card)
+                                                      updateFood(
+                                                        e,
+                                                        handleChangeName,
+                                                        handleChangeN_int_card
+                                                      )
                                                     }
                                                   >
                                                     Close

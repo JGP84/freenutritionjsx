@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { UserContext } from "../../UserContext.js";
 import uuid from "react-uuid";
 import jsPDF from "jspdf";
@@ -10,11 +10,7 @@ import {
   exportPDF,
 } from "../../functions/searchFoodFunctions";
 
-import {
-  percenProt,
-  percenLip,
-  percenCarb,
-} from "../../functions/functionsParams";
+import { percenProt, percenLip, percenCarb } from "../../functions/functions";
 
 import useDietLogic from "../../hooks/useDietLogic.jsx";
 

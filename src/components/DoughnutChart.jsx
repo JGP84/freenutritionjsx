@@ -1,5 +1,5 @@
 import { Doughnut } from "react-chartjs-2";
-import { percenProt, percenLip, percenCarb} from "./../functions/functionsParams";
+import { percenProt, percenLip, percenCarb} from "../functions/functions";
 import useDietLogic from "../hooks/useDietLogic";
 
 const DoughnutChart = () => {

@@ -29,7 +29,10 @@ const InputMacros = () => {
     setInputCarb,
   } = useContext(UserContext);
 
-  const { addFoodWeight } = useDietLogic();
+  const {
+    addFoodWeight
+   
+  } = useDietLogic();
 
   function updateInputProt(event) {
     const inputProtein = event.target.value;

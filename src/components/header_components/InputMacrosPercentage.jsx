@@ -36,7 +36,10 @@ const InputMacrosPercentage = () => {
     setInputCarbPerc,
   } = useContext(UserContext);
 
-  const { addFoodWeight } = useDietLogic();
+  const {
+    addFoodWeight
+   
+  } = useDietLogic();
 
   function updateInputProtPerc(event) {
     const inputProtein = event.target.value;

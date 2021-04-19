@@ -1,8 +1,6 @@
 import useDietLogic from "../../hooks/useDietLogic.jsx";
-import { percenProt, percenLip, percenCarb} from "../../functions/functionsParams";
+import { percenProt, percenLip, percenCarb} from "../../functions/functions";
 import DoughnutChart from "../DoughnutChart.jsx";
-
-
 
 /* Functions in OutputMacros:
 
@@ -27,8 +25,9 @@ formatAddKcal
 
 */
 
-
 const OutputMacros = () => {
+
+
   const {
     addFoodWeight,
     addProteins,
@@ -41,7 +40,7 @@ const OutputMacros = () => {
     formatAddKcal,
   } = useDietLogic();
 
-
+ 
 
   return (
     <>
