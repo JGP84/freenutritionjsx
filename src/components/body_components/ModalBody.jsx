@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { FiEdit } from "react-icons/fi";
+import { BsPencil } from "react-icons/bs";
 import { UserContext } from "../../UserContext";
 import uuid from "react-uuid";
 
@@ -34,9 +34,14 @@ const ModalBody = ({ itemIdUnique, columnName }) => {
 
   return (
     <>
-      <FiEdit size="28px" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <BsPencil
+        type="button"
+        size="24px"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
         edit
-      </FiEdit>
+      </BsPencil>
 
       <div
         className="modal fade"

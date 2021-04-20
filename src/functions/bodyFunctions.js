@@ -97,7 +97,7 @@ function duplicateItem(
   });
 }
 
-const addRecipes = (
+const addRecipe = (
   foodDatabase,
   arrFoods,
   uuid,
@@ -278,7 +278,7 @@ export {
   addColumn,
   deleteItem,
   duplicateItem,
-  addRecipes,
+  addRecipe,
   changeName,
   changeN_int_card,
   onDragEnd,
