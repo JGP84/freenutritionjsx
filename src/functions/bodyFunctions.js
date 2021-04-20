@@ -95,12 +95,17 @@ function duplicateItem(
       items: [...column.items, itemAdd],
     },
   });
-
 }
 
-const addRecipes = (foodDatabase, arrFoods,uuid, addFoodWeight, columns, setColumns) => {
-    
-  const arrRecipe = ["broccoli","rice", "chicken breast", "oil", "apple"];
+const addRecipes = (
+  foodDatabase,
+  arrFoods,
+  uuid,
+  addFoodWeight,
+  columns,
+  setColumns
+) => {
+  const arrRecipe = ["broccoli", "rice", "chicken breast", "oil", "apple"];
 
   for (let itemRecipe of arrRecipe) {
     let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
@@ -137,15 +142,7 @@ const addRecipes = (foodDatabase, arrFoods,uuid, addFoodWeight, columns, setColu
   }
 };
 
-
 /* functions et variables modal */
-
-const updateFood = (e, changeName, changeN_int_card) => {
-  e.preventDefault();
-
-  changeName();
-  changeN_int_card();
-};
 
 const changeName = (
   itemIdUnique,
@@ -282,9 +279,7 @@ export {
   deleteItem,
   duplicateItem,
   addRecipes,
-  updateFood,
   changeName,
   changeN_int_card,
-  onDragEnd
-  
+  onDragEnd,
 };

@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../UserContext";
 import uuid from "react-uuid";
 import { BsTrash, BsFiles } from "react-icons/bs";
-import { FiEdit } from "react-icons/fi";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import useDietLogic from "../hooks/useDietLogic";
 import {
@@ -10,37 +9,23 @@ import {
   deleteItem,
   duplicateItem,
   addRecipes,
-  updateFood,
-  changeName,
-  changeN_int_card,
   onDragEnd,
 } from "./../functions/bodyFunctions";
-/* import EditItem from "../components/body_components/EditItem"; */
+/* import ComponentDraggable from "./body_components/ComponentDraggable"; */
+import ModalBody from "./body_components/ModalBody";
 
 /* Functions in Body:
 
 *****
 addFoodWeight
-
 *****
-
-
 addColumn
 deleteItem
 duplicateItem
 launchModal
-
 *******
-functions modal:
-updateFood
-changeName
-changeN_int_card
 
 */
-
-/* import Tarjeta from "./Tarjeta"; */
-
-/* import { addFoodWeight } from "../functions"; */
 
 function Body() {
   const {
@@ -57,37 +42,6 @@ function Body() {
   const handleAddColumn = () => {
     addColumn(setColumns, columns, uuid, setShowSnack);
   };
-
-  /* functions et variables modal */
-
-  const [itemIdUnique, setItemIdUnique] = useState("initialState");
-  const [columnName, setColumnName] = useState("initialState");
-  const [name, setName] = useState("");
-  const [gramsInt_card, setGramsInt_card] = useState("");
-
-  const launchModal = (itemIdUnique, columnName) => {
-    setItemIdUnique(itemIdUnique);
-    setColumnName(columnName);
-  };
-
-  const handleChangeName = () => {
-    changeName(itemIdUnique, columns, arrFoods, setColumns, columnName, name);
-  };
-
-  const handleChangeN_int_card = () => {
-    changeN_int_card(
-      itemIdUnique,
-      columnName,
-      arrFoods,
-      uuid,
-      addFoodWeight,
-      columns,
-      setColumns,
-      gramsInt_card
-    );
-  };
-
-  /* end functions modal */
 
   const handleAddRecipe = () => {
     addRecipes(
@@ -150,15 +104,13 @@ function Body() {
                               }}
                             >
                               {column.items.map((item, index) => {
-                                /* {
-                                  itemIdUnique = item.idUnique;
-                                } */
                                 return (
                                   <Draggable
                                     key={item.idUnique}
                                     draggableId={item.idUnique}
                                     index={index}
                                   >
+                                    {/* <ComponentDraggable /> */}
                                     {(provided, snapshot) => {
                                       return (
                                         <div
@@ -198,7 +150,7 @@ function Body() {
                                               arrFoods[index].foodWeight / 5
                                             ) * 5)
                                           }
-                                          {/*  {Math.round(item.foodWeight)} */}
+                                        
                                           {"g"} {item.name}
                                           <img
                                             src={item.img_link}
@@ -235,9 +187,6 @@ function Body() {
                                               )
                                             }
                                           />
-                                          {/* <button
-                                          onClick={()=>launchModal(item.idUnique)}
-                                          >edit</button> */}
                                           {item.type === "starchyFoods" ? (
                                             ""
                                           ) : item.type === "fats" ? (
@@ -245,122 +194,11 @@ function Body() {
                                           ) : item.type === "proteinFoods" ? (
                                             ""
                                           ) : (
-                                            <FiEdit
-                                              size="28px"
-                                              data-bs-toggle="modal"
-                                              data-bs-target="#exampleModal"
-                                              onClick={() =>
-                                                launchModal(
-                                                  item.idUnique,
-                                                  column.name
-                                                )
-                                              }
-                                            >
-                                              edit
-                                            </FiEdit>
+                                            <ModalBody
+                                              itemIdUnique={item.idUnique}
+                                              columnName={column.name}
+                                            />
                                           )}
-                                          {/* MODAL */}
-                                          {/*  <button
-                                            onClick={() =>
-                                              launchModal(item.name)
-                                            }
-                                            type="button"
-                                            class="btn btn-primary"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal"
-                                          >
-                                            modal
-                                          </button> */}
-                                          <div
-                                            className="modal fade"
-                                            id="exampleModal"
-                                            tabIndex="-1"
-                                            aria-labelledby="exampleModalLabel"
-                                            aria-hidden="true"
-                                          >
-                                            <div className="modal-dialog">
-                                              <div className="modal-content">
-                                                <div className="modal-header">
-                                                  <h4
-                                                    className="modal-title text-dark "
-                                                    id="exampleModal"
-                                                  >
-                                                    Edit food
-                                                  </h4>
-                                                  <button
-                                                    type="button"
-                                                    className="btn-close"
-                                                    data-bs-dismiss="modal"
-                                                    aria-label="Close"
-                                                    onClick={(e) =>
-                                                      updateFood(
-                                                        e,
-                                                        changeName,
-                                                        changeN_int_card
-                                                      )
-                                                    }
-                                                  ></button>
-                                                </div>
-                                                <div className="modal-body">
-                                                  <h5 className="d-flex justify-content-start text-dark">
-                                                    Name
-                                                  </h5>
-                                                  <input
-                                                    type="text"
-                                                    className="form-control"
-                                                    value={name}
-                                                    onChange={(e) =>
-                                                      setName(e.target.value)
-                                                    }
-                                                  ></input>
-
-                                                  <h5 className="d-flex justify-content-start mt-3 text-dark">
-                                                    Weight (g)
-                                                  </h5>
-                                                  <input
-                                                    type="number"
-                                                    className="form-control"
-                                                    value={gramsInt_card}
-                                                    onChange={(e) =>
-                                                      setGramsInt_card(
-                                                        e.target.value
-                                                      )
-                                                    }
-                                                  ></input>
-                                                </div>
-                                                <div className="modal-footer">
-                                                  <button
-                                                    type="button"
-                                                    className="btn btn-warning"
-                                                    data-bs-dismiss="modal"
-                                                    onClick={(e) =>
-                                                      updateFood(
-                                                        e,
-                                                        handleChangeName,
-                                                        handleChangeN_int_card
-                                                      )
-                                                    }
-                                                  >
-                                                    Edit
-                                                  </button>
-                                                  <button
-                                                    type="button"
-                                                    className="btn btn-danger"
-                                                    onClick={(e) =>
-                                                      updateFood(
-                                                        e,
-                                                        handleChangeName,
-                                                        handleChangeN_int_card
-                                                      )
-                                                    }
-                                                  >
-                                                    Close
-                                                  </button>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          {/* END modal */}
                                         </div>
                                       );
                                     }}
@@ -379,8 +217,6 @@ function Body() {
             </DragDropContext>
           </div>
         }
-
-        {/* END hook KANBAN */}
       </div>
     </div>
   );
