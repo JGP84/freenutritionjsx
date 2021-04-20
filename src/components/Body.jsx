@@ -9,9 +9,11 @@ import {
   addColumn,
   deleteItem,
   duplicateItem,
+  addRecipes,
   updateFood,
   changeName,
   changeN_int_card,
+  onDragEnd,
 } from "./../functions/bodyFunctions";
 /* import EditItem from "../components/body_components/EditItem"; */
 
@@ -52,203 +54,6 @@ function Body() {
 
   const { addFoodWeight } = useDietLogic();
 
-  const addRice = () => {
-    /* const arrRecipe = ["rice","chicken breast", "oil"] */
-
-    /* for (let itemRecipe of arrRecipe){ */
-
-    let itemRecipe = "rice";
-
-    let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
-
-    arrFoods.unshift({
-      food_id: foodDatabase[index].food_id,
-      name: itemRecipe,
-      type: foodDatabase[index].type,
-      weight_int: foodDatabase[index].weight_int,
-      prot: foodDatabase[index].prot,
-      lip: foodDatabase[index].lip,
-      hc: foodDatabase[index].hc,
-      img_link: foodDatabase[index].img_link,
-      n_int_card: foodDatabase[index].n_int_card,
-      foodWeight: 0,
-      idUnique: uuid(),
-    });
-
-    addFoodWeight();
-
-    /////
-    const itemAdd = {
-      idUnique: arrFoods[0].idUnique,
-      name: arrFoods[0].name,
-      foodWeight: arrFoods[0].foodWeight,
-      type: arrFoods[0].type,
-      img_link: arrFoods[0].img_link,
-    };
-
-    const requestColumnId = Object.entries(columns).find(
-      (i) => i[1].name === "Breakfast"
-    )[0];
-
-    const column = columns[requestColumnId];
-
-    addFoodWeight();
-
-    setColumns({
-      ...columns,
-      [requestColumnId]: {
-        ...column,
-        items: [...column.items, itemAdd],
-      },
-    });
-    
-  };
-
-  const addChicken = () => {
-    /* const arrRecipe = ["rice","chicken breast", "oil"] */
-
-    /* for (let itemRecipe of arrRecipe){ */
-
-    let itemRecipe = "chicken breast";
-
-    let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
-
-    arrFoods.unshift({
-      food_id: foodDatabase[index].food_id,
-      name: itemRecipe,
-      type: foodDatabase[index].type,
-      weight_int: foodDatabase[index].weight_int,
-      prot: foodDatabase[index].prot,
-      lip: foodDatabase[index].lip,
-      hc: foodDatabase[index].hc,
-      img_link: foodDatabase[index].img_link,
-      n_int_card: foodDatabase[index].n_int_card,
-      foodWeight: 0,
-      idUnique: uuid(),
-    });
-
-    addFoodWeight();
-
-    /////
-    const itemAdd = {
-      idUnique: arrFoods[0].idUnique,
-      name: arrFoods[0].name,
-      foodWeight: arrFoods[0].foodWeight,
-      type: arrFoods[0].type,
-      img_link: arrFoods[0].img_link,
-    };
-
-    const requestColumnId = Object.entries(columns).find(
-      (i) => i[1].name === "Breakfast"
-    )[0];
-
-    const column = columns[requestColumnId];
-
-    setColumns({
-      ...columns,
-      [requestColumnId]: {
-        ...column,
-        items: [...column.items, itemAdd],
-      },
-    });
-  };
-
-  const addOil = () => {
-    /* const arrRecipe = ["rice","chicken breast", "oil"] */
-
-    /* for (let itemRecipe of arrRecipe){ */
-
-    let itemRecipe = "oil";
-
-    let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
-
-    arrFoods.unshift({
-      food_id: foodDatabase[index].food_id,
-      name: itemRecipe,
-      type: foodDatabase[index].type,
-      weight_int: foodDatabase[index].weight_int,
-      prot: foodDatabase[index].prot,
-      lip: foodDatabase[index].lip,
-      hc: foodDatabase[index].hc,
-      img_link: foodDatabase[index].img_link,
-      n_int_card: foodDatabase[index].n_int_card,
-      foodWeight: 0,
-      idUnique: uuid(),
-    });
-
-    addFoodWeight();
-
-    /////
-    const itemAdd = {
-      idUnique: arrFoods[0].idUnique,
-      name: arrFoods[0].name,
-      foodWeight: arrFoods[0].foodWeight,
-      type: arrFoods[0].type,
-      img_link: arrFoods[0].img_link,
-    };
-
-    const requestColumnId = Object.entries(columns).find(
-      (i) => i[1].name === "Breakfast"
-    )[0];
-
-    const column = columns[requestColumnId];
-
-    setColumns({
-      ...columns,
-      [requestColumnId]: {
-        ...column,
-        items: [...column.items, itemAdd],
-      },
-    });
-  };
-  const addRecipes = () => {
-    addRice();
-    addChicken();
-    addOil();
-  };
-
-  const onDragEnd = (result, columns, setColumns) => {
-    if (!result.destination) return;
-    const { source, destination } = result;
-
-    if (source.droppableId !== destination.droppableId) {
-      const sourceColumn = columns[source.droppableId];
-      const destColumn = columns[destination.droppableId];
-      const sourceItems = [...sourceColumn.items];
-      const destItems = [...destColumn.items];
-      const [removed] = sourceItems.splice(source.index, 1);
-      destItems.splice(destination.index, 0, removed);
-      setColumns({
-        ...columns,
-        [source.droppableId]: {
-          ...sourceColumn,
-          items: sourceItems,
-        },
-        [destination.droppableId]: {
-          ...destColumn,
-          items: destItems,
-        },
-      });
-    } else {
-      const column = columns[source.droppableId];
-      const copiedItems = [...column.items];
-      const [removed] = copiedItems.splice(source.index, 1);
-      copiedItems.splice(destination.index, 0, removed);
-      setColumns({
-        ...columns,
-        [source.droppableId]: {
-          ...column,
-          items: copiedItems,
-        },
-      });
-    }
-  };
-
-  const launchModal = (itemIdUnique, columnName) => {
-    setItemIdUnique(itemIdUnique);
-    setColumnName(columnName);
-  };
-
   const handleAddColumn = () => {
     addColumn(setColumns, columns, uuid, setShowSnack);
   };
@@ -259,6 +64,11 @@ function Body() {
   const [columnName, setColumnName] = useState("initialState");
   const [name, setName] = useState("");
   const [gramsInt_card, setGramsInt_card] = useState("");
+
+  const launchModal = (itemIdUnique, columnName) => {
+    setItemIdUnique(itemIdUnique);
+    setColumnName(columnName);
+  };
 
   const handleChangeName = () => {
     changeName(itemIdUnique, columns, arrFoods, setColumns, columnName, name);
@@ -279,23 +89,26 @@ function Body() {
 
   /* end functions modal */
 
+  const handleAddRecipe = () => {
+    addRecipes(
+      foodDatabase,
+      arrFoods,
+      uuid,
+      addFoodWeight,
+      columns,
+      setColumns
+    );
+  };
+
   return (
     <div>
       <button className="btn btn-outline-success m-3" onClick={handleAddColumn}>
         add Snack
       </button>
-      <button className="btn btn-outline-success m-3" onClick={addRice}>
-        Rice
+
+      <button className="btn btn-outline-success m-3" onClick={handleAddRecipe}>
+        add example
       </button>
-      <button className="btn btn-outline-success m-3" onClick={addChicken}>
-        Chicken breast
-      </button>
-      <button className="btn btn-outline-success m-3" onClick={addOil}>
-        Oil
-      </button>
-      {/*  <button className="btn btn-outline-success m-3" onClick={addRecipes}>
-        all recipes
-      </button> */}
       <div className="container">
         {
           <div
@@ -385,7 +198,7 @@ function Body() {
                                               arrFoods[index].foodWeight / 5
                                             ) * 5)
                                           }
-                                         {/*  {Math.round(item.foodWeight)} */}
+                                          {/*  {Math.round(item.foodWeight)} */}
                                           {"g"} {item.name}
                                           <img
                                             src={item.img_link}

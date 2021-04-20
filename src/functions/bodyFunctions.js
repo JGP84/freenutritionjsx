@@ -97,6 +97,47 @@ function duplicateItem(
   });
 
 }
+
+const addRecipes = (foodDatabase, arrFoods,uuid, addFoodWeight, columns, setColumns) => {
+    
+  const arrRecipe = ["broccoli","rice", "chicken breast", "oil", "apple"];
+
+  for (let itemRecipe of arrRecipe) {
+    let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
+
+    arrFoods.push({
+      food_id: foodDatabase[index].food_id,
+      name: itemRecipe,
+      type: foodDatabase[index].type,
+      weight_int: foodDatabase[index].weight_int,
+      prot: foodDatabase[index].prot,
+      lip: foodDatabase[index].lip,
+      hc: foodDatabase[index].hc,
+      img_link: foodDatabase[index].img_link,
+      n_int_card: foodDatabase[index].n_int_card,
+      foodWeight: 0,
+      idUnique: uuid(),
+    });
+
+    addFoodWeight();
+
+    const requestColumnId = Object.entries(columns).find(
+      (i) => i[1].name === "Lunch"
+    )[0];
+
+    const column = columns[requestColumnId];
+
+    setColumns({
+      ...columns,
+      [requestColumnId]: {
+        ...column,
+        items: [...arrFoods],
+      },
+    });
+  }
+};
+
+
 /* functions et variables modal */
 
 const updateFood = (e, changeName, changeN_int_card) => {
@@ -199,11 +240,51 @@ const changeN_int_card = (
   });
 };
 
+const onDragEnd = (result, columns, setColumns) => {
+  if (!result.destination) return;
+  const { source, destination } = result;
+
+  if (source.droppableId !== destination.droppableId) {
+    const sourceColumn = columns[source.droppableId];
+    const destColumn = columns[destination.droppableId];
+    const sourceItems = [...sourceColumn.items];
+    const destItems = [...destColumn.items];
+    const [removed] = sourceItems.splice(source.index, 1);
+    destItems.splice(destination.index, 0, removed);
+    setColumns({
+      ...columns,
+      [source.droppableId]: {
+        ...sourceColumn,
+        items: sourceItems,
+      },
+      [destination.droppableId]: {
+        ...destColumn,
+        items: destItems,
+      },
+    });
+  } else {
+    const column = columns[source.droppableId];
+    const copiedItems = [...column.items];
+    const [removed] = copiedItems.splice(source.index, 1);
+    copiedItems.splice(destination.index, 0, removed);
+    setColumns({
+      ...columns,
+      [source.droppableId]: {
+        ...column,
+        items: copiedItems,
+      },
+    });
+  }
+};
+
 export {
   addColumn,
   deleteItem,
   duplicateItem,
+  addRecipes,
   updateFood,
   changeName,
   changeN_int_card,
+  onDragEnd
+  
 };
