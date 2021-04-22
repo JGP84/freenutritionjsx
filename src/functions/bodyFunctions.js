@@ -1,25 +1,97 @@
 const addColumn = (setColumns, columns, uuid, setShowSnack) => {
-  setColumns({
+  
+  
+  /* setColumns({
     ...columns,
-
-    [uuid()]: {
+    Snack: {
       name: "Snack",
       items: [],
     },
-  });
+  }); */
+
+  const arrBreakfast = Object.entries(columns)[0][1].Breakfast.items;
+
+  const arrLunch = Object.entries(columns)[0][1].Lunch.items;
+
+  const arrDinner = Object.entries(columns)[0][1].Dinner.items;
+
+  const newColumn = {
+   
+    columns: {
+      Breakfast: {
+        name: "Breakfast",
+        items: [...arrBreakfast],
+      },
+      Lunch: {
+        name: "Lunch",
+        items: [...arrLunch],
+      },
+      Dinner: {
+        name: "Dinner",
+        items: [...arrDinner],
+      },
+      Snack: {
+        name: "Snack",
+        items: [],
+      },
+      
+    },
+    columnOrder: ["Breakfast", "Lunch", "Dinner","Snack" ],
+  };
+
+  // updating column entry
+
+  /* const column = columns.columns[result.source.droppableId];
+
+  const newState = {
+    ...columns,
+    columns: {
+      ...columns.columns,
+      [column.Snack]: {
+        ...column,
+        items,
+      },
+    },
+  };
+  setColumns(newState); */
+  
+
+setColumns(newColumn)
+
   setShowSnack(true);
 };
 
 const deleteItem = (
   itemIdUnique,
-  columnId,
   columns,
   arrFoods,
   setArrFoods,
   addFoodWeight,
   setColumns
 ) => {
-  const column = columns[columnId];
+
+  /* const requestColumnId = Object.entries(columns)[0].find(
+    (column) => column.name === "Snack"
+  ); */
+
+ /*  const requestColumnId = Object.entries(columns)[0][1].Breakfast.items.find(
+    (item) => item.idUnique === itemIdUnique
+  )
+
+  console.log("requestColumnId", requestColumnId) */
+  
+
+  const includesIdUnique = ()=> {
+    let arrBreakfast = [];
+   arrBreakfast = Object.entries(columns)[0][1].Breakfast.items;
+   return arrBreakfast.includes((ingredient) => ingredient.idUnique === itemIdUnique) 
+
+  }
+
+ 
+  console.log("includesIdUnique", includesIdUnique())
+
+  /* const column = columns[columnId];
 
   const arrayFiltrado = arrFoods.filter(
     (item) => item.idUnique !== itemIdUnique
@@ -41,7 +113,8 @@ const deleteItem = (
       ...column,
       items: [...column.items.filter((item) => item.idUnique !== itemIdUnique)],
     },
-  });
+  }); */
+  console.log("itemIdUnique",itemIdUnique/*  "columnId", columnId */)
 };
 
 function duplicateItem(
@@ -107,10 +180,12 @@ const addRecipe = (
 ) => {
   const arrRecipe = ["broccoli", "rice", "chicken breast", "oil", "apple"];
 
+  const newArrFoods = [];
+
   for (let itemRecipe of arrRecipe) {
     let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
 
-    arrFoods.push({
+    arrFoods.unshift({
       food_id: foodDatabase[index].food_id,
       name: itemRecipe,
       type: foodDatabase[index].type,
@@ -126,20 +201,61 @@ const addRecipe = (
 
     addFoodWeight();
 
-    const requestColumnId = Object.entries(columns).find(
+    const itemAdd = {
+      idUnique: arrFoods[0].idUnique,
+      name: arrFoods[0].name,
+      foodWeight: arrFoods[0].foodWeight,
+      type: arrFoods[0].type,
+      img_link: arrFoods[0].img_link,
+    };
+
+    
+
+    newArrFoods.push(itemAdd)
+ /*    const requestColumnId = Object.entries(columns).find(
       (i) => i[1].name === "Lunch"
     )[0];
 
-    const column = columns[requestColumnId];
+    const column = columns[requestColumnId]; */
 
-    setColumns({
+    /* setColumns({
       ...columns,
       [requestColumnId]: {
         ...column,
         items: [...arrFoods],
       },
-    });
+    }); */
+
+  
+
   }
+  const arrBreakfast = Object.entries(columns)[0][1].Breakfast.items;
+
+  const arrLunch = Object.entries(columns)[0][1].Lunch.items;
+
+  const arrDinner = Object.entries(columns)[0][1].Dinner.items;
+
+  const newStateColumns = {
+    /* ...Object.entries(columns)[0], */
+    columns: {
+      Breakfast: {
+        name: "Breakfast",
+        items: [...arrBreakfast],
+      },
+      Lunch: {
+        name: "Lunch",
+        items: [...arrLunch, ...newArrFoods],
+      },
+      Dinner: {
+        name: "Dinner",
+        items: [...arrDinner],
+      },
+      
+    },
+    columnOrder: ["Breakfast", "Lunch", "Dinner"],
+  };
+
+  setColumns(newStateColumns);
 };
 
 /* functions et variables modal */

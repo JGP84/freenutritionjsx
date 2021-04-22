@@ -6,6 +6,8 @@ import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 
+import getInitialData from "./components/body_components/kanban/get-initial-data"
+
 import { UserContext } from "./UserContext";
 
 /* import foodsDatabase from "../src/components/foodDatabase.jsx" */
@@ -26,21 +28,7 @@ function App() {
   const [inputLipPerc, setInputLipPerc] = useState(35);
   const [inputCarbPerc, setInputCarbPerc] = useState(45);
 
-  const [columns, setColumns] = useState({
-    [uuid()]: {
-      name: "Breakfast",
-      items: [],
-    },
-    [uuid()]: {
-      name: "Lunch",
-      items: [],
-    },
-
-    [uuid()]: {
-      name: "Dinner",
-      items: [],
-    },
-  });
+  const [columns, setColumns] =useState(() => getInitialData())
 
   /* my server food */
   const [foodDatabase, setFoodDatabase] = useState([]);

@@ -36,9 +36,10 @@ function addFood(
       img_link: arrFoods[0].img_link,
     };
 
-    const requestColumnId = Object.entries(columns).find(
+    /*  const requestColumnId = Object.entries(columns).find(
       (i) => i[1].name === "Breakfast"
     )[0];
+    console.log("requestColumnId", requestColumnId)
 
     const column = columns[requestColumnId];
 
@@ -49,43 +50,109 @@ function addFood(
         items: [...column.items, itemAdd],
       },
     });
+ */
+
+    /* console.log("itemAdd", itemAdd);
+
+    console.log("Object.entries(columns)", Object.entries(columns));
+
+    console.log("columns", columns);
+
+    console.log("arrFoods", arrFoods);
+
+    console.log(
+      "Object.entries(columns)[0][1].Breakfast.items",
+      Object.entries(columns)[0][1].Breakfast.items
+    ); */
+
+    /*  setColumns({
+    Breakfast: {
+      name: "Breakfast",
+      items: [itemAdd],
+    },
+    Lunch: {
+      name: "Lunch",
+      items: [],
+    },
+    Dinner: {
+      name: "Dinner",
+      items: [],
+    },
+  }); */
+
+    const arrBreakfast = Object.entries(columns)[0][1].Breakfast.items;
+
+    const arrLunch = Object.entries(columns)[0][1].Lunch.items;
+
+    const arrDinner = Object.entries(columns)[0][1].Dinner.items;
+
+    const newStateColumns = {
+      /* ...Object.entries(columns)[0], */
+      columns: {
+        Breakfast: {
+          name: "Breakfast",
+          items: [...arrBreakfast, itemAdd],
+        },
+        Lunch: {
+          name: "Lunch",
+          items: [...arrLunch],
+        },
+        Dinner: {
+          name: "Dinner",
+          items: [...arrDinner],
+        },
+        
+      },
+      columnOrder: ["Breakfast", "Lunch", "Dinner"],
+    };
+
+    setColumns(newStateColumns);
 
     setFoodNew("");
   } else {
   }
+  return;
 }
 
-function allDelete(setArrFoods, setColumns, uuid) {
+function allDelete(setArrFoods, setColumns) {
   setArrFoods([]);
 
-  setColumns({
-    [uuid()]: {
-      name: "Breakfast",
-      items: [],
+  const newStateColumns = {
+    
+    columns: {
+      Breakfast: {
+        name: "Breakfast",
+        items: [],
+      },
+      Lunch: {
+        name: "Lunch",
+        items: [],
+      },
+      Dinner: {
+        name: "Dinner",
+        items: [],
+      },
+      
     },
-    [uuid()]: {
-      name: "Lunch",
-      items: [],
-    },
+    columnOrder: ["Breakfast", "Lunch", "Dinner"],
+  };
 
-    [uuid()]: {
-      name: "Dinner",
-      items: [],
-    },
-  });
+  setColumns(newStateColumns);
 }
 
 //JSPDF functions
 const getArrBreakfast = (columns, arrFoods) => {
   let arrBreakfast = [];
 
-  const requestColumnId = Object.entries(columns).find(
+  /* const requestColumnId = Object.entries(columns).find(
     (i) => i[1].name === "Breakfast"
   )[0];
 
   const column = columns[requestColumnId];
 
-  arrBreakfast = [...column.items];
+  arrBreakfast = [...column.items]; */
+  arrBreakfast = Object.entries(columns)[0][1].Breakfast.items;
+ 
 
   arrBreakfast.map(function updateFoodweight(element) {
     const index = arrFoods.findIndex(
@@ -100,13 +167,13 @@ const getArrBreakfast = (columns, arrFoods) => {
 const getArrLunch = (columns, arrFoods) => {
   let arrLunch = [];
 
-  const requestColumnId = Object.entries(columns).find(
+  /* const requestColumnId = Object.entries(columns).find(
     (i) => i[1].name === "Lunch"
   )[0];
 
   const column = columns[requestColumnId];
-  arrLunch = [...column.items];
-
+  arrLunch = [...column.items]; */
+  arrLunch = Object.entries(columns)[0][1].Lunch.items;
   /* return column.items; */
   arrLunch.map(function updateFoodweight(element) {
     const index = arrFoods.findIndex(
@@ -122,12 +189,13 @@ const getArrLunch = (columns, arrFoods) => {
 const getArrDinner = (columns, arrFoods) => {
   let arrDinner = [];
 
-  const requestColumnId = Object.entries(columns).find(
+  /* const requestColumnId = Object.entries(columns).find(
     (i) => i[1].name === "Dinner"
   )[0];
 
   const column = columns[requestColumnId];
-  arrDinner = [...column.items];
+  arrDinner = [...column.items]; */
+  arrDinner = Object.entries(columns)[0][1].Dinner.items;
 
   /* return column.items; */
   arrDinner.map(function updateFoodweight(element) {
@@ -144,16 +212,17 @@ const getArrDinner = (columns, arrFoods) => {
 const getArrSnack = (columns, arrFoods, showSnack) => {
   let arrSnack = [];
 
-  if (showSnack) {
-    const requestColumnId = Object.entries(columns).find(
-      (i) => i[1].name === "Snack"
-    )[0];
+  if (showSnack === true) {
+    const requestColumnId = Object.entries(columns)[0].find(
+      (column) => column.name === "Snack"
+    );
 
-    if (requestColumnId !== undefined) {
-      const column = columns[requestColumnId];
+    /* if (requestColumnId !== undefined) { */
+      /* const column = columns[requestColumnId]; */
 
       /* return column.items; */
-      arrSnack = [...column.items];
+      /* arrSnack = [...column.items]; */
+      arrSnack = Object.entries(columns)[0][1].Snack.items;
       arrSnack.map(function updateFoodweight(element) {
         const index = arrFoods.findIndex(
           (ingredient) => ingredient.idUnique === element.idUnique
@@ -164,7 +233,7 @@ const getArrSnack = (columns, arrFoods, showSnack) => {
       });
 
       return arrSnack;
-    }
+   /*  } */
   }
 };
 const getArrInformation = (
@@ -282,8 +351,8 @@ function exportPDF(
     {
       margin: { top: 60 },
       /* theme: 'plain' */
-    },
-   );
+    }
+  );
   doc.autoTable(
     columnsLunch,
     arrLunch,

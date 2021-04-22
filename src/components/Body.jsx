@@ -71,6 +71,7 @@ function Body() {
                   >
                     <h2>{column.name}</h2>
                     <div style={{ margin: 8 }}>
+                    {/* <Draggable> */}
                       <Droppable droppableId={columnId} key={columnId}>
                         {(provided, snapshot) => {
                           return (
@@ -114,6 +115,7 @@ function Body() {
                           );
                         }}
                       </Droppable>
+                      {/* </Draggable> */}
                     </div>
                   </div>
                 );
