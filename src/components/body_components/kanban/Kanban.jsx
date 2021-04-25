@@ -6,7 +6,7 @@ import React, { useLayoutEffect, useRef, useContext, useState } from "react";
 import { FixedSizeList, areEqual } from "react-window";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./kanban.css";
-import getInitialData from "./get-initial-data";
+
 import { reorderList } from "./reorder";
 
 import useDietLogic from "./../../../hooks/useDietLogic";
@@ -103,10 +103,7 @@ function Kanban() {
             deleteItem(
               item.idUnique,
               kanban,
-
               column.name,
-              index,
-
               arrFoods,
               setArrFoods,
               addFoodWeight,
@@ -120,8 +117,6 @@ function Kanban() {
           style={{ fontSize: 25 }}
           onClick={() =>
             duplicateItem(
-              item.name,
-              /*   column, */
               index,
               column.name,
               arrFoods,
@@ -149,8 +144,9 @@ function Kanban() {
   // Recommended react-window performance optimisation: memoize the row render function
   // Things are still pretty fast without this, but I am a sucker for making things faster
   const Row = React.memo(function Row(props) {
-    const { data: items, index, style } = props;
-    const item = items[index];
+    const { data: column, index, style } = props
+    const { items } = column
+    const item = items[index]
 
     // We are rendering an extra item for the placeholder
     if (!item) {
@@ -159,7 +155,7 @@ function Kanban() {
 
     return (
       <Draggable draggableId={item.idUnique} index={index} key={item.idUnique}>
-        {(provided) => <Item provided={provided} item={item} style={style} />}
+        {(provided) => <Item provided={provided} item={item} column={column} style={style} />}
       </Draggable>
     );
   }, areEqual);
@@ -208,6 +204,7 @@ function Kanban() {
               itemData={column.items}
               className="task-list"
               ref={listRef}
+              itemData={column}
             >
               {Row}
             </FixedSizeList>

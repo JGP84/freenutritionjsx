@@ -1,7 +1,5 @@
-const addColumn = (setColumns, columns, uuid, setShowSnack) => {
-  
-  
-  /* setColumns({
+const addColumn = (setKanban, columns, uuid, setShowSnack) => {
+  /* setKanban({
     ...columns,
     Snack: {
       name: "Snack",
@@ -16,7 +14,6 @@ const addColumn = (setColumns, columns, uuid, setShowSnack) => {
   const arrDinner = Object.entries(columns)[0][1].Dinner.items;
 
   const newColumn = {
-   
     columns: {
       Breakfast: {
         name: "Breakfast",
@@ -34,9 +31,8 @@ const addColumn = (setColumns, columns, uuid, setShowSnack) => {
         name: "Snack",
         items: [],
       },
-      
     },
-    columnOrder: ["Breakfast", "Lunch", "Dinner","Snack" ],
+    columnOrder: ["Breakfast", "Lunch", "Dinner", "Snack"],
   };
 
   // updating column entry
@@ -53,89 +49,63 @@ const addColumn = (setColumns, columns, uuid, setShowSnack) => {
       },
     },
   };
-  setColumns(newState); */
-  
+  setKanban(newState); */
 
-setColumns(newColumn)
+  setKanban(newColumn);
 
   setShowSnack(true);
 };
 
 const deleteItem = (
   itemIdUnique,
-  columns,
+  kanban,
   columnName,
-  index,
   arrFoods,
   setArrFoods,
   addFoodWeight,
-  setColumns
+  setKanban
 ) => {
-
-  const requestColumnId = Object.entries(columns)[0].find(
-    (column) => column.name === "Lunch"
-  );
-
-  /* const requestColumnId = Object.entries(columns)[0][1].Breakfast.items.find(
-    (item) => item.idUnique === itemIdUnique
-  ) */
-
-  console.log("requestColumnId", requestColumnId)
-
-
-  /* console.log("columnName", columnName,"index", index)
-
-  const includesIdUnique = ()=> {
-    let arrBreakfast = [];
-   arrBreakfast = Object.entries(columns)[0][1].Breakfast.items;
-   return arrBreakfast.includes((ingredient) => ingredient.idUnique === itemIdUnique) 
-
-  }
-
- 
-  console.log("includesIdUnique", includesIdUnique()) */
-
-  /* const column = columns[columnId];
-
-  const arrayFiltrado = arrFoods.filter(
+  const arrFoodsFiltered = arrFoods.filter(
     (item) => item.idUnique !== itemIdUnique
   );
 
-  setArrFoods(arrayFiltrado);
-
-  const indexSplice = arrFoods.findIndex(
-    (item) => item.idUnique === itemIdUnique
-  );
-
-  arrFoods.splice(indexSplice, 1);
+  setArrFoods(arrFoodsFiltered);
 
   addFoodWeight();
 
-  setColumns({
-    ...columns,
-    [columnId]: {
-      ...column,
-      items: [...column.items.filter((item) => item.idUnique !== itemIdUnique)],
+  const columnTitle = columnName;
+
+  const columnsState = Object.entries(kanban)[0][1];
+
+  const arrItems = columnsState[columnTitle].items;
+
+  const arrItemsFiltered = arrItems.filter(
+    (item) => item.idUnique !== itemIdUnique
+  );
+
+  const newStateColumns = {
+    columns: {
+      ...columnsState,
+      [columnTitle]: {
+        name: columnTitle,
+        items: [...arrItemsFiltered],
+      },
     },
-  }); */
-  console.log("itemIdUnique",itemIdUnique/*  "columnId", columnId */)
+    columnOrder: ["Breakfast", "Lunch", "Dinner"],
+  };
+
+  setKanban(newStateColumns);
 };
 
 function duplicateItem(
-  itemName,
- /*  column, */
-  index,
+  indexArrFoods,
   columnName,
   arrFoods,
   uuid,
   addFoodWeight,
-  columns,
-  setColumns
+  kanban,
+  setKanban
 ) {
-  const indexArrFoods = arrFoods.findIndex(
-    (element) => element.name === itemName
-  );
-
   arrFoods.unshift({
     food_id: arrFoods[indexArrFoods].food_id,
     name: arrFoods[indexArrFoods].name,
@@ -161,19 +131,24 @@ function duplicateItem(
     img_link: arrFoods[0].img_link,
   };
 
-  const requestColumnId = Object.entries(columns).find(
-    (i) => i[1].name === columnName
-  )[0];
+  const columnTitle = columnName;
 
-  const column = columns[requestColumnId];
+  const columnsState = Object.entries(kanban)[0][1];
 
-  setColumns({
-    ...columns,
-    [requestColumnId]: {
-      ...column,
-      items: [...column.items, itemAdd],
+  const arrItems = columnsState[columnTitle].items;
+
+  const newStateColumns = {
+    columns: {
+      ...columnsState,
+      [columnTitle]: {
+        name: columnTitle,
+        items: [...arrItems, itemAdd],
+      },
     },
-  });
+    columnOrder: ["Breakfast", "Lunch", "Dinner"],
+  };
+
+  setKanban(newStateColumns);
 }
 
 const addRecipe = (
@@ -181,8 +156,8 @@ const addRecipe = (
   arrFoods,
   uuid,
   addFoodWeight,
-  columns,
-  setColumns
+  kanban,
+  setKanban
 ) => {
   const arrRecipe = ["broccoli", "rice", "chicken breast", "oil", "apple"];
 
@@ -215,53 +190,26 @@ const addRecipe = (
       img_link: arrFoods[0].img_link,
     };
 
-    
-
-    newArrFoods.push(itemAdd)
- /*    const requestColumnId = Object.entries(columns).find(
-      (i) => i[1].name === "Lunch"
-    )[0];
-
-    const column = columns[requestColumnId]; */
-
-    /* setColumns({
-      ...columns,
-      [requestColumnId]: {
-        ...column,
-        items: [...arrFoods],
-      },
-    }); */
-
-  
-
+    newArrFoods.push(itemAdd);
   }
-  const arrBreakfast = Object.entries(columns)[0][1].Breakfast.items;
+  const columnTitle = "Lunch";
 
-  const arrLunch = Object.entries(columns)[0][1].Lunch.items;
+  const columnsState = Object.entries(kanban)[0][1];
 
-  const arrDinner = Object.entries(columns)[0][1].Dinner.items;
+  const arrItems = columnsState[columnTitle].items;
 
   const newStateColumns = {
-    /* ...Object.entries(columns)[0], */
     columns: {
-      Breakfast: {
-        name: "Breakfast",
-        items: [...arrBreakfast],
+      ...columnsState,
+      [columnTitle]: {
+        name: columnTitle,
+        items: [...arrItems, ...newArrFoods],
       },
-      Lunch: {
-        name: "Lunch",
-        items: [...arrLunch, ...newArrFoods],
-      },
-      Dinner: {
-        name: "Dinner",
-        items: [...arrDinner],
-      },
-      
     },
     columnOrder: ["Breakfast", "Lunch", "Dinner"],
   };
 
-  setColumns(newStateColumns);
+  setKanban(newStateColumns);
 };
 
 /* functions et variables modal */
@@ -270,7 +218,7 @@ const changeName = (
   itemIdUnique,
   columns,
   arrFoods,
-  setColumns,
+  setKanban,
   columnName,
   name
 ) => {
@@ -300,7 +248,7 @@ const changeName = (
 
   console.log("arrEdited", arrEdited);
 
-  setColumns({
+  setKanban({
     ...columns,
     [requestColumnId]: {
       ...column,
@@ -316,7 +264,7 @@ const changeN_int_card = (
   uuid,
   addFoodWeight,
   columns,
-  setColumns,
+  setKanban,
   gramsInt_card
 ) => {
   const indexItem = arrFoods.findIndex(
@@ -350,7 +298,7 @@ const changeN_int_card = (
 
   console.log("arrEdited", arrEdited);
 
-  setColumns({
+  setKanban({
     ...columns,
     [requestColumnId]: {
       ...column,
@@ -359,7 +307,7 @@ const changeN_int_card = (
   });
 };
 
-const onDragEnd = (result, columns, setColumns) => {
+const onDragEnd = (result, columns, setKanban) => {
   if (!result.destination) return;
   const { source, destination } = result;
 
@@ -370,7 +318,7 @@ const onDragEnd = (result, columns, setColumns) => {
     const destItems = [...destColumn.items];
     const [removed] = sourceItems.splice(source.index, 1);
     destItems.splice(destination.index, 0, removed);
-    setColumns({
+    setKanban({
       ...columns,
       [source.droppableId]: {
         ...sourceColumn,
@@ -386,7 +334,7 @@ const onDragEnd = (result, columns, setColumns) => {
     const copiedItems = [...column.items];
     const [removed] = copiedItems.splice(source.index, 1);
     copiedItems.splice(destination.index, 0, removed);
-    setColumns({
+    setKanban({
       ...columns,
       [source.droppableId]: {
         ...column,

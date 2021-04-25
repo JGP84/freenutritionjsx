@@ -50,8 +50,8 @@ const SearchFood = () => {
   const {
     arrFoods,
     setArrFoods,
-    columns,
-    setColumns,
+    kanban,
+    setKanban,
     foodDatabase,
     showSnack,
   } = useContext(UserContext);
@@ -92,8 +92,8 @@ const SearchFood = () => {
         arrFoods,
         uuid,
         addFoodWeight,
-        columns,
-        setColumns,
+        kanban,
+        setKanban,
         setFoodNew
       );
     }
@@ -106,18 +106,18 @@ const SearchFood = () => {
       arrFoods,
       uuid,
       addFoodWeight,
-      columns,
-      setColumns,
+      kanban,
+      setKanban,
       setFoodNew
     );
   };
 
   const handleAllDelete = (e) => {
-    allDelete(setArrFoods, setColumns, uuid);
+    allDelete(setArrFoods, setKanban, uuid);
   };
   const handleExportPDF = (e) => {
     exportPDF(
-      columns,
+      kanban,
       arrFoods,
       showSnack,
       percenProt,
