@@ -12,7 +12,8 @@ import { reorderList } from "./reorder";
 import useDietLogic from "./../../../hooks/useDietLogic";
 import { addColumn, addRecipe } from "./../../../functions/bodyFunctions";
 
-import { BsTrash, BsFiles } from "react-icons/bs";
+import { BsTrash, BsFiles, BsPencil } from "react-icons/bs";
+
 import { deleteItem, duplicateItem } from "./../../../functions/bodyFunctions";
 import ModalBody from "./../ModalBody";
 
@@ -59,7 +60,7 @@ function Kanban() {
     return result;
   }
 
-  function Item({ provided, item, style, isDragging }) {
+  function Item({ provided, item, style, isDragging, column, index }) {
     return (
       <div
         {...provided.draggableProps}
@@ -102,6 +103,10 @@ function Kanban() {
             deleteItem(
               item.idUnique,
               columns,
+
+              column.name,
+              index,
+
               arrFoods,
               setArrFoods,
               addFoodWeight,
@@ -116,7 +121,9 @@ function Kanban() {
           onClick={() =>
             duplicateItem(
               item.name,
-              /* column.name, */
+              /*   column, */
+              index,
+              column.name,
               arrFoods,
               uuid,
               addFoodWeight,
@@ -195,8 +202,8 @@ function Kanban() {
             <FixedSizeList
               height={500}
               itemCount={itemCount}
-              itemSize={80}
-              width={300}
+              itemSize={85}
+              width={340}
               outerRef={provided.innerRef}
               itemData={column.items}
               className="task-list"
@@ -221,7 +228,23 @@ function Kanban() {
           >
             <h3 className="column-title" {...provided.dragHandleProps}>
               {column.name}
+              <BsTrash
+                type="button"
+                size="24px"
+                style={{ fontSize: 25 }}
+                onClick={() => deleteItem()}
+              />
+              <BsFiles
+                type="button"
+                size="24px"
+                style={{ fontSize: 25 }}
+                onClick={() => duplicateItem()}
+              />
+              <BsPencil type="button" size="24px">
+                edit
+              </BsPencil>
             </h3>
+
             <ItemList column={column} index={index} />
           </div>
         )}

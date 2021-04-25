@@ -64,22 +64,26 @@ setColumns(newColumn)
 const deleteItem = (
   itemIdUnique,
   columns,
+  columnName,
+  index,
   arrFoods,
   setArrFoods,
   addFoodWeight,
   setColumns
 ) => {
 
-  /* const requestColumnId = Object.entries(columns)[0].find(
-    (column) => column.name === "Snack"
-  ); */
+  const requestColumnId = Object.entries(columns)[0].find(
+    (column) => column.name === "Lunch"
+  );
 
- /*  const requestColumnId = Object.entries(columns)[0][1].Breakfast.items.find(
+  /* const requestColumnId = Object.entries(columns)[0][1].Breakfast.items.find(
     (item) => item.idUnique === itemIdUnique
-  )
+  ) */
 
-  console.log("requestColumnId", requestColumnId) */
-  
+  console.log("requestColumnId", requestColumnId)
+
+
+  /* console.log("columnName", columnName,"index", index)
 
   const includesIdUnique = ()=> {
     let arrBreakfast = [];
@@ -89,7 +93,7 @@ const deleteItem = (
   }
 
  
-  console.log("includesIdUnique", includesIdUnique())
+  console.log("includesIdUnique", includesIdUnique()) */
 
   /* const column = columns[columnId];
 
@@ -119,6 +123,8 @@ const deleteItem = (
 
 function duplicateItem(
   itemName,
+ /*  column, */
+  index,
   columnName,
   arrFoods,
   uuid,

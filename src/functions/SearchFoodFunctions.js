@@ -52,33 +52,6 @@ function addFood(
     });
  */
 
-    /* console.log("itemAdd", itemAdd);
-
-    console.log("Object.entries(columns)", Object.entries(columns));
-
-    console.log("columns", columns);
-
-    console.log("arrFoods", arrFoods);
-
-    console.log(
-      "Object.entries(columns)[0][1].Breakfast.items",
-      Object.entries(columns)[0][1].Breakfast.items
-    ); */
-
-    /*  setColumns({
-    Breakfast: {
-      name: "Breakfast",
-      items: [itemAdd],
-    },
-    Lunch: {
-      name: "Lunch",
-      items: [],
-    },
-    Dinner: {
-      name: "Dinner",
-      items: [],
-    },
-  }); */
 
     const arrBreakfast = Object.entries(columns)[0][1].Breakfast.items;
 
@@ -86,21 +59,24 @@ function addFood(
 
     const arrDinner = Object.entries(columns)[0][1].Dinner.items;
 
+    const columnsState = Object.entries(columns)[0][1];
+
     const newStateColumns = {
       /* ...Object.entries(columns)[0], */
       columns: {
+        ...columnsState,
         Breakfast: {
           name: "Breakfast",
           items: [...arrBreakfast, itemAdd],
         },
-        Lunch: {
+       /*  Lunch: {
           name: "Lunch",
           items: [...arrLunch],
         },
         Dinner: {
           name: "Dinner",
           items: [...arrDinner],
-        },
+        }, */
         
       },
       columnOrder: ["Breakfast", "Lunch", "Dinner"],
