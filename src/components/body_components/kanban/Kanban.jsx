@@ -22,8 +22,8 @@ function Kanban() {
     foodDatabase,
     setArrFoods,
     arrFoods,
-    columns,
-    setColumns,
+    kanban,
+    setKanban,
     setShowSnack,
   } = useContext(UserContext);
 
@@ -94,7 +94,7 @@ function Kanban() {
           Math.round(arrFoods[index].foodWeight / 5) * 5)
         }
         {"g"} {item.name}
-        <img src={item.img_link} alt="foodImg" width="20%" />
+        <img src={item.img_link} alt="foodImg" width="50px" />
         <BsTrash
           type="button"
           size="24px"
@@ -102,7 +102,7 @@ function Kanban() {
           onClick={() =>
             deleteItem(
               item.idUnique,
-              columns,
+              kanban,
 
               column.name,
               index,
@@ -110,7 +110,7 @@ function Kanban() {
               arrFoods,
               setArrFoods,
               addFoodWeight,
-              setColumns
+              setKanban
             )
           }
         />
@@ -127,8 +127,8 @@ function Kanban() {
               arrFoods,
               uuid,
               addFoodWeight,
-              columns,
-              setColumns
+              kanban,
+              setKanban
             )
           }
         />
@@ -202,7 +202,7 @@ function Kanban() {
             <FixedSizeList
               height={500}
               itemCount={itemCount}
-              itemSize={85}
+              itemSize={80}
               width={340}
               outerRef={provided.innerRef}
               itemData={column.items}
@@ -264,12 +264,12 @@ function Kanban() {
       // with react-window. It looks to be scrolling back to scroll: 0
       // I should log an issue with the project
       const columnOrder = reorderList(
-        columns.columnOrder,
+        kanban.columnOrder,
         result.source.index,
         result.destination.index
       );
-      setColumns({
-        ...columns,
+      setKanban({
+        ...kanban,
         columnOrder,
       });
       return;
@@ -277,7 +277,7 @@ function Kanban() {
 
     // reordering in same list
     if (result.source.droppableId === result.destination.droppableId) {
-      const column = columns.columns[result.source.droppableId];
+      const column = kanban.columns[result.source.droppableId];
       const items = reorderList(
         column.items,
         result.source.index,
@@ -286,22 +286,22 @@ function Kanban() {
 
       // updating column entry
       const newState = {
-        ...columns,
+        ...kanban,
         columns: {
-          ...columns.columns,
+          ...kanban.columns,
           [column.name]: {
             ...column,
             items,
           },
         },
       };
-      setColumns(newState);
+      setKanban(newState);
       return;
     }
 
     // moving between lists
-    const sourceColumn = columns.columns[result.source.droppableId];
-    const destinationColumn = columns.columns[result.destination.droppableId];
+    const sourceColumn = kanban.columns[result.source.droppableId];
+    const destinationColumn = kanban.columns[result.destination.droppableId];
     const item = sourceColumn.items[result.source.index];
 
     // 1. remove item from source column
@@ -320,25 +320,25 @@ function Kanban() {
     newDestinationColumn.items.splice(result.destination.index, 0, item);
 
     const newState = {
-      ...columns,
+      ...kanban,
       columns: {
-        ...columns.columns,
+        ...kanban.columns,
         [newSourceColumn.name]: newSourceColumn,
         [newDestinationColumn.name]: newDestinationColumn,
       },
     };
 
-    setColumns(newState);
+    setKanban(newState);
   }
 
   //////
 
   const handleAddColumn = () => {
-    addColumn(setColumns, columns, uuid, setShowSnack);
+    addColumn(setKanban, kanban, uuid, setShowSnack);
   };
 
   const handleAddRecipe = () => {
-    addRecipe(foodDatabase, arrFoods, uuid, addFoodWeight, columns, setColumns);
+    addRecipe(foodDatabase, arrFoods, uuid, addFoodWeight, kanban, setKanban);
   };
 
   ///////
@@ -365,10 +365,10 @@ function Kanban() {
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
-                {columns.columnOrder.map((columnId, index) => (
+                {kanban.columnOrder.map((columnId, index) => (
                   <Column
                     key={columnId}
-                    column={columns.columns[columnId]}
+                    column={kanban.columns[columnId]}
                     index={index}
                   />
                 ))}

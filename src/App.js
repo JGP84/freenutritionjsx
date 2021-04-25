@@ -28,7 +28,7 @@ function App() {
   const [inputLipPerc, setInputLipPerc] = useState(35);
   const [inputCarbPerc, setInputCarbPerc] = useState(45);
 
-  const [columns, setColumns] =useState(() => getInitialData())
+  const [kanban, setKanban] =useState(() => getInitialData())
 
   /* my server food */
   const [foodDatabase, setFoodDatabase] = useState([]);
@@ -71,8 +71,8 @@ function App() {
         setInputLipPerc,
         inputCarbPerc,
         setInputCarbPerc,
-        columns,
-        setColumns,
+        kanban,
+        setKanban,
         foodDatabase,
         setFoodDatabase,
         showSnack,
