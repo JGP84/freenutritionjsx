@@ -65,13 +65,22 @@ const deleteItem = (
   addFoodWeight,
   setKanban
 ) => {
-  const arrFoodsFiltered = arrFoods.filter(
+  /* const arrFoodsFiltered = arrFoods.filter(
     (item) => item.idUnique !== itemIdUnique
   );
+  
+  setArrFoods(arrFoodsFiltered); */
 
-  setArrFoods(arrFoodsFiltered);
+  //////
+
+  const indexSplice = arrFoods.findIndex(
+    (item) => item.idUnique === itemIdUnique
+  );
+
+  arrFoods.splice(indexSplice, 1);
 
   addFoodWeight();
+  ///////
 
   const columnTitle = columnName;
 
@@ -82,6 +91,8 @@ const deleteItem = (
   const arrItemsFiltered = arrItems.filter(
     (item) => item.idUnique !== itemIdUnique
   );
+
+  
 
   const newStateColumns = {
     columns: {
@@ -95,6 +106,8 @@ const deleteItem = (
   };
 
   setKanban(newStateColumns);
+
+  
 };
 
 function duplicateItem(

@@ -29,7 +29,7 @@ function Kanban() {
 
   const { addFoodWeight } = useDietLogic();
 
-  let index = 0;
+  /* let index = 0; */
 
   /*  */
 
@@ -88,10 +88,10 @@ function Kanban() {
         }`}
       >
         {
-          ((index = arrFoods.findIndex(
+          (index = arrFoods.findIndex(
             (ingredient) => ingredient.idUnique === item.idUnique
-          )),
-          Math.round(arrFoods[index].foodWeight / 5) * 5)
+          )), 
+          Math.round(arrFoods[index].foodWeight / 5) * 5
         }
         {"g"} {item.name}
         <img src={item.img_link} alt="foodImg" width="50px" />
