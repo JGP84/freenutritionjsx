@@ -1,59 +1,57 @@
-const addColumn = (setKanban, columns, uuid, setShowSnack) => {
-  /* setKanban({
-    ...columns,
-    Snack: {
-      name: "Snack",
-      items: [],
-    },
-  }); */
+const addColumn = (setKanban, kanban, setShowSnack) => {
+  const columnTitle = "Snack";
+  const columnsState = Object.entries(kanban)[0][1];
 
-  const arrBreakfast = Object.entries(columns)[0][1].Breakfast.items;
-
-  const arrLunch = Object.entries(columns)[0][1].Lunch.items;
-
-  const arrDinner = Object.entries(columns)[0][1].Dinner.items;
-
-  const newColumn = {
+  const newStateColumns = {
     columns: {
-      Breakfast: {
-        name: "Breakfast",
-        items: [...arrBreakfast],
-      },
-      Lunch: {
-        name: "Lunch",
-        items: [...arrLunch],
-      },
-      Dinner: {
-        name: "Dinner",
-        items: [...arrDinner],
-      },
-      Snack: {
-        name: "Snack",
+      ...columnsState,
+      [columnTitle]: {
+        name: columnTitle,
         items: [],
       },
     },
-    columnOrder: ["Breakfast", "Lunch", "Dinner", "Snack"],
+    columnOrder: ["Breakfast", "Lunch", "Dinner", columnTitle],
   };
 
-  // updating column entry
-
-  /* const column = columns.columns[result.source.droppableId];
-
-  const newState = {
-    ...columns,
-    columns: {
-      ...columns.columns,
-      [column.Snack]: {
-        ...column,
-        items,
-      },
-    },
-  };
-  setKanban(newState); */
-
-  setKanban(newColumn);
+  setKanban(newStateColumns);
 
   setShowSnack(true);
+};
+
+const deleteColumn = (arrFoods, kanban, setKanban, columnName, addFoodWeight) => {
+  const columnTitle = columnName;
+  const columnsState = Object.entries(kanban)[0][1];
+  
+  const itemsColumnDeleted = [...columnsState[columnTitle].items];
+
+
+  const deleteItemsArrFoods = () => {
+    for (let itemDeleted of itemsColumnDeleted) {
+      const indexSplice = arrFoods.findIndex(
+        (item) => item.idUnique === itemDeleted.idUnique
+      );
+
+      arrFoods.splice(indexSplice, 1);
+    }
+  };
+
+  deleteItemsArrFoods();
+
+  addFoodWeight();
+  ////
+
+  const newStateColumns = {
+    columns: {
+      ...columnsState,
+      [columnTitle]: {
+        name: columnTitle,
+        items: [],
+      },
+    },
+    columnOrder: ["Breakfast", "Lunch", "Dinner"],
+  };
+
+  setKanban(newStateColumns);
 };
 
 const deleteItem = (
@@ -61,7 +59,6 @@ const deleteItem = (
   kanban,
   columnName,
   arrFoods,
-  setArrFoods,
   addFoodWeight,
   setKanban
 ) => {
@@ -92,8 +89,6 @@ const deleteItem = (
     (item) => item.idUnique !== itemIdUnique
   );
 
-  
-
   const newStateColumns = {
     columns: {
       ...columnsState,
@@ -106,8 +101,6 @@ const deleteItem = (
   };
 
   setKanban(newStateColumns);
-
-  
 };
 
 function duplicateItem(
@@ -359,6 +352,7 @@ const onDragEnd = (result, columns, setKanban) => {
 
 export {
   addColumn,
+  deleteColumn,
   deleteItem,
   duplicateItem,
   addRecipe,

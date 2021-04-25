@@ -1,7 +1,7 @@
 // @flow
 import { UserContext } from "./../../../UserContext";
 import uuid from "react-uuid";
-import React, { useLayoutEffect, useRef, useContext, useState } from "react";
+import React, { useLayoutEffect, useRef, useContext } from "react";
 
 import { FixedSizeList, areEqual } from "react-window";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -10,11 +10,10 @@ import "./kanban.css";
 import { reorderList } from "./reorder";
 
 import useDietLogic from "./../../../hooks/useDietLogic";
-import { addColumn, addRecipe } from "./../../../functions/bodyFunctions";
+import { addColumn, deleteColumn, addRecipe, deleteItem, duplicateItem } from "../../../functions/kanbanFunctions";
 
 import { BsTrash, BsFiles, BsPencil } from "react-icons/bs";
 
-import { deleteItem, duplicateItem } from "./../../../functions/bodyFunctions";
 import ModalBody from "./../ModalBody";
 
 function Kanban() {
@@ -105,7 +104,6 @@ function Kanban() {
               kanban,
               column.name,
               arrFoods,
-              setArrFoods,
               addFoodWeight,
               setKanban
             )
@@ -214,7 +212,7 @@ function Kanban() {
     );
   });
 
-  const Column = React.memo(function Column({ column, index }) {
+  const Column = React.memo(function Column({ item, column, index }) {
     return (
       <Draggable draggableId={column.name} index={index}>
         {(provided) => (
@@ -229,7 +227,7 @@ function Kanban() {
                 type="button"
                 size="24px"
                 style={{ fontSize: 25 }}
-                onClick={() => deleteItem()}
+                onClick={() => deleteColumn(arrFoods, kanban, setKanban, column.name, addFoodWeight)}
               />
               <BsFiles
                 type="button"
@@ -331,7 +329,7 @@ function Kanban() {
   //////
 
   const handleAddColumn = () => {
-    addColumn(setKanban, kanban, uuid, setShowSnack);
+    addColumn(setKanban, kanban, setShowSnack);
   };
 
   const handleAddRecipe = () => {
