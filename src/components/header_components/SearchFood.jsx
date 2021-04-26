@@ -54,6 +54,8 @@ const SearchFood = () => {
     setKanban,
     foodDatabase,
     showSnack,
+    intake,
+    setIntake,
   } = useContext(UserContext);
 
   const {
@@ -108,12 +110,13 @@ const SearchFood = () => {
       addFoodWeight,
       kanban,
       setKanban,
-      setFoodNew
+      setFoodNew,
+      intake
     );
   };
 
   const handleAllDelete = (e) => {
-    allDelete(setArrFoods, setKanban, uuid);
+    allDelete(setArrFoods, setKanban);
   };
   const handleExportPDF = (e) => {
     exportPDF(
@@ -137,11 +140,43 @@ const SearchFood = () => {
   return (
     <>
       <div className="col p-3">
+           {/*  */}
+           <label>
+            <h2> Choose your intake </h2>
+          </label>
+          <div className="input-group mt-1 p-2">
+            <input
+              id="inputSearchFood"
+              type="text"
+              value={intake}
+              list="listIntake"
+              className="form-control w-75"
+              placeholder="Choose your intake"
+              onChange={(e) => setIntake(e.target.value)}
+              /* onKeyPress={(e) => handler(e)} */
+            />
+            <datalist id="listIntake">
+              {Object.entries(kanban)[1][1].map((item) => (
+                <option key={uuid()}>{item}</option>
+              ))}
+            </datalist>
+            <div className="input-group-append">
+              <button
+                className="btn btn-primary btn-lg"
+                type="button"
+                onClick={(e) => setIntake(e.target.value)}
+              >
+                Add Intake
+              </button>
+            </div>
+          </div>
+
+          {/*  */}
         <div className="col ">
           <label>
             <h2> Search your food</h2>
           </label>
-          <div className="input-group mt-1">
+          <div className="input-group m-2 ">
             <input
               id="inputSearchFood"
               type="text"
@@ -168,6 +203,8 @@ const SearchFood = () => {
               </button>
             </div>
           </div>
+
+       
 
           <div className="col mt-3">
             <button

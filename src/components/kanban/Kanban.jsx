@@ -1,5 +1,5 @@
 // @flow
-import { UserContext } from "./../../../UserContext";
+import { UserContext } from "./../../UserContext";
 import uuid from "react-uuid";
 import React, { useLayoutEffect, useRef, useContext } from "react";
 
@@ -9,18 +9,28 @@ import "./kanban.css";
 
 import { reorderList } from "./reorder";
 
-import useDietLogic from "./../../../hooks/useDietLogic";
-import { addColumn, deleteColumn, addRecipe, deleteItem, duplicateItem } from "../../../functions/kanbanFunctions";
+import useDietLogic from "./../../hooks/useDietLogic";
+import {
+  addColumn,
+  deleteColumn,
+  duplicateColumn,
+  editColumn,
+  addRecipe,
+  deleteItem,
+  duplicateItem,
+} from "../../functions/kanbanFunctions";
 
 import { BsTrash, BsFiles, BsPencil } from "react-icons/bs";
 
-import ModalBody from "./../ModalBody";
+import ModalBody from "./../kanban/ModalBody";
 
 function Kanban() {
   const {
     foodDatabase,
     setArrFoods,
     arrFoods,
+    intake,
+    setIntake,
     kanban,
     setKanban,
     setShowSnack,
@@ -87,10 +97,10 @@ function Kanban() {
         }`}
       >
         {
-          (index = arrFoods.findIndex(
+          ((index = arrFoods.findIndex(
             (ingredient) => ingredient.idUnique === item.idUnique
-          )), 
-          Math.round(arrFoods[index].foodWeight / 5) * 5
+          )),
+          Math.round(arrFoods[index].foodWeight / 5) * 5)
         }
         {"g"} {item.name}
         <img src={item.img_link} alt="foodImg" width="50px" />
@@ -142,9 +152,9 @@ function Kanban() {
   // Recommended react-window performance optimisation: memoize the row render function
   // Things are still pretty fast without this, but I am a sucker for making things faster
   const Row = React.memo(function Row(props) {
-    const { data: column, index, style } = props
-    const { items } = column
-    const item = items[index]
+    const { data: column, index, style } = props;
+    const { items } = column;
+    const item = items[index];
 
     // We are rendering an extra item for the placeholder
     if (!item) {
@@ -153,7 +163,9 @@ function Kanban() {
 
     return (
       <Draggable draggableId={item.idUnique} index={index} key={item.idUnique}>
-        {(provided) => <Item provided={provided} item={item} column={column} style={style} />}
+        {(provided) => (
+          <Item provided={provided} item={item} column={column} style={style} />
+        )}
       </Draggable>
     );
   }, areEqual);
@@ -227,15 +239,37 @@ function Kanban() {
                 type="button"
                 size="24px"
                 style={{ fontSize: 25 }}
-                onClick={() => deleteColumn(arrFoods, kanban, setKanban, column.name, addFoodWeight)}
+                onClick={() =>
+                  deleteColumn(
+                    arrFoods,
+                    kanban,
+                    setKanban,
+                    column.name,
+                    addFoodWeight
+                  )
+                }
               />
               <BsFiles
                 type="button"
                 size="24px"
                 style={{ fontSize: 25 }}
-                onClick={() => duplicateItem()}
+                onClick={() =>
+                  duplicateColumn(
+                    kanban,
+                    setKanban,
+                    column.name,
+                    foodDatabase,
+                    arrFoods,
+                    uuid,
+                    addFoodWeight,
+                    intake
+                  )
+                }
               />
-              <BsPencil type="button" size="24px">
+              <BsPencil type="button" size="24px"
+              onClick={() =>
+                editColumn(column.name, intake, kanban, setKanban)
+              }>
                 edit
               </BsPencil>
             </h3>
@@ -333,7 +367,15 @@ function Kanban() {
   };
 
   const handleAddRecipe = () => {
-    addRecipe(foodDatabase, arrFoods, uuid, addFoodWeight, kanban, setKanban);
+    addRecipe(
+      foodDatabase,
+      arrFoods,
+      uuid,
+      addFoodWeight,
+      kanban,
+      setKanban,
+      intake
+    );
   };
 
   ///////
@@ -344,9 +386,78 @@ function Kanban() {
         add Snack
       </button>
 
+      {/* dropdown bootstrap */}
+      {/*  <div class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          onClick={(e) => setIntake(e.target.value)}
+        >
+          Choose Intake
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          {Object.entries(kanban)[1][1].map((item) => (
+            <li>
+              <a class="dropdown-item" href="#" key={uuid()}>
+                {item}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div> */}
+      {/* end dropdown bootstrap */}
+
       <button className="btn btn-outline-success m-3" onClick={handleAddRecipe}>
         add example
       </button>
+
+      {/* carousel bootstrap */}
+
+     {/*  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="..." class="d-block w-100" alt="..."/>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>First slide label</h5>
+        <p>Some representative placeholder content for the first slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="..."/>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Second slide label</h5>
+        <p>Some representative placeholder content for the second slide.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="..." class="d-block w-100" alt="..."/>
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Third slide label</h5>
+        <p>Some representative placeholder content for the third slide.</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div> */}
+
+
+      {/* end carousel bootstrap */}
+
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="app">
           <Droppable

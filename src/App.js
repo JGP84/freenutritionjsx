@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 
-import getInitialData from "./components/body_components/kanban/get-initial-data"
+import getInitialData from "./components/kanban/get-initial-data"
 
 import { UserContext } from "./UserContext";
 
@@ -19,6 +19,8 @@ function App() {
   const [itemEdit, setItemEdit] = useState("stateItemEdit");
 
   const [arrFoods, setArrFoods] = useState([]);
+
+  const[intake, setIntake] = useState()
 
   const [inputProt, setInputProt] = useState(102);
   const [inputLip, setInputLip] = useState(76);
@@ -59,6 +61,7 @@ function App() {
       value={{
         arrFoods,
         setArrFoods,
+        intake, setIntake,
         inputProt,
         setInputProt,
         inputLip,
