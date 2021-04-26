@@ -54,7 +54,6 @@ const Login = () => {
   return (
     <>
       <Menu />
-
       <div className="container text-center mt-5">
         <h1>Welcome to Free Nutrition Planner . O R G</h1>
         <h2>Please create an account or login to access the application </h2>
