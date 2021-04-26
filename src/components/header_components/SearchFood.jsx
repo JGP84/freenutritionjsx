@@ -27,7 +27,6 @@ nintCards
 addOuputsFoods
 *****
 
-
 addProteins
 addLipids
 addHc

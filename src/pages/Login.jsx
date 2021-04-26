@@ -47,7 +47,6 @@ const Login = () => {
         if (err.code === "auth/wrong-password") {
           setMsgError("Wrong Password");
         }
-
       });
   };
 
