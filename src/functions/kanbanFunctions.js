@@ -271,6 +271,8 @@ const addRecipe = (
 
   const newArrFoods = [];
 
+
+  if (intake !== undefined) {
   for (let itemRecipe of arrRecipe) {
     let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
 
@@ -319,6 +321,8 @@ const addRecipe = (
   };
 
   setKanban(newStateColumns);
+} else {}
+
 };
 
 /* functions et variables modal */

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import uuid from "react-uuid";
+
 import "./App.css";
 import Home from "./pages/Home";
 import Admin from "./pages/Admin";
@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import getInitialData from "./components/kanban/get-initial-data"
 
 import { UserContext } from "./UserContext";
+import About from "./pages/About";
 
 /* import foodsDatabase from "../src/components/foodDatabase.jsx" */
 
@@ -20,7 +21,7 @@ function App() {
 
   const [arrFoods, setArrFoods] = useState([]);
 
-  const[intake, setIntake] = useState()
+  const[intake, setIntake] = useState("Breakfast")
 
   const [inputProt, setInputProt] = useState(102);
   const [inputLip, setInputLip] = useState(76);
@@ -99,6 +100,7 @@ function App() {
 
             <Route path="/admin" component={Admin}></Route>
             <Route path="/login" component={Login}></Route>
+            <Route path="/about" component={About}></Route>
           </Switch>
         </Router>
       </div>

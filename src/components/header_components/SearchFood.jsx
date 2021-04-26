@@ -96,7 +96,7 @@ const SearchFood = () => {
         addFoodWeight,
         kanban,
         setKanban,
-        setFoodNew
+        setFoodNew,intake
       );
     }
   };
@@ -146,11 +146,11 @@ const SearchFood = () => {
           </label>
           <div className="input-group mt-1 p-2">
             <input
-              id="inputSearchFood"
+              id="inputChooseIntake"
               type="text"
               value={intake}
               list="listIntake"
-              className="form-control w-75"
+              className="inputFoodIntake form-control w-75"
               placeholder="Choose your intake"
               onChange={(e) => setIntake(e.target.value)}
               /* onKeyPress={(e) => handler(e)} */
@@ -182,7 +182,7 @@ const SearchFood = () => {
               type="text"
               value={foodNew}
               list="texto_uno"
-              className="form-control w-75"
+              className="inputFoodIntake form-control w-75"
               placeholder="Search your food"
               onChange={updateFoodNew}
               onKeyPress={(e) => handler(e)}
