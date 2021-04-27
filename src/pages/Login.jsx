@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { auth } from "../authentication-firebase/firebaseconfig";
+import { auth } from "./../authentication-firebase/firebaseconfig";
 import { useHistory } from "react-router-dom";
-import Menu from "../authentication-firebase/Menu";
+import Navbar from "../components/header_components/Navbar";
 
 const Login = () => {
   const history = useHistory();
@@ -52,7 +52,7 @@ const Login = () => {
 
   return (
     <>
-      <Menu />
+      <Navbar />
       <div className="container text-center mt-5">
         <h1>Welcome to Free Nutrition Planner . O R G</h1>
         <h2>Please create an account or login to access the application </h2>

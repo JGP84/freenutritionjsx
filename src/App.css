@@ -20,11 +20,6 @@ html,
   height: 100%;
 }
 
-.navbar-light {
-  background-color: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-}
-
 .auth-wrapper {
   display: flex;
   justify-content: center;
@@ -58,25 +53,11 @@ html,
   font-weight: 400;
 }
 
-.forgot-password,
-.forgot-password a {
-  text-align: right;
-  font-size: 13px;
-  padding-top: 10px;
-  color: #7f7d7d;
-  margin: 0;
-}
-
-.forgot-password a {
-  color: #167bff;
-}
 
 .cardItem {
   font-size: 19px;
   font-weight: bold;
-
   height: 80px;
-
   border-radius: 5px;
   display: flex;
   flex-direction: row;
@@ -89,21 +70,16 @@ html,
 }
 .kcal {
   font-size: 30px;
-
   width: 200px;
   background-color: transparent;
   color: #fffddd;
   height: 60px;
-
-  /*  border: none; */
   border-color: white;
   border-radius: 5px;
-
   text-align: center;
 }
 .kcalOuput {
   font-size: 50px;
-
   background-color: transparent;
   color: #fffddd;
   border: none;
@@ -113,12 +89,9 @@ html,
   background-color: transparent;
   color: #fffddd;
   width: 90px;
-  /*  border: none; */
   border-color: white;
   border-radius: 5px;
-
   text-align: center;
-  /*  height: 60px; */
 }
 .inputFoodIntake {
   font-weight: bold;
@@ -130,18 +103,15 @@ html,
 .ouputMacros {
   font-weight: bold;
   font-size: 22px;
-  /*  color: #FFFDDD; */
 }
 
 .divMacros {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 }
 
-.textOr{
+.textOr {
   color: rgb(194, 194, 194);
   font-size: small;
   font-weight: lighter;
 }
-
