@@ -8,7 +8,7 @@ import {
   addFood,
   allDelete,
   exportPDF,
-} from "../../functions/searchFoodFunctions";
+} from "../../functions/search_food_functions";
 
 import { percenProt, percenLip, percenCarb } from "../../functions/functions";
 
@@ -95,7 +95,8 @@ const SearchFood = () => {
         addFoodWeight,
         kanban,
         setKanban,
-        setFoodNew,intake
+        setFoodNew,
+        intake
       );
     }
   };
@@ -139,38 +140,38 @@ const SearchFood = () => {
   return (
     <>
       <div className="col p-3">
-           {/*  */}
-           <label>
-            <h2> Choose your intake </h2>
-          </label>
-          <div className="input-group mt-1 p-2">
-            <input
-              id="inputChooseIntake"
-              type="text"
-              value={intake}
-              list="listIntake"
-              className="inputFoodIntake form-control w-75"
-              placeholder="Choose your intake"
-              onChange={(e) => setIntake(e.target.value)}
-              /* onKeyPress={(e) => handler(e)} */
-            />
-            <datalist id="listIntake">
-              {Object.entries(kanban)[1][1].map((item) => (
-                <option key={uuid()}>{item}</option>
-              ))}
-            </datalist>
-            <div className="input-group-append">
-              <button
-                className="btn btn-primary btn-lg"
-                type="button"
-                onClick={(e) => setIntake(e.target.value)}
-              >
-                Add Intake
-              </button>
-            </div>
+        {/*  */}
+        <label>
+          <h2> Choose your intake </h2>
+        </label>
+        <div className="input-group mt-1 p-2">
+          <input
+            id="inputChooseIntake"
+            type="text"
+            value={intake}
+            list="listIntake"
+            className="inputFoodIntake form-control w-75"
+            placeholder="Choose your intake"
+            onChange={(e) => setIntake(e.target.value)}
+            /* onKeyPress={(e) => handler(e)} */
+          />
+          <datalist id="listIntake">
+            {Object.entries(kanban)[1][1].map((item) => (
+              <option key={uuid()}>{item}</option>
+            ))}
+          </datalist>
+          <div className="input-group-append">
+            <button
+              className="btn btn-primary btn-lg"
+              type="button"
+              onClick={(e) => setIntake(e.target.value)}
+            >
+              Add Intake
+            </button>
           </div>
+        </div>
 
-          {/*  */}
+        {/*  */}
         <div className="col ">
           <label>
             <h2> Search your food</h2>
@@ -202,8 +203,6 @@ const SearchFood = () => {
               </button>
             </div>
           </div>
-
-       
 
           <div className="col mt-3">
             <button
