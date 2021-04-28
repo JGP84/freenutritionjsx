@@ -1,23 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../UserContext.js";
-import NumberFormat from "react-number-format";
 import useDietLogic from "../../hooks/useDietLogic.jsx";
-
-/* Functions in InputMacros:
-
-updateInputProt
-updateInputLip
-updateInputCarb
-
-*****
-useDietLogic addFoodWeight
-
-******
-
-formatProt
-formatLip
-formatCarb
-*/
 
 const InputMacros = () => {
   const {
@@ -29,10 +12,7 @@ const InputMacros = () => {
     setInputCarb,
   } = useContext(UserContext);
 
-  const {
-    addFoodWeight
-   
-  } = useDietLogic();
+  const { addFoodWeight } = useDietLogic();
 
   function updateInputProt(event) {
     const inputProtein = event.target.value;
@@ -71,16 +51,14 @@ const InputMacros = () => {
             <label>
               <h4>g Prot</h4>
             </label>
-            <NumberFormat
+            <input
               name="inputProt"
               onChange={updateInputProt}
               type="number"
               className="inputMacros mt-1"
               placeholder="Pro g"
-              /* suffix={'g'} */
-              /* displayType={'text'} */
               value={formatProt()}
-            ></NumberFormat>
+            ></input>
           </div>
         </div>
         <div className="col-md-4 mb-3">

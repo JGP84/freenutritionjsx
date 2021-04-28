@@ -2,27 +2,8 @@ import React, { useContext, useState } from "react";
 import { UserContext } from "../../UserContext.js";
 import useDietLogic from "../../hooks/useDietLogic.jsx";
 
-
-
-/* Functions in InputMacrosPercentage:
-
-updateInputProtPerc
-updateInputLipPerc
-updateInputCarbPerc
-updateInputKcalPerc
-
-*****
-addFoodWeight
-*****
-
-handler
-
-*/
-
 const InputMacrosPercentage = () => {
-  
   const [inputKcal, setInputKcal] = useState(2000);
-  
 
   const {
     setInputProt,
@@ -36,10 +17,7 @@ const InputMacrosPercentage = () => {
     setInputCarbPerc,
   } = useContext(UserContext);
 
-  const {
-    addFoodWeight
-   
-  } = useDietLogic();
+  const { addFoodWeight } = useDietLogic();
 
   function updateInputProtPerc(event) {
     const inputProtein = event.target.value;

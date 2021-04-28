@@ -1,33 +1,8 @@
 import useDietLogic from "../../hooks/useDietLogic.jsx";
-import { percenProt, percenLip, percenCarb} from "../../functions/functions";
+import { percenProt, percenLip, percenCarb } from "../../functions/functions";
 import DoughnutChart from "../DoughnutChart.jsx";
 
-/* Functions in OutputMacros:
-
-percenProt
-percenLip
-percenCarb
-
-*******
-addFoodWeight
-
-*****
-
-addProteins
-addLipids
-addHc
-addKcal
-
-formatAddProteins
-formatAddLipids
-formatAddHc
-formatAddKcal
-
-*/
-
 const OutputMacros = () => {
-
-
   const {
     addFoodWeight,
     addProteins,
@@ -40,8 +15,6 @@ const OutputMacros = () => {
     formatAddKcal,
   } = useDietLogic();
 
- 
-
   return (
     <>
       <div className="form-row d-flex p-3">
@@ -49,9 +22,7 @@ const OutputMacros = () => {
           <label>
             <h2>Results</h2>
           </label>
-
-          <hr />
-          <div className="form-row d-flex flex-row">
+          <div className="form-row d-flex flex-row mt-3">
             <div className="col-md-4 mb-4">
               <label>
                 <h4>Proteins</h4>
@@ -59,7 +30,13 @@ const OutputMacros = () => {
               <input
                 className="form-control w-75 text-center mt-1 ouputMacros"
                 placeholder="Protein in g"
-                value={percenProt(addProteins, addKcal) + "%" + "/ " + formatAddProteins() + "g"}
+                value={
+                  percenProt(addProteins, addKcal) +
+                  "%" +
+                  "/ " +
+                  formatAddProteins() +
+                  "g"
+                }
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "rgba(255, 99, 132, 1)" }}
               ></input>
@@ -71,7 +48,13 @@ const OutputMacros = () => {
               <input
                 className="form-control w-75 text-center mt-1 ouputMacros"
                 placeholder="Lipids in g"
-                value={percenLip(addLipids, addKcal) + "%" + "/ " + formatAddLipids() + "g"}
+                value={
+                  percenLip(addLipids, addKcal) +
+                  "%" +
+                  "/ " +
+                  formatAddLipids() +
+                  "g"
+                }
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "rgba(255, 205, 86, 1)" }}
               ></input>
@@ -83,7 +66,9 @@ const OutputMacros = () => {
               <input
                 className="form-control w-75 text-center mt-1 ouputMacros"
                 placeholder="Carbohydrates in g"
-                value={percenCarb(addHc, addKcal) + "%" + "/ " + formatAddHc() + "g"}
+                value={
+                  percenCarb(addHc, addKcal) + "%" + "/ " + formatAddHc() + "g"
+                }
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "#b65c03" }}
               ></input>
