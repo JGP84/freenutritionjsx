@@ -2,10 +2,9 @@ import React, { useContext, useState } from "react";
 import { BsPencil } from "react-icons/bs";
 import { UserContext } from "../../UserContext";
 import uuid from "react-uuid";
-
 import { changeName, changeN_int_card } from "../../functions/kanbanFunctions";
-
 import useDietLogic from "../../hooks/useDietLogic";
+
 
 const ModalBody = ({ itemIdUnique, columnName }) => {
   const { arrFoods, columns, setColumns } = useContext(UserContext);

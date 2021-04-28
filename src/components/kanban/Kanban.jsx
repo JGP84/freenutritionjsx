@@ -1,14 +1,10 @@
-// @flow
+import React, { useLayoutEffect, useRef, useContext } from "react";
 import { UserContext } from "./../../UserContext";
 import uuid from "react-uuid";
-import React, { useLayoutEffect, useRef, useContext } from "react";
-
 import { FixedSizeList, areEqual } from "react-window";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import "./kanban.css";
-
+import "./../../css/kanban.css";
 import { reorderList } from "./reorder";
-
 import useDietLogic from "./../../hooks/useDietLogic";
 import {
   addColumn,
@@ -19,18 +15,14 @@ import {
   deleteItem,
   duplicateItem,
 } from "../../functions/kanbanFunctions";
-
 import { BsTrash, BsFiles, BsPencil } from "react-icons/bs";
-
 import ModalBody from "./../kanban/ModalBody";
 
 function Kanban() {
   const {
     foodDatabase,
-    setArrFoods,
     arrFoods,
     intake,
-    setIntake,
     kanban,
     setKanban,
     setShowSnack,
@@ -38,9 +30,6 @@ function Kanban() {
 
   const { addFoodWeight } = useDietLogic();
 
-  /* let index = 0; */
-
-  /*  */
 
   function getStyle({ draggableStyle, virtualStyle, isDragging }) {
     // If you don't want any spacing between your items
@@ -142,7 +131,7 @@ function Kanban() {
         ) : item.type === "proteinFoods" ? (
           ""
         ) : (
-          <ModalBody /* itemIdUnique={item.idUnique} columnName={column.name} */
+          <ModalBody itemIdUnique={item.idUnique} columnName={column.name}
           />
         )}
       </div>
@@ -378,8 +367,6 @@ function Kanban() {
     );
   };
 
-  ///////
-
   return (
     <>
       <button className="btn btn-outline-success m-3" onClick={handleAddColumn}>
@@ -413,50 +400,6 @@ function Kanban() {
       <button className="btn btn-outline-success m-3" onClick={handleAddRecipe}>
         add example
       </button>
-
-      {/* carousel bootstrap */}
-
-     {/*  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="..." class="d-block w-100" alt="..."/>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="..."/>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <img src="..." class="d-block w-100" alt="..."/>
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Third slide label</h5>
-        <p>Some representative placeholder content for the third slide.</p>
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div> */}
-
-
-      {/* end carousel bootstrap */}
 
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="app">
