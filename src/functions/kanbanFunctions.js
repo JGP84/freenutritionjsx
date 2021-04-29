@@ -265,64 +265,113 @@ const addRecipe = (
   addFoodWeight,
   kanban,
   setKanban,
-  intake
+  intake,
+  recipes,
+  itemId
 ) => {
-  const arrRecipe = ["broccoli", "rice", "chicken breast", "oil", "apple"];
+  const arrRecipe = recipes[itemId].ingredients;
 
   const newArrFoods = [];
 
-
   if (intake !== undefined) {
-  for (let itemRecipe of arrRecipe) {
-    let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
+    for (let itemRecipe of arrRecipe) {
+      let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
 
-    arrFoods.unshift({
-      food_id: foodDatabase[index].food_id,
-      name: itemRecipe,
-      type: foodDatabase[index].type,
-      weight_int: foodDatabase[index].weight_int,
-      prot: foodDatabase[index].prot,
-      lip: foodDatabase[index].lip,
-      hc: foodDatabase[index].hc,
-      img_link: foodDatabase[index].img_link,
-      n_int_card: foodDatabase[index].n_int_card,
-      foodWeight: 0,
-      idUnique: uuid(),
-    });
+      arrFoods.unshift({
+        food_id: foodDatabase[index].food_id,
+        name: itemRecipe,
+        type: foodDatabase[index].type,
+        weight_int: foodDatabase[index].weight_int,
+        prot: foodDatabase[index].prot,
+        lip: foodDatabase[index].lip,
+        hc: foodDatabase[index].hc,
+        img_link: foodDatabase[index].img_link,
+        n_int_card: foodDatabase[index].n_int_card,
+        foodWeight: 0,
+        idUnique: uuid(),
+      });
 
-    addFoodWeight();
+      addFoodWeight();
 
-    const itemAdd = {
-      idUnique: arrFoods[0].idUnique,
-      name: arrFoods[0].name,
-      foodWeight: arrFoods[0].foodWeight,
-      type: arrFoods[0].type,
-      img_link: arrFoods[0].img_link,
+      const itemAdd = {
+        idUnique: arrFoods[0].idUnique,
+        name: arrFoods[0].name,
+        foodWeight: arrFoods[0].foodWeight,
+        type: arrFoods[0].type,
+        img_link: arrFoods[0].img_link,
+      };
+
+      newArrFoods.push(itemAdd);
+    }
+    const columnTitle = intake;
+
+    const columnsState = Object.entries(kanban)[0][1];
+
+    const arrItems = columnsState[columnTitle].items;
+    const columnOrderState = Object.entries(kanban)[1][1];
+
+    const newStateColumns = {
+      columns: {
+        ...columnsState,
+        [columnTitle]: {
+          name: columnTitle,
+          items: [...arrItems, ...newArrFoods],
+        },
+      },
+      columnOrder: [...columnOrderState],
     };
 
-    newArrFoods.push(itemAdd);
+    setKanban(newStateColumns);
+  } else {
   }
-  const columnTitle = intake;
+};
 
-  const columnsState = Object.entries(kanban)[0][1];
-
-  const arrItems = columnsState[columnTitle].items;
-  const columnOrderState = Object.entries(kanban)[1][1];
-
-  const newStateColumns = {
-    columns: {
-      ...columnsState,
-      [columnTitle]: {
-        name: columnTitle,
-        items: [...arrItems, ...newArrFoods],
-      },
-    },
-    columnOrder: [...columnOrderState],
-  };
-
-  setKanban(newStateColumns);
-} else {}
-
+const addExample = (
+  
+  arrFoods,
+  foodDatabase,
+  uuid,
+  addFoodWeight,
+  kanban,
+  setKanban,
+  intake,
+  recipes
+) => {
+  addRecipe(
+    foodDatabase,
+    arrFoods,
+    uuid,
+    addFoodWeight,
+    kanban,
+    setKanban,
+    "Breakfast",
+    recipes,
+    0
+  );
+  
+  addRecipe(
+    foodDatabase,
+    arrFoods,
+    uuid,
+    addFoodWeight,
+    kanban,
+    setKanban,
+    "Lunch",
+    recipes,
+    1
+  );
+  
+  addRecipe(
+    foodDatabase,
+    arrFoods,
+    uuid,
+    addFoodWeight,
+    kanban,
+    setKanban,
+    "Dinner",
+    recipes,
+    2
+  );
 };
 
 /* functions et variables modal */
@@ -465,6 +514,7 @@ export {
   deleteItem,
   duplicateItem,
   addRecipe,
+  addExample,
   changeName,
   changeN_int_card,
   onDragEnd,

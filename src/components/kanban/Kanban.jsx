@@ -12,6 +12,7 @@ import {
   duplicateColumn,
   editColumn,
   addRecipe,
+  addExample,
   deleteItem,
   duplicateItem,
 } from "../../functions/kanbanFunctions";
@@ -22,6 +23,8 @@ function Kanban() {
   const {
     foodDatabase,
     arrFoods,
+    recipes,
+    setIntake,
     intake,
     kanban,
     setKanban,
@@ -93,6 +96,7 @@ function Kanban() {
         }
         {"g"} {item.name}
         <img src={item.img_link} alt="foodImg" width="50px" />
+        
         <BsTrash
           type="button"
           size="24px"
@@ -213,7 +217,7 @@ function Kanban() {
     );
   });
 
-  const Column = React.memo(function Column({ item, column, index }) {
+  const Column = React.memo(function Column({ column, index }) {
     return (
       <Draggable draggableId={column.name} index={index}>
         {(provided) => (
@@ -356,15 +360,15 @@ function Kanban() {
   };
 
   const handleAddRecipe = () => {
-    addRecipe(
-      foodDatabase,
+    addExample(
       arrFoods,
+      foodDatabase,
       uuid,
       addFoodWeight,
       kanban,
       setKanban,
-      intake
-    );
+      intake,
+      recipes)
   };
 
   return (
@@ -373,34 +377,9 @@ function Kanban() {
         add Snack
       </button>
 
-      {/* dropdown bootstrap */}
-      {/*  <div class="dropdown">
-        <button
-          class="btn btn-secondary dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton1"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-          onClick={(e) => setIntake(e.target.value)}
-        >
-          Choose Intake
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          {Object.entries(kanban)[1][1].map((item) => (
-            <li>
-              <a class="dropdown-item" href="#" key={uuid()}>
-                {item}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div> */}
-      {/* end dropdown bootstrap */}
-
       <button className="btn btn-outline-success m-3" onClick={handleAddRecipe}>
         add example
       </button>
-
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="app">
           <Droppable

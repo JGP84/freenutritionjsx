@@ -39,6 +39,7 @@ const SearchFood = () => {
   const [foodNew, setFoodNew] = useState("");
 
   function updateFoodNew(event) {
+    event.preventDefault();
     const foodsNew = event.target.value;
     setFoodNew(foodsNew);
   }
@@ -55,6 +56,7 @@ const SearchFood = () => {
 
   /* Functions handles */
   const handler = (event) => {
+    event.preventDefault();
     if (event.key === "Enter") {
       addFood(
         foodDatabase,
@@ -70,7 +72,7 @@ const SearchFood = () => {
     }
   };
 
-  const handleAddFood = (e) => {
+  const handleAddFood = () => {
     addFood(
       foodDatabase,
       foodNew,
@@ -84,10 +86,10 @@ const SearchFood = () => {
     );
   };
 
-  const handleAllDelete = (e) => {
+  const handleAllDelete = () => {
     allDelete(setArrFoods, setKanban);
   };
-  const handleExportPDF = (e) => {
+  const handleExportPDF = () => {
     exportPDF(
       kanban,
       arrFoods,

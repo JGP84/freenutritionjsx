@@ -5,12 +5,9 @@ import uuid from "react-uuid";
 import { changeName, changeN_int_card } from "../../functions/kanbanFunctions";
 import useDietLogic from "../../hooks/useDietLogic";
 
-
 const ModalBody = ({ itemIdUnique, columnName }) => {
   const { arrFoods, columns, setColumns } = useContext(UserContext);
-
   const { addFoodWeight } = useDietLogic();
-
   const [name, setName] = useState("");
   const [gramsInt_card, setGramsInt_card] = useState("");
 

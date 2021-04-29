@@ -15,16 +15,19 @@ const InputMacros = () => {
   const { addFoodWeight } = useDietLogic();
 
   function updateInputProt(event) {
+    event.preventDefault();
     const inputProtein = event.target.value;
     setInputProt(inputProtein);
     addFoodWeight();
   }
   function updateInputLip(event) {
+    event.preventDefault();
     const inputLipids = event.target.value;
     setInputLip(inputLipids);
     addFoodWeight();
   }
   function updateInputCarb(event) {
+    event.preventDefault();
     const inputCarbohidrats = event.target.value;
     setInputCarb(inputCarbohidrats);
     addFoodWeight();

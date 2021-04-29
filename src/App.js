@@ -6,7 +6,7 @@ import Home from "./pages/Home";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 
-import getInitialData from "./components/kanban/get-initial-data"
+import getInitialData from "./components/kanban/get-initial-data";
 
 import { UserContext } from "./UserContext";
 import About from "./pages/About";
@@ -20,8 +20,25 @@ function App() {
   const [itemEdit, setItemEdit] = useState("stateItemEdit");
 
   const [arrFoods, setArrFoods] = useState([]);
+  const [recipes, setRecipes] = useState([
+    {
+      id: 0,
+      title: "Porridge",
+      ingredients: ["soya drink", "oats", "almonds", "banana"],
+    },
+    {
+      id: 1,
+      title: "broccoli, rice, chicken",
+      ingredients: ["broccoli", "rice", "chicken breast", "oil", "apple"],
+    },
+    {
+      id: 2,
+      title: "chips & fish",
+      ingredients: ["tomato", "potato", "hake", "oil","orange"],
+    },
+  ]);
 
-  const[intake, setIntake] = useState("Breakfast")
+  const [intake, setIntake] = useState("Breakfast");
 
   const [inputProt, setInputProt] = useState(102);
   const [inputLip, setInputLip] = useState(76);
@@ -31,7 +48,7 @@ function App() {
   const [inputLipPerc, setInputLipPerc] = useState(35);
   const [inputCarbPerc, setInputCarbPerc] = useState(45);
 
-  const [kanban, setKanban] =useState(() => getInitialData())
+  const [kanban, setKanban] = useState(() => getInitialData());
 
   /* my server food */
   const [foodDatabase, setFoodDatabase] = useState([]);
@@ -62,7 +79,10 @@ function App() {
       value={{
         arrFoods,
         setArrFoods,
-        intake, setIntake,
+        recipes,
+        setRecipes,
+        intake,
+        setIntake,
         inputProt,
         setInputProt,
         inputLip,

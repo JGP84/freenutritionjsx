@@ -20,6 +20,7 @@ const InputMacrosPercentage = () => {
   const { addFoodWeight } = useDietLogic();
 
   function updateInputProtPerc(event) {
+    event.preventDefault();
     const inputProtein = event.target.value;
     setInputProtPerc(inputProtein);
     const percentageToGrams = ((inputProtein / 100) * inputKcal) / 4;
@@ -28,6 +29,7 @@ const InputMacrosPercentage = () => {
   }
 
   function updateInputLipPerc(event) {
+    event.preventDefault();
     const inputLipids = event.target.value;
     setInputLipPerc(inputLipids);
     const percentageToGrams = ((inputLipids / 100) * inputKcal) / 9;
@@ -36,6 +38,7 @@ const InputMacrosPercentage = () => {
   }
 
   function updateInputCarbPerc(event) {
+    event.preventDefault();
     const inputCarbohidrats = event.target.value;
     setInputCarbPerc(inputCarbohidrats);
     const percentageToGrams = ((inputCarbohidrats / 100) * inputKcal) / 4;
@@ -44,6 +47,7 @@ const InputMacrosPercentage = () => {
   }
 
   function updateInputKcalPerc(event) {
+    event.preventDefault();
     const inputKcal = event.target.value;
     setInputKcal(inputKcal);
     addFoodWeight();
@@ -74,6 +78,7 @@ const InputMacrosPercentage = () => {
   }
 
   const handler = (event) => {
+    event.preventDefault();
     if (event.key === "Enter") {
       updateInputKcalPerc();
     }

@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { UserContext } from "../UserContext";
-
 import Navbar from "./header_components/Navbar";
 import InputRadio from "./header_components/InputRadio";
 import InputMacrosPercentage from "./header_components/InputMacrosPercentage";

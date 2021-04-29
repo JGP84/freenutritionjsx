@@ -31,6 +31,7 @@ body {
   font-weight: 400;
   font-family: "Vibur", cursive;
   user-select: none;
+  font-size: 22px;
 }
 
 body,
@@ -73,17 +74,6 @@ html,
 
 .custom-control-label {
   font-weight: 400;
-}
-
-.cardItem {
-  font-size: 19px;
-  font-weight: bold;
-  height: 80px;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
 }
 
 .pieChart {
@@ -135,4 +125,9 @@ html,
   color: rgb(194, 194, 194);
   font-size: small;
   font-weight: lighter;
+}
+
+.row-drop{
+  display: flex;
+  flex-direction: row;
 }
