@@ -327,7 +327,6 @@ const addRecipe = (
 };
 
 const addExample = (
-  
   arrFoods,
   foodDatabase,
   uuid,
@@ -348,7 +347,7 @@ const addExample = (
     recipes,
     0
   );
-  
+
   addRecipe(
     foodDatabase,
     arrFoods,
@@ -360,7 +359,7 @@ const addExample = (
     recipes,
     1
   );
-  
+
   addRecipe(
     foodDatabase,
     arrFoods,
@@ -378,7 +377,7 @@ const addExample = (
 
 const changeName = (
   itemIdUnique,
-  columns,
+  kanban,
   arrFoods,
   setKanban,
   columnName,
@@ -389,34 +388,34 @@ const changeName = (
   );
 
   arrFoods[indexItem].name = name;
-  console.log("arrFoods despues", arrFoods);
 
   let arrEdited = [];
 
-  const requestColumnId = Object.entries(columns).find(
-    (i) => i[1].name === columnName
-  )[0];
 
-  const column = columns[requestColumnId];
 
-  arrEdited = [...column.items];
+  arrEdited = [...arrFoods];
 
-  /* search index item edited */
-  const indexItemArrEdited = arrEdited.findIndex(
-    (element) => element.idUnique === itemIdUnique
-  );
+ 
 
-  arrEdited[indexItemArrEdited].name = name;
+  /* const columnTitle = intake;
 
-  console.log("arrEdited", arrEdited);
+  const columnsState = Object.entries(kanban)[0][1];
 
-  setKanban({
-    ...columns,
-    [requestColumnId]: {
-      ...column,
-      items: [...arrEdited],
+  const arrItems = columnsState[columnTitle].items;
+  const columnOrderState = Object.entries(kanban)[1][1];
+
+  const newStateColumns = {
+    columns: {
+      ...columnsState,
+      [columnTitle]: {
+        name: columnTitle,
+        items: [...arrItems, itemAdd],
+      },
     },
-  });
+    columnOrder: [...columnOrderState],
+  };
+
+  setKanban(newStateColumns); */
 };
 
 const changeN_int_card = (

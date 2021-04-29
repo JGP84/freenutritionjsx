@@ -5,7 +5,7 @@
   --greyLight: #515b7d;
   --black: #1d212e;
   --borderWidth: 4px;
-  --borderRadius: 8px;
+  --borderRadius: 5px;
 }
 
 .app {
@@ -20,14 +20,15 @@
 
 .column {
   margin: calc(var(--grid) / 2);
-  border: var(--borderWidth) solid #fffddd;
+  /* border: var(--borderWidth) solid #fffddd; */
   border-radius: var(--borderRadius);
   background-image: linear-gradient(rgba(0, 0, 0, 0.769), rgba(0, 0, 0, 0.961)),
     var(--mybguri64);
+    padding: 8px;
 }
 
 .column-title {
-  font-size: 40px;
+  font-size: 34px;
   color: #fffddd;
   text-shadow: 0px 0px 2px var(--pinkDark),
     0px 0px 15px rgba(255, 110, 255, 0.5);
@@ -36,6 +37,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  
 }
 
 .column-title:hover {
@@ -66,7 +68,7 @@
 
 .item {
   background: #333851;
-  border: var(--borderWidth) solid mediumpurple;
+  /* border: var(--borderWidth) solid mediumpurple; */
   box-sizing: border-box;
   border-radius: var(--borderRadius);
   color: #fffddd;

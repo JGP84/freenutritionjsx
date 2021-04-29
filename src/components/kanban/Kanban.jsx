@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useContext } from "react";
+import React, { useLayoutEffect, useRef, useContext, useState } from "react";
 import { UserContext } from "./../../UserContext";
 import uuid from "react-uuid";
 import { FixedSizeList, areEqual } from "react-window";
@@ -18,6 +18,8 @@ import {
 } from "../../functions/kanbanFunctions";
 import { BsTrash, BsFiles, BsPencil } from "react-icons/bs";
 import ModalBody from "./../kanban/ModalBody";
+import CardItemTrue from "./CardItemTrue";
+import CardItemFalse from "./CardItemFalse";
 
 function Kanban() {
   const {
@@ -33,6 +35,7 @@ function Kanban() {
 
   const { addFoodWeight } = useDietLogic();
 
+  const [editItem, setEditItem] = useState(true);
 
   function getStyle({ draggableStyle, virtualStyle, isDragging }) {
     // If you don't want any spacing between your items
@@ -88,7 +91,30 @@ function Kanban() {
             : ""
         }`}
       >
-        {
+        {/* <input type="text" value={item.name}/> */}
+
+        {editItem ? (
+          <CardItemTrue
+            index={0}
+            arrFoods={arrFoods}
+            item={item}
+            BsTrash={BsTrash}
+            deleteItem={deleteItem}
+            kanban={kanban}
+            column={column}
+            addFoodWeight={addFoodWeight}
+            setKanban={setKanban}
+            BsFiles={BsFiles}
+            duplicateItem={duplicateItem}
+            uuid={uuid}
+            ModalBody={ModalBody}
+          />
+        ) : (
+          <CardItemFalse itemIdUnique={item.idUnique} columnName={column.name}
+          setEditItem={setEditItem} />
+        )}
+
+        {/* {
           ((index = arrFoods.findIndex(
             (ingredient) => ingredient.idUnique === item.idUnique
           )),
@@ -96,7 +122,6 @@ function Kanban() {
         }
         {"g"} {item.name}
         <img src={item.img_link} alt="foodImg" width="50px" />
-        
         <BsTrash
           type="button"
           size="24px"
@@ -135,9 +160,9 @@ function Kanban() {
         ) : item.type === "proteinFoods" ? (
           ""
         ) : (
-          <ModalBody itemIdUnique={item.idUnique} columnName={column.name}
-          />
-        )}
+          <ModalBody itemIdUnique={item.idUnique} columnName={column.name} />
+        )} */}
+        {/*  */}
       </div>
     );
   }
@@ -201,7 +226,7 @@ function Kanban() {
             <FixedSizeList
               height={500}
               itemCount={itemCount}
-              itemSize={80}
+              itemSize={70}
               width={340}
               outerRef={provided.innerRef}
               itemData={column.items}
@@ -259,10 +284,13 @@ function Kanban() {
                   )
                 }
               />
-              <BsPencil type="button" size="24px"
-              onClick={() =>
-                editColumn(column.name, intake, kanban, setKanban)
-              }>
+              <BsPencil
+                type="button"
+                size="24px"
+                onClick={() =>
+                  editColumn(column.name, intake, kanban, setKanban)
+                }
+              >
                 edit
               </BsPencil>
             </h3>
@@ -368,7 +396,8 @@ function Kanban() {
       kanban,
       setKanban,
       intake,
-      recipes)
+      recipes
+    );
   };
 
   return (

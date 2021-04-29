@@ -82,10 +82,14 @@ html,
 .kcal {
   font-size: 30px;
   width: 200px;
-  background-color: transparent;
+  /* background-color: transparent; */
+  border-radius: var(--borderRadius);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.769), rgba(0, 0, 0, 0.961)),
+    var(--mybguri64); 
   color: #fffddd;
+  border: none;
   height: 60px;
-  border-color: white;
+  /* border-color: white; */
   border-radius: 5px;
   text-align: center;
 }
@@ -97,23 +101,32 @@ html,
 }
 .inputMacros {
   font-size: 22px;
-  background-color: transparent;
+  /* background-color: transparent; */
+  border-radius: var(--borderRadius);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.769), rgba(0, 0, 0, 0.961)),
+    var(--mybguri64); 
   color: #fffddd;
+  border: none;
   width: 90px;
-  border-color: white;
-  border-radius: 5px;
+  /* border-color: white; */
+  /* border-radius: 5px; */
   text-align: center;
 }
 .inputFoodIntake {
   font-weight: bold;
   font-size: 24px;
-  background-color: transparent;
+  /* background-color: transparent; */
+  border-radius: var(--borderRadius);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.769), rgba(0, 0, 0, 0.961)),
+    var(--mybguri64); 
   color: #fffddd;
+  border: none;
 }
 
 .ouputMacros {
   font-weight: bold;
   font-size: 22px;
+  border: none;
 }
 
 .divMacros {
