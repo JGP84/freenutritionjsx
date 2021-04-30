@@ -12,7 +12,6 @@ import { addRecipe } from "../../functions/kanbanFunctions";
 import { percenProt, percenLip, percenCarb } from "../../functions/functions";
 import useDietLogic from "../../hooks/useDietLogic.jsx";
 
-
 const SearchFood = () => {
   const {
     arrFoods,
@@ -129,13 +128,12 @@ const SearchFood = () => {
           <label>
             <h2> Search your food</h2>
           </label>
-          <div className="input-group m-2 ">
+          <div className="input-group">
             <input
-              id="inputSearchFood"
               type="text"
               value={foodNew}
               list="texto_uno"
-              className="inputFoodIntake form-control w-75"
+              className="inputSearchFood form-control w-75"
               placeholder="Search your food"
               onChange={updateFoodNew}
               onKeyPress={(e) => handler(e)}
@@ -174,9 +172,9 @@ const SearchFood = () => {
             </button>
 
             {/* dropdown bootstrap */}
-            <div class="dropdown ms-5">
+            <div className="dropdown ms-5">
               <button
-                class="btn btn-warning dropdown-toggle"
+                className="btn btn-warning dropdown-toggle"
                 type="button"
                 id="dropdownMenuButton1"
                 data-bs-toggle="dropdown"
@@ -184,13 +182,15 @@ const SearchFood = () => {
               >
                 Intakes
               </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <ul
+                className="dropdown-menu"
+                aria-labelledby="dropdownMenuButton1"
+              >
                 {Object.entries(kanban)[1][1].map((item) => (
-                  <li>
+                  <li key={uuid()}>
                     <button
-                      class="dropdown-item"
+                      className="dropdown-item"
                       type="button"
-                      key={uuid()}
                       value={item}
                       onClick={(e) => setIntake(e.target.value)}
                     >
@@ -202,9 +202,9 @@ const SearchFood = () => {
             </div>
             {/* end dropdown bootstrap */}
             {/* dropdown bootstrap */}
-            <div class="dropdown ms-3 ">
+            <div className="dropdown ms-3 ">
               <button
-                class="btn btn-info dropdown-toggle"
+                className="btn btn-info dropdown-toggle"
                 type="button"
                 id="dropdownMenuButton1"
                 data-bs-toggle="dropdown"
@@ -212,13 +212,15 @@ const SearchFood = () => {
               >
                 Recipes
               </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <ul
+                className="dropdown-menu"
+                aria-labelledby="dropdownMenuButton1"
+              >
                 {recipes.map((item) => (
-                  <li>
+                  <li key={uuid()}>
                     <button
-                      class="dropdown-item"
+                      className="dropdown-item"
                       type="button"
-                      key={uuid()}
                       value={item.title}
                       onClick={(e) => handleAddRecipe(item.id)}
                     >

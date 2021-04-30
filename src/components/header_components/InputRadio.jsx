@@ -6,7 +6,7 @@ const InputRadio = () => {
 
   return (
     <>
-      <div className="d-flex  align-items-center mt-5 p-3">
+      <div className="d-flex  align-items-center h6 mt-5 p-2">
         <label>
           {" "}
           <h2>Requirements</h2>
@@ -15,13 +15,13 @@ const InputRadio = () => {
         <div className="ms-5">
           <div className="form-check">
             <input
-              className="form-check-input"
+              className="form-check-input "
               type="radio"
               name="flexRadioDefault"
               id="flexRadioDefault1"
               onChange={() => setIsReqGrams(true)}
             />
-            <label className="form-check-label" htmlFor="flexRadioDefault1">
+            <label className="form-check-label " htmlFor="flexRadioDefault1">
               Percentage (%)
             </label>
           </div>
@@ -35,7 +35,7 @@ const InputRadio = () => {
               onChange={() => setIsReqGrams(false)}
               /* checked */
             />
-            <label className="form-check-label" htmlFor="flexRadioDefault2">
+            <label className="form-check-label " htmlFor="flexRadioDefault2">
               Grams (g)
             </label>
           </div>

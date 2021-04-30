@@ -79,46 +79,42 @@ html,
 .pieChart {
   height: 200px;
 }
+
 .kcal {
   font-size: 30px;
   width: 200px;
-  /* background-color: transparent; */
   border-radius: var(--borderRadius);
   background-image: linear-gradient(rgba(0, 0, 0, 0.769), rgba(0, 0, 0, 0.961)),
-    var(--mybguri64); 
+    var(--mybguri64);
   color: #fffddd;
   border: none;
   height: 60px;
-  /* border-color: white; */
-  border-radius: 5px;
   text-align: center;
 }
+
 .kcalOuput {
   font-size: 50px;
   background-color: transparent;
   color: #fffddd;
   border: none;
 }
+
 .inputMacros {
   font-size: 22px;
-  /* background-color: transparent; */
   border-radius: var(--borderRadius);
   background-image: linear-gradient(rgba(0, 0, 0, 0.769), rgba(0, 0, 0, 0.961)),
-    var(--mybguri64); 
+    var(--mybguri64);
   color: #fffddd;
   border: none;
   width: 90px;
-  /* border-color: white; */
-  /* border-radius: 5px; */
   text-align: center;
 }
-.inputFoodIntake {
+.inputSearchFood {
   font-weight: bold;
   font-size: 24px;
-  /* background-color: transparent; */
   border-radius: var(--borderRadius);
   background-image: linear-gradient(rgba(0, 0, 0, 0.769), rgba(0, 0, 0, 0.961)),
-    var(--mybguri64); 
+    var(--mybguri64);
   color: #fffddd;
   border: none;
 }
@@ -127,6 +123,7 @@ html,
   font-weight: bold;
   font-size: 22px;
   border: none;
+  border-radius: var(--borderRadius);
 }
 
 .divMacros {
@@ -140,7 +137,7 @@ html,
   font-weight: lighter;
 }
 
-.row-drop{
+.row-drop {
   display: flex;
   flex-direction: row;
 }

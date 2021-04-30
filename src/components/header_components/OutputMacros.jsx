@@ -33,7 +33,7 @@ const OutputMacros = () => {
                 value={
                   percenProt(addProteins, addKcal) +
                   "%" +
-                  "/ " +
+                  "/" +
                   formatAddProteins() +
                   "g"
                 }
@@ -51,7 +51,7 @@ const OutputMacros = () => {
                 value={
                   percenLip(addLipids, addKcal) +
                   "%" +
-                  "/ " +
+                  "/" +
                   formatAddLipids() +
                   "g"
                 }
@@ -67,7 +67,7 @@ const OutputMacros = () => {
                 className="form-control w-75 text-center mt-1 ouputMacros"
                 placeholder="Carbohydrates in g"
                 value={
-                  percenCarb(addHc, addKcal) + "%" + "/ " + formatAddHc() + "g"
+                  percenCarb(addHc, addKcal) + "%" + "/" + formatAddHc() + "g"
                 }
                 onChange={addFoodWeight}
                 style={{ backgroundColor: "#b65c03" }}

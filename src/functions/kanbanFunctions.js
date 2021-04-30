@@ -161,6 +161,7 @@ const deleteItem = (
   addFoodWeight,
   setKanban
 ) => {
+
   /* const arrFoodsFiltered = arrFoods.filter(
     (item) => item.idUnique !== itemIdUnique
   );
@@ -383,89 +384,93 @@ const changeName = (
   columnName,
   name
 ) => {
-  const indexItem = arrFoods.findIndex(
-    (element) => element.idUnique === itemIdUnique
-  );
 
-  arrFoods[indexItem].name = name;
+console.log("itemIdUnique", itemIdUnique)
+console.log("columnName", columnName)
 
-  let arrEdited = [];
-
-
-
-  arrEdited = [...arrFoods];
-
- 
-
-  /* const columnTitle = intake;
-
+  const columnTitle = columnName;
   const columnsState = Object.entries(kanban)[0][1];
-
   const arrItems = columnsState[columnTitle].items;
   const columnOrderState = Object.entries(kanban)[1][1];
+
+/* search index items arrFoods & change name */
+  const indexArrFoods = arrFoods.findIndex(
+    (element) => element.idUnique === itemIdUnique
+  );
+  arrFoods[indexArrFoods].name = name;
+
+  
+
+/* search index items column & change name */
+  const indexArrItems = arrItems.findIndex(
+    (element) => element.idUnique === itemIdUnique
+  );
+  arrItems[indexArrItems].name = name;
+
+  
 
   const newStateColumns = {
     columns: {
       ...columnsState,
       [columnTitle]: {
         name: columnTitle,
-        items: [...arrItems, itemAdd],
+        items: [...arrItems],
       },
     },
     columnOrder: [...columnOrderState],
   };
 
-  setKanban(newStateColumns); */
+  setKanban(newStateColumns);
 };
 
 const changeN_int_card = (
   itemIdUnique,
   columnName,
   arrFoods,
-  uuid,
   addFoodWeight,
-  columns,
+  kanban,
   setKanban,
   gramsInt_card
 ) => {
-  const indexItem = arrFoods.findIndex(
+  const columnTitle = columnName;
+  const columnsState = Object.entries(kanban)[0][1];
+  const arrItems = columnsState[columnTitle].items;
+  const columnOrderState = Object.entries(kanban)[1][1];
+
+  const indexArrFoods = arrFoods.findIndex(
     (element) => element.idUnique === itemIdUnique
   );
 
   /* conversion grams to n_int_card */
-  const n_int_card = gramsInt_card / arrFoods[indexItem].weight_int;
+  const n_int_card = gramsInt_card / arrFoods[indexArrFoods].weight_int;
 
-  arrFoods[indexItem].n_int_card = n_int_card;
+  arrFoods[indexArrFoods].n_int_card = n_int_card;
   console.log("arrFoods despues", arrFoods);
 
   addFoodWeight();
 
-  let arrEdited = [];
-
-  const requestColumnId = Object.entries(columns).find(
-    (i) => i[1].name === columnName
-  )[0];
-
-  const column = columns[requestColumnId];
-
-  arrEdited = [...column.items];
-
-  /* search index item edited */
-  const indexItemArrEdited = arrEdited.findIndex(
+  /* search index items column & change nº Int Cards */
+  const indexArrItems = arrItems.findIndex(
     (element) => element.idUnique === itemIdUnique
   );
+  arrItems[indexArrItems].n_int_card = n_int_card;
 
-  arrEdited[indexItemArrEdited].n_int_card = n_int_card;
+  
 
-  console.log("arrEdited", arrEdited);
-
-  setKanban({
-    ...columns,
-    [requestColumnId]: {
-      ...column,
-      items: [...arrEdited],
+  const newStateColumns = {
+    columns: {
+      ...columnsState,
+      [columnTitle]: {
+        name: columnTitle,
+        items: [...arrItems],
+      },
     },
-  });
+    columnOrder: [...columnOrderState],
+  };
+
+  setKanban(newStateColumns);
+
+
 };
 
 const onDragEnd = (result, columns, setKanban) => {

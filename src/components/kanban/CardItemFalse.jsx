@@ -5,7 +5,7 @@ import uuid from "react-uuid";
 import { changeName, changeN_int_card } from "../../functions/kanbanFunctions";
 import useDietLogic from "../../hooks/useDietLogic";
 
-const CardItemFalse = ({itemIdUnique, columnName, setEditItem }) => {
+const CardItemFalse = ({ itemIdUnique, columnName, setEditItem }) => {
   const { arrFoods, kanban, setKanban } = useContext(UserContext);
   const { addFoodWeight } = useDietLogic();
   const [name, setName] = useState("");
@@ -16,18 +16,17 @@ const CardItemFalse = ({itemIdUnique, columnName, setEditItem }) => {
 
     changeName(itemIdUnique, kanban, arrFoods, setKanban, columnName, name);
 
-   /*  changeN_int_card(
+    changeN_int_card(
       itemIdUnique,
       columnName,
       arrFoods,
-      uuid,
       addFoodWeight,
       kanban,
       setKanban,
       gramsInt_card
     );
- */
-    setEditItem(true)
+
+    setEditItem(true);
   };
 
   return (

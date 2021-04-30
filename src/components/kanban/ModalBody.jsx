@@ -1,12 +1,11 @@
 import React, { useContext, useState } from "react";
 import { BsPencil } from "react-icons/bs";
 import { UserContext } from "../../UserContext";
-import uuid from "react-uuid";
 import { changeName, changeN_int_card } from "../../functions/kanbanFunctions";
 import useDietLogic from "../../hooks/useDietLogic";
 
 const ModalBody = ({ itemIdUnique, columnName }) => {
-  const { arrFoods, columns, setColumns } = useContext(UserContext);
+  const { arrFoods, kanban, setKanban } = useContext(UserContext);
   const { addFoodWeight } = useDietLogic();
   const [name, setName] = useState("");
   const [gramsInt_card, setGramsInt_card] = useState("");
@@ -14,30 +13,34 @@ const ModalBody = ({ itemIdUnique, columnName }) => {
   const updateFood = (e) => {
     e.preventDefault();
 
-    changeName(itemIdUnique, columns, arrFoods, setColumns, columnName, name);
+    changeName(itemIdUnique,
+      kanban,
+      arrFoods,
+      setKanban,
+      columnName,
+      name);
 
     changeN_int_card(
       itemIdUnique,
       columnName,
       arrFoods,
-      uuid,
       addFoodWeight,
-      columns,
-      setColumns,
+      kanban,
+      setKanban,
       gramsInt_card
     );
   };
 
   return (
     <>
-      <BsPencil
+      {/* <BsPencil
         type="button"
         size="24px"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
         edit
-      </BsPencil>
+      </BsPencil> */}
 
       <div
         className="modal fade"
@@ -46,7 +49,7 @@ const ModalBody = ({ itemIdUnique, columnName }) => {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog">
+        <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
               <h4 className="modal-title text-dark " id="exampleModal">
