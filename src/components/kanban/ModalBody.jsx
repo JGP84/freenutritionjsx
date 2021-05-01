@@ -4,57 +4,86 @@ import { UserContext } from "../../UserContext";
 import { changeName, changeN_int_card } from "../../functions/kanbanFunctions";
 import useDietLogic from "../../hooks/useDietLogic";
 
-const ModalBody = ({ itemIdUnique, columnName }) => {
+const ModalBody = ({ item, columnName }) => {
   const { arrFoods, kanban, setKanban } = useContext(UserContext);
+
   const { addFoodWeight } = useDietLogic();
-  const [name, setName] = useState("");
+
+  const [name, setName] = useState(item.name);
   const [gramsInt_card, setGramsInt_card] = useState("");
+
+  
 
   const updateFood = (e) => {
     e.preventDefault();
 
-    changeName(itemIdUnique,
-      kanban,
-      arrFoods,
-      setKanban,
-      columnName,
-      name);
+    if (name === undefined || name.length === 0) {
+     
 
-    changeN_int_card(
-      itemIdUnique,
-      columnName,
-      arrFoods,
-      addFoodWeight,
-      kanban,
-      setKanban,
-      gramsInt_card
-    );
+      changeName(item.idUnique, kanban, arrFoods, setKanban, columnName, name);
+    } else {
+      changeName(item.idUnique, kanban, arrFoods, setKanban, columnName, name);
+    }
+
+
+    
+    if (gramsInt_card === undefined || gramsInt_card.length === 0) {
+      let gramsInt_card = item.foodWeight;
+
+      changeN_int_card(
+        item.idUnique,
+        columnName,
+        arrFoods,
+        addFoodWeight,
+        kanban,
+        setKanban,
+        gramsInt_card
+      );
+    } else {
+      changeN_int_card(
+        item.idUnique,
+        columnName,
+        arrFoods,
+        addFoodWeight,
+        kanban,
+        setKanban,
+        gramsInt_card
+      );
+    }
   };
+
+  /* function updateFoodNew(event) {
+    event.preventDefault();
+    const foodsNew = event.target.value;
+    setFoodNew(foodsNew);
+  } */
 
   return (
     <>
-      {/* <BsPencil
+       {/* <!-- Button trigger modal --> */}
+       <BsPencil
         type="button"
         size="24px"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
-        edit
-      </BsPencil> */}
+        Mo Bo
+      </BsPencil>
 
+      {/* <!-- Modal --> */}
       <div
         className="modal fade"
         id="exampleModal"
-        tabIndex="-1"
+        tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-header">
-              <h4 className="modal-title text-dark " id="exampleModal">
-                Edit food
-              </h4>
+              <h5 className="modal-title" id="exampleModalLabel">
+                Edit Food
+              </h5>
               <button
                 type="button"
                 className="btn-close"
@@ -69,7 +98,10 @@ const ModalBody = ({ itemIdUnique, columnName }) => {
                 type="text"
                 className="form-control"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) =>{
+                   setName(e.target.value);
+                }}
+
               ></input>
 
               <h5 className="d-flex justify-content-start mt-3 text-dark">
@@ -86,7 +118,6 @@ const ModalBody = ({ itemIdUnique, columnName }) => {
               <button
                 type="button"
                 className="btn btn-warning"
-                data-bs-dismiss="modal"
                 onClick={(e) => updateFood(e)}
               >
                 Edit
@@ -94,6 +125,7 @@ const ModalBody = ({ itemIdUnique, columnName }) => {
               <button
                 type="button"
                 className="btn btn-danger"
+                data-bs-dismiss="modal"
                 onClick={(e) => updateFood(e)}
               >
                 Close

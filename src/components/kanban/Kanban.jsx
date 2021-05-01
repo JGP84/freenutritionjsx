@@ -14,13 +14,13 @@ import {
   addRecipe,
   addExample,
   deleteItem,
-  duplicateItem,changeName
+  duplicateItem,
+  changeName,
 } from "../../functions/kanbanFunctions";
 import { BsTrash, BsFiles, BsPencil } from "react-icons/bs";
 import ModalBody from "./../kanban/ModalBody";
-import CardItemTrue from "./CardItemTrue";
-import CardItemFalse from "./CardItemFalse";
-
+import { Button, Modal } from "react-bootstrap";
+import ModalKanbanItem from "./ModalKanbanItem";
 
 function Kanban() {
   const {
@@ -35,20 +35,6 @@ function Kanban() {
   } = useContext(UserContext);
 
   const { addFoodWeight } = useDietLogic();
-
-  const [editItem, setEditItem] = useState(true);
-
-  const [itemIdUnique, setIdUnique] = useState("");
-  const [columnName, setColumnName] = useState("");
-
-  const updateStateIdColumn = (itemidUnique,columnname) => {
-    setIdUnique(itemidUnique);
-    setColumnName(columnname);
-  };
-
-  const handleChangeName = ()=>{
-    
-  }
 
   function getStyle({ draggableStyle, virtualStyle, isDragging }) {
     // If you don't want any spacing between your items
@@ -104,30 +90,6 @@ function Kanban() {
             : ""
         }`}
       >
-        {/* <input type="text" value={item.name}/> */}
-        {/*  {editItem ? (
-          <CardItemTrue
-            index={0}
-            arrFoods={arrFoods}
-            item={item}
-            BsTrash={BsTrash}
-            deleteItem={deleteItem}
-            kanban={kanban}
-            column={column}
-            addFoodWeight={addFoodWeight}
-            setKanban={setKanban}
-            BsFiles={BsFiles}
-            duplicateItem={duplicateItem}
-            uuid={uuid}
-            ModalBody={ModalBody}
-          />
-        ) : (
-          <CardItemFalse
-            itemIdUnique={item.idUnique}
-            columnName={column.name}
-            setEditItem={setEditItem}
-          />
-        )} */}
         {
           ((index = arrFoods.findIndex(
             (ingredient) => ingredient.idUnique === item.idUnique
@@ -135,7 +97,6 @@ function Kanban() {
           Math.round(arrFoods[index].foodWeight / 5) * 5)
         }
         {"g "} {item.name}
-
         <img src={item.img_link} alt="foodImg" width="50px" />
         <BsTrash
           type="button"
@@ -168,7 +129,6 @@ function Kanban() {
             )
           }
         />
-        
         {item.type === "starchyFoods" ? (
           ""
         ) : item.type === "fats" ? (
@@ -176,14 +136,7 @@ function Kanban() {
         ) : item.type === "proteinFoods" ? (
           ""
         ) : (
-          
-          <BsPencil
-            type="button"
-            size="24px"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
-            onClick={ updateStateIdColumn(item.idUnique,column.name)}
-          ></BsPencil>
+          <ModalKanbanItem />
         )}
         {/*  */}
       </div>
@@ -307,15 +260,6 @@ function Kanban() {
                   )
                 }
               />
-              <BsPencil
-                type="button"
-                size="24px"
-                onClick={() =>
-                  editColumn(column.name, intake, kanban, setKanban)
-                }
-              >
-                edit
-              </BsPencil>
             </h3>
 
             <ItemList column={column} index={index} />
@@ -425,7 +369,6 @@ function Kanban() {
 
   return (
     <>
-      <ModalBody itemIdUnique={itemIdUnique} columnName={columnName} />
       <button className="btn btn-outline-success m-3" onClick={handleAddColumn}>
         add Snack
       </button>
@@ -433,51 +376,7 @@ function Kanban() {
       <button className="btn btn-outline-success m-3" onClick={handleAddRecipe}>
         add example
       </button>
-      {/* modal start */}
 
-      {/*  <!-- Button trigger modal --> */}
-
-      {/* <!-- Modal --> */}
-
-      {/* <div
-        class="modal fade"
-        id="staticBackdrop"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabindex="-1"
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">
-                Modal title
-              </h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">...</div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-primary">
-                Understood
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> */}
-      {/* modal end */}
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="app">
           <Droppable

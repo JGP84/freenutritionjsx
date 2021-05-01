@@ -129,18 +129,18 @@ const duplicateColumn = (
   setKanban(newStateColumns);
 };
 
-const editColumn = (columnName, intake, kanban, setKanban) => {
+const editColumn = (columnName, title, kanban, setKanban) => {
   const columnsState = Object.entries(kanban)[0][1];
 
   const columnOrderState = Object.entries(kanban)[1][1];
 
-  columnsState[columnName].name = intake;
+  columnsState[columnName].name = title;
 
-  columnsState[columnName] = [intake];
+  columnsState[columnName] = [title];
 
   columnOrderState.map(function updateNameColumn() {
     const index = columnOrderState.findIndex((column) => column === columnName);
-    columnOrderState[index] = intake;
+    columnOrderState[index] = title;
   });
 
   const newStateColumns = {

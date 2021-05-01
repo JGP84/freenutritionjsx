@@ -4,7 +4,7 @@ import { useState } from "react";
 const EditFoodDatabase = ({ food }) => {
   const [name, setName] = useState(food.name);
   const [type, setType] = useState(food.type);
-  const [weight_int, setweight_int] = useState(food.weight_int);
+  const [weight_int, setWeight_int] = useState(food.weight_int);
   const [prot, setProt] = useState(food.prot);
   const [lip, setLip] = useState(food.lip);
   const [hc, setHc] = useState(food.hc);
@@ -97,7 +97,7 @@ const EditFoodDatabase = ({ food }) => {
                 type="number"
                 className="form-control"
                 value={weight_int}
-                onChange={(e) => setweight_int(e.target.value)}
+                onChange={(e) => setWeight_int(e.target.value)}
               ></input>
               <h5 className="d-flex justify-content-start mt-3 text-dark">
                 Prot
