@@ -134,17 +134,7 @@ function Kanban() {
           )),
           Math.round(arrFoods[index].foodWeight / 5) * 5)
         }
-        {"g"} 
-        
-       <input value={item.name}
-       onChange={changeName(item.idUnique,
-        kanban,
-        arrFoods,
-        setKanban,
-        column.name,
-        item.name)}></input>
-        
-
+        {"g "} {item.name}
 
         <img src={item.img_link} alt="foodImg" width="50px" />
         <BsTrash
