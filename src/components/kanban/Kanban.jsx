@@ -136,7 +136,7 @@ function Kanban() {
         ) : item.type === "proteinFoods" ? (
           ""
         ) : (
-          <ModalKanbanItem />
+          <ModalKanbanItem item={item} column={column} />
         )}
         {/*  */}
       </div>
