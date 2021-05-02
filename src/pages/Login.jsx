@@ -50,6 +50,9 @@ const Login = () => {
       });
   };
 
+  const imgLink = "./assets/undraw_happy_announcement_ac67.svg"
+
+  
   return (
     <>
       <Navbar />
@@ -57,10 +60,14 @@ const Login = () => {
         <h1>Welcome to Free Nutrition Planner . O R G</h1>
         <h2>Please create an account or login to access the application </h2>
       </div>
+      
 
       <div className="row mt-5 text-center">
+      
         <div className="col"> </div>
+        
         <div className="col">
+        <img className="mb-5" src={imgLink} alt="img" width="80%"/>
           <form onSubmit={registerUser} className="form-group">
             <label>Email address</label>
 
@@ -111,6 +118,7 @@ const Login = () => {
         </div>
         <div className="col"></div>
       </div>
+      
     </>
   );
 };
