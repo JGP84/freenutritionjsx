@@ -161,7 +161,6 @@ const deleteItem = (
   addFoodWeight,
   setKanban
 ) => {
-
   /* const arrFoodsFiltered = arrFoods.filter(
     (item) => item.idUnique !== itemIdUnique
   );
@@ -328,8 +327,8 @@ const addRecipe = (
 };
 
 const addExample = (
-  arrFoods,
   foodDatabase,
+  arrFoods,
   uuid,
   addFoodWeight,
   kanban,
@@ -337,41 +336,74 @@ const addExample = (
   intake,
   recipes
 ) => {
-  addRecipe(
-    foodDatabase,
-    arrFoods,
-    uuid,
-    addFoodWeight,
-    kanban,
-    setKanban,
-    "Breakfast",
-    recipes,
-    0
-  );
+  const columnTitle = intake;
+  const columnsState = Object.entries(kanban)[0][1];
+  const arrItems = columnsState[columnTitle].items;
+  const columnOrderState = Object.entries(kanban)[1][1];
 
-  addRecipe(
-    foodDatabase,
-    arrFoods,
-    uuid,
-    addFoodWeight,
-    kanban,
-    setKanban,
-    "Lunch",
-    recipes,
-    1
-  );
+  const arrItemsColumn0 = [];
+  const arrItemsColumn1 = [];
+  const arrItemsColumn2 = [];
 
-  addRecipe(
-    foodDatabase,
-    arrFoods,
-    uuid,
-    addFoodWeight,
-    kanban,
-    setKanban,
-    "Dinner",
-    recipes,
-    2
-  );
+  const arrItemsColumns = [arrItemsColumn0, arrItemsColumn1, arrItemsColumn2];
+
+  if (intake !== undefined) {
+    for (let i = 0; i < 3; i++) {
+      const arrRecipe = recipes[i].ingredients;
+
+      for (let itemRecipe of arrRecipe) {
+        let index = foodDatabase.findIndex((item) => item.name === itemRecipe);
+
+        arrFoods.unshift({
+          food_id: foodDatabase[index].food_id,
+          name: itemRecipe,
+          type: foodDatabase[index].type,
+          weight_int: foodDatabase[index].weight_int,
+          prot: foodDatabase[index].prot,
+          lip: foodDatabase[index].lip,
+          hc: foodDatabase[index].hc,
+          img_link: foodDatabase[index].img_link,
+          n_int_card: foodDatabase[index].n_int_card,
+          foodWeight: 0,
+          idUnique: uuid(),
+        });
+
+        addFoodWeight();
+
+        const itemAdd = {
+          idUnique: arrFoods[0].idUnique,
+          name: arrFoods[0].name,
+          foodWeight: arrFoods[0].foodWeight,
+          type: arrFoods[0].type,
+          img_link: arrFoods[0].img_link,
+        };
+
+        arrItemsColumns[i].push(itemAdd);
+      }
+    }
+
+    const newStateColumns = {
+      columns: {
+        ...columnsState,
+        Breakfast: {
+          name: "Breakfast",
+          items: [...arrItems, ...arrItemsColumn0],
+        },
+        Lunch: {
+          name: "Lunch",
+          items: [...arrItems, ...arrItemsColumn1],
+        },
+        Dinner: {
+          name: "Dinner",
+          items: [...arrItems, ...arrItemsColumn2],
+        },
+      },
+      columnOrder: [...columnOrderState],
+    };
+
+    setKanban(newStateColumns);
+  } else {
+  }
 };
 
 /* functions et variables modal */
@@ -384,30 +416,25 @@ const changeName = (
   columnName,
   name
 ) => {
-
-console.log("itemIdUnique", itemIdUnique)
-console.log("columnName", columnName)
+  console.log("itemIdUnique", itemIdUnique);
+  console.log("columnName", columnName);
 
   const columnTitle = columnName;
   const columnsState = Object.entries(kanban)[0][1];
   const arrItems = columnsState[columnTitle].items;
   const columnOrderState = Object.entries(kanban)[1][1];
 
-/* search index items arrFoods & change name */
+  /* search index items arrFoods & change name */
   const indexArrFoods = arrFoods.findIndex(
     (element) => element.idUnique === itemIdUnique
   );
   arrFoods[indexArrFoods].name = name;
 
-  
-
-/* search index items column & change name */
+  /* search index items column & change name */
   const indexArrItems = arrItems.findIndex(
     (element) => element.idUnique === itemIdUnique
   );
   arrItems[indexArrItems].name = name;
-
-  
 
   const newStateColumns = {
     columns: {
@@ -455,8 +482,6 @@ const changeN_int_card = (
   );
   arrItems[indexArrItems].n_int_card = n_int_card;
 
-  
-
   const newStateColumns = {
     columns: {
       ...columnsState,
@@ -469,8 +494,6 @@ const changeN_int_card = (
   };
 
   setKanban(newStateColumns);
-
-
 };
 
 const onDragEnd = (result, columns, setKanban) => {

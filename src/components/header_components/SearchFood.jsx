@@ -103,7 +103,8 @@ const SearchFood = () => {
       date,
       jsPDF,
       nintCards,
-      addOuputsFoods
+      addOuputsFoods, 
+      
     );
   };
 

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useContext, useState } from "react";
+import React, { useLayoutEffect, useRef, useContext } from "react";
 import { UserContext } from "./../../UserContext";
 import uuid from "react-uuid";
 import { FixedSizeList, areEqual } from "react-window";
@@ -10,16 +10,11 @@ import {
   addColumn,
   deleteColumn,
   duplicateColumn,
-  editColumn,
-  addRecipe,
   addExample,
   deleteItem,
   duplicateItem,
-  changeName,
 } from "../../functions/kanbanFunctions";
-import { BsTrash, BsFiles, BsPencil } from "react-icons/bs";
-import ModalBody from "./../kanban/ModalBody";
-import { Button, Modal } from "react-bootstrap";
+import { BsTrash, BsFiles } from "react-icons/bs";
 import ModalKanbanItem from "./ModalKanbanItem";
 
 function Kanban() {
@@ -27,7 +22,6 @@ function Kanban() {
     foodDatabase,
     arrFoods,
     recipes,
-    setIntake,
     intake,
     kanban,
     setKanban,
@@ -356,8 +350,8 @@ function Kanban() {
 
   const handleAddRecipe = () => {
     addExample(
-      arrFoods,
       foodDatabase,
+      arrFoods,
       uuid,
       addFoodWeight,
       kanban,

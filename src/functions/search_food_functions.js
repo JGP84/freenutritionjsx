@@ -6,7 +6,8 @@ function addFood(
   addFoodWeight,
   kanban,
   setKanban,
-  setFoodNew,intake
+  setFoodNew,
+  intake
 ) {
   let index = foodDatabase.findIndex((item) => item.name === foodNew);
 
@@ -63,7 +64,6 @@ function addFood(
 }
 
 function allDelete(setArrFoods, setKanban) {
-
   const initial = {
     columns: {
       Breakfast: {
@@ -72,28 +72,26 @@ function allDelete(setArrFoods, setKanban) {
       },
       Lunch: {
         name: "Lunch",
-        items:[],
+        items: [],
       },
       Dinner: {
         name: "Dinner",
-        items:[],
+        items: [],
       },
     },
     columnOrder: ["Breakfast", "Lunch", "Dinner"],
   };
 
-  setKanban(initial); 
+  setKanban(initial);
 
-  setArrFoods([])
-
+  setArrFoods([]);
 }
 
 //JSPDF functions
-const getArrBreakfast = (columns, arrFoods) => {
+const getArrBreakfast = (kanban, arrFoods) => {
   let arrBreakfast = [];
 
-
-  arrBreakfast = Object.entries(columns)[0][1].Breakfast.items;
+  arrBreakfast = Object.entries(kanban)[0][1].Breakfast.items;
 
   arrBreakfast.map(function updateFoodweight(element) {
     const index = arrFoods.findIndex(
@@ -105,11 +103,10 @@ const getArrBreakfast = (columns, arrFoods) => {
 
   return arrBreakfast;
 };
-const getArrLunch = (columns, arrFoods) => {
+const getArrLunch = (kanban, arrFoods) => {
   let arrLunch = [];
 
-  
-  arrLunch = Object.entries(columns)[0][1].Lunch.items;
+  arrLunch = Object.entries(kanban)[0][1].Lunch.items;
   /* return column.items; */
   arrLunch.map(function updateFoodweight(element) {
     const index = arrFoods.findIndex(
@@ -122,11 +119,10 @@ const getArrLunch = (columns, arrFoods) => {
   return arrLunch;
 };
 
-const getArrDinner = (columns, arrFoods) => {
+const getArrDinner = (kanban, arrFoods) => {
   let arrDinner = [];
 
-  
-  arrDinner = Object.entries(columns)[0][1].Dinner.items;
+  arrDinner = Object.entries(kanban)[0][1].Dinner.items;
 
   /* return column.items; */
   arrDinner.map(function updateFoodweight(element) {
@@ -140,15 +136,15 @@ const getArrDinner = (columns, arrFoods) => {
   return arrDinner;
 };
 
-const getArrSnack = (columns, arrFoods, showSnack) => {
+const getArrSnack = (kanban, arrFoods, showSnack) => {
   let arrSnack = [];
 
   if (showSnack === true) {
-    const requestColumnId = Object.entries(columns)[0].find(
+    const requestColumnId = Object.entries(kanban)[0].find(
       (column) => column.name === "Snack"
     );
 
-    arrSnack = Object.entries(columns)[0][1].Snack.items;
+    arrSnack = Object.entries(kanban)[0][1].Snack.items;
     arrSnack.map(function updateFoodweight(element) {
       const index = arrFoods.findIndex(
         (ingredient) => ingredient.idUnique === element.idUnique
@@ -203,7 +199,7 @@ const getArrInformation = (
 };
 
 function exportPDF(
-  columns,
+  kanban,
   arrFoods,
   showSnack,
   percenProt,
@@ -218,10 +214,10 @@ function exportPDF(
   nintCards,
   addOuputsFoods
 ) {
-  const arrBreakfast = getArrBreakfast(columns, arrFoods);
-  const arrLunch = getArrLunch(columns, arrFoods);
-  const arrDinner = getArrDinner(columns, arrFoods);
-  const arrSnack = getArrSnack(columns, arrFoods, showSnack);
+  const arrBreakfast = getArrBreakfast(kanban, arrFoods);
+  const arrLunch = getArrLunch(kanban, arrFoods);
+  const arrDinner = getArrDinner(kanban, arrFoods);
+  const arrSnack = getArrSnack(kanban, arrFoods, showSnack);
   const arrInformation = getArrInformation(
     percenProt,
     addProteins,
@@ -267,35 +263,46 @@ function exportPDF(
   ];
 
   const doc = new jsPDF("p", "pt");
+  const columnsState = Object.entries(kanban)[0][1];
+  /* console.log("columnOrder: ", Object.entries(kanban)[1][1]) */
 
   doc.text("F r e e   N u t r i t i o n   P l a n n e r  .  O R G", 40, 40);
-  doc.autoTable(
-    columnsBreakfast,
-    arrBreakfast,
 
-    {
-      margin: { top: 60 },
-      /* theme: 'plain' */
-    }
-  );
-  doc.autoTable(
-    columnsLunch,
-    arrLunch,
+  if (columnsState.Breakfast.items.length !== 0) {
+    doc.autoTable(
+      columnsBreakfast,
+      arrBreakfast,
 
-    {
-      margin: { top: 120 },
-      /* theme: 'plain' */
-    }
-  );
-  doc.autoTable(
-    columnsDinner,
-    arrDinner,
+      {
+        margin: { top: 60 },
+        /* theme: 'plain' */
+      }
+    );
+  }
 
-    {
-      margin: { top: 120 },
-      /* theme: 'plain' */
-    }
-  );
+  if (columnsState.Lunch.items.length !== 0) {
+    doc.autoTable(
+      columnsLunch,
+      arrLunch,
+
+      {
+        margin: { top: 120 },
+        /* theme: 'plain' */
+      }
+    );
+  }
+
+  if (columnsState.Dinner.items.length !== 0) {
+    doc.autoTable(
+      columnsDinner,
+      arrDinner,
+
+      {
+        margin: { top: 120 },
+        /* theme: 'plain' */
+      }
+    );
+  }
 
   if (showSnack) {
     doc.autoTable(
