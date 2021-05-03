@@ -134,7 +134,7 @@ const SearchFood = () => {
               type="text"
               value={foodNew}
               list="texto_uno"
-              className="inputSearchFood form-control w-75"
+              className="inputSearchFood form-control w-75 text-white"
               placeholder="Search your food"
               onChange={updateFoodNew}
               onKeyPress={(e) => handler(e)}
