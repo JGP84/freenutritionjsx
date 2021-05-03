@@ -115,7 +115,6 @@ html,
   border-radius: var(--borderRadius);
   background-image: linear-gradient(rgba(0, 0, 0, 0.769), rgba(0, 0, 0, 0.961)),
     var(--mybguri64);
-  /* color: #fffddd; */
   border: none;
 }
 
