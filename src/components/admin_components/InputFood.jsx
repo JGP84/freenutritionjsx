@@ -22,7 +22,7 @@ const InputFood = () => {
         }
       );
 
-      window.location = "https://jolly-bell-ad79e8.netlify.app/admin";
+      /* window.location = "https://jolly-bell-ad79e8.netlify.app/admin"; */
 
       console.log(response);
     } catch (err) {
