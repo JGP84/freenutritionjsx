@@ -109,12 +109,13 @@ html,
   width: 90px;
   text-align: center;
 }
-.inputSearchFood {
+#inputSearchFood {
   font-weight: bold;
   font-size: 24px;
   border-radius: var(--borderRadius);
   background-image: linear-gradient(rgba(0, 0, 0, 0.769), rgba(0, 0, 0, 0.961)),
     var(--mybguri64);
+  color: white;
   border: none;
 }
 

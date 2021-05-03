@@ -103,8 +103,7 @@ const SearchFood = () => {
       date,
       jsPDF,
       nintCards,
-      addOuputsFoods, 
-      
+      addOuputsFoods
     );
   };
 
@@ -131,10 +130,11 @@ const SearchFood = () => {
           </label>
           <div className="input-group">
             <input
+              id="inputSearchFood"
               type="text"
               value={foodNew}
               list="texto_uno"
-              className="inputSearchFood form-control w-75 text-white"
+              className="form-control w-75 "
               placeholder="Search your food"
               onChange={updateFoodNew}
               onKeyPress={(e) => handler(e)}

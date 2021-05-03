@@ -22,7 +22,7 @@ const InputFood = () => {
         }
       );
 
-      window.location = "jolly-bell-ad79e8.netlify.app/admin";
+      window.location = "/admin";
 
       console.log(response);
     } catch (err) {

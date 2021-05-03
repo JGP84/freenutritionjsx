@@ -35,7 +35,8 @@ const EditFoodDatabase = ({ food }) => {
         }
       );
 
-      /* window.location = "/admin"; */
+      window.location = "/admin";
+      
     } catch (err) {
       console.error(err.message);
     }
