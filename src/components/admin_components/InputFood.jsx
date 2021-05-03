@@ -22,7 +22,7 @@ const InputFood = () => {
         }
       );
 
-      window.location = "/admin";
+     /*  window.location = "/admin"; */
 
       console.log(response);
     } catch (err) {
