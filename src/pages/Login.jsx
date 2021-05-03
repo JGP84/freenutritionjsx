@@ -19,7 +19,7 @@ const Login = () => {
       .catch((err) => {
         console.log("err", err);
         if (err.code === "auth/invalid-email") {
-          setMsgError("Email equired in correct format");
+          setMsgError("Email required in correct format");
         }
         if (err.code === "auth/weak-password") {
           setMsgError("Password must be 6 characters or more");
