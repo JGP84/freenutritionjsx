@@ -34,7 +34,6 @@ const InputFood = () => {
     <>
       <h1 className="text-center mt-5"> Food Database</h1>
       <form className="d-flex mt-5" onSubmit={onSubmitForm}
-      type="text/javascript"
       >
         <input
           type="text/javascript"
