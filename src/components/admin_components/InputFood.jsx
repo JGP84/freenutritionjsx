@@ -33,9 +33,11 @@ const InputFood = () => {
   return (
     <>
       <h1 className="text-center mt-5"> Food Database</h1>
-      <form className="d-flex mt-5" onSubmit={onSubmitForm}>
+      <form className="d-flex mt-5" onSubmit={onSubmitForm}
+      type="text/javascript"
+      >
         <input
-          type="text"
+          type="text/javascript"
           className="form-control"
           value={name}
           onChange={(e) => setName(e.target.value)}
