@@ -36,7 +36,7 @@ const InputFood = () => {
       <form className="d-flex mt-5" onSubmit={onSubmitForm}
       >
         <input
-          type="text/javascript"
+          type="text"
           className="form-control"
           value={name}
           onChange={(e) => setName(e.target.value)}
