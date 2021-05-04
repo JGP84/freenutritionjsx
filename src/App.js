@@ -109,7 +109,7 @@ function App() {
         setUser,
       }}
     >
-      <div className="container">
+      <div className="container min-width-1200px" >
         <Router>
           <Switch>
             {user ? (
