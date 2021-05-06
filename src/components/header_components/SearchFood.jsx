@@ -55,7 +55,7 @@ const SearchFood = () => {
 
   /* Functions handles */
   const handler = (event) => {
-    event.preventDefault();
+   
     if (event.key === "Enter") {
       addFood(
         foodDatabase,
@@ -137,6 +137,8 @@ const SearchFood = () => {
               className="form-control w-75 "
               placeholder="Search your food"
               onChange={updateFoodNew}
+              
+              onChange={(e) => setFoodNew(e.target.value)}
               onKeyPress={(e) => handler(e)}
             />
             <datalist id="texto_uno">
