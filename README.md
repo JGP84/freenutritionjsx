@@ -1,4 +1,4 @@
-This frontend has been made possible by many programmers who have shared their knowledge.
+This project has been made possible by many programmers who have shared their knowledge.
 
 Thank you a: Alex Reardon
 
